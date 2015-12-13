@@ -18,7 +18,7 @@
     "gulpfile",
     "fountain",
     "cli",
-    "react"
+    "angular"
   ],
   "dependencies": {
     "lodash": "^3.10.1",

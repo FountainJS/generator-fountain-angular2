@@ -1,4 +1,4 @@
-import { bootstrap } from 'angular2/angular2';
+import { bootstrap } from 'angular2/bootstrap';
 
 import { Hello } from './app/hello';
 
