@@ -9,8 +9,11 @@ module.exports = fountain.Base.extend({
   configuring: function () {
     this.mergeJson('package.json', {
       dependencies: {
-        angular2: '^2.0.0-alpha.53',
-        'reflect-metadata': '^0.1.2'
+        angular2: '^2.0.0-beta.0',
+        'es6-promise': '^3.0.2',
+        'reflect-metadata': '^0.1.2',
+        rxjs: '^5.0.0-beta.0',
+        'zone.js': '^0.5.10'
       }
     });
   },
