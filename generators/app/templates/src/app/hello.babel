@@ -1,12 +1,12 @@
-var ng = require('angular2/core');
+import { Component } from 'angular2/core';
 
-module.exports =
-  ng.Component({
+export const Hello =
+  Component({
     selector: 'hello-app',
     template: '<h1>{{ hello }}</h1>'
   })
   .Class({
-    constructor: function() {
+    constructor() {
       this.hello = 'Hello World!';
     }
   });

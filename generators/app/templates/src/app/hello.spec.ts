@@ -1,8 +1,8 @@
-var Hello = require('./hello');
+import { Hello } from './hello';
 
 describe('hello component', function() {
   it('should render hello world', function() {
-    var hello = new Hello();
+    const hello = new Hello();
     expect(hello.hello).toEqual('Hello World!');
   });
 });

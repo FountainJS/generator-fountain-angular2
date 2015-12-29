@@ -1,7 +1,11 @@
-import 'reflect-metadata';
+require('reflect-metadata');
 
-import { bootstrap } from 'angular2/bootstrap';
+var ng = require('angular2/bootstrap');
 
-import { Hello } from './app/hello';
+<% if (modules === 'webpack') { -%>
+require('./index.scss');
 
-bootstrap(Hello);
+<% } -%>
+var Hello = require('./app/hello');
+
+ng.bootstrap(Hello);
