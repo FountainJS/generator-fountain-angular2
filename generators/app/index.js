@@ -26,6 +26,7 @@ module.exports = fountain.Base.extend({
 
   writing() {
     const files = [
+      'src/index.js',
       'src/index.html',
       'src/index.css',
       'src/app/hello.js',
@@ -35,11 +36,5 @@ module.exports = fountain.Base.extend({
     files.map(file => {
       this.copyTemplate(file, file);
     });
-
-    if (this.props.modules === 'systemjs' && this.props.js === 'typescript') {
-      this.copyTemplate('src/index.js', 'src/app/index.js');
-    } else {
-      this.copyTemplate('src/index.js', 'src/index.js');
-    }
   }
 });

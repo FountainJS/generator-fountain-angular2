@@ -5,6 +5,8 @@ import { Component } from 'angular2/core';
   template: '<h1>{{ hello }}</h1>'
 })
 export class Hello {
+  public hello: string;
+
   constructor() {
     this.hello = 'Hello World!';
   }
