@@ -3,7 +3,7 @@ import 'reflect-metadata';
 import { bootstrap } from 'angular2/bootstrap';
 
 <% if (modules === 'webpack') { -%>
-import './index.scss';
+import './index.<%- css %>';
 
 <% } -%>
 import { Hello } from './app/hello';
