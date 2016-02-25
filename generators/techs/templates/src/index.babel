@@ -1,0 +1,10 @@
+import 'reflect-metadata';
+import 'zone.js';
+
+import {bootstrap} from 'angular2/bootstrap';
+
+import './index.scss';
+
+import {Main} from './app/main';
+
+bootstrap(Main);
