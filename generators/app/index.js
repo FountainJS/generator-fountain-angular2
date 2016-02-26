@@ -25,16 +25,12 @@ module.exports = fountain.Base.extend({
   },
 
   writing() {
-    const files = [
+    [
       'src/index.js',
       'src/index.html',
       'src/index.css',
       'src/app/hello.js',
       'src/app/hello.spec.js'
-    ];
-
-    files.map(file => {
-      this.copyTemplate(file, file);
-    });
+    ].map(file => this.copyTemplate(file, file));
   }
 });
