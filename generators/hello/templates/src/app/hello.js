@@ -2,7 +2,7 @@ var ng = require('angular2/core');
 
 module.exports =
   ng.Component({
-    selector: 'hello-app',
+    selector: 'App',
     template: '<h1>{{ hello }}</h1>'
   })
   .Class({
