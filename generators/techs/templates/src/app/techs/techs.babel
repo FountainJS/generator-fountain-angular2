@@ -1,4 +1,4 @@
-import {Component, Input} from 'angular2/core';
+import {Component} from 'angular2/core';
 import axios from 'axios';
 import {Tech} from './tech';
 
