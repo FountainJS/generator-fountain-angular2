@@ -6,7 +6,7 @@ module.exports =
     template: '<h1>{{ hello }}</h1>'
   })
   .Class({
-    constructor: function() {
+    constructor: function () {
       this.hello = 'Hello World!';
     }
   });
