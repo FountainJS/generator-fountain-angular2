@@ -16,12 +16,12 @@ module.exports = ng.Component({
   directives: [Tech]
 })
 .Class({
-  constructor: function() {
+  constructor: function () {
     var vm = this;
 
     axios
       .get('app/techs/techs.json')
-      .then(function(response) {
+      .then(function (response) {
         vm.techs = response.data;
       });
   }

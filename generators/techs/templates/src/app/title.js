@@ -13,5 +13,5 @@ module.exports = ng.Component({
     '</div>'
 })
 .Class({
-  constructor: function() {}
+  constructor: function () {}
 });
