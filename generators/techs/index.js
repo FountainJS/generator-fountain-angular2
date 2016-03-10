@@ -13,9 +13,7 @@ module.exports = fountain.Base.extend({
     });
 
     if (this.props.js === 'typescript') {
-      this.env.addToTsd = `"axios/axios.d.ts": {
-      "commit": "bcd5761826eb567876c197ccc6a87c4d05731054"
-    },`;
+      this.env.addToTsd = `"axios": "github:DefinitelyTyped/DefinitelyTyped/axios/axios.d.ts#bcd5761826eb567876c197ccc6a87c4d05731054",`;
     }
   },
 
