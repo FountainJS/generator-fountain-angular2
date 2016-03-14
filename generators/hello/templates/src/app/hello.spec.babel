@@ -1,7 +1,7 @@
 import {Hello} from './hello';
 
-describe('hello component', function () {
-  it('should render hello world', function () {
+describe('hello component', () => {
+  it('should render hello world', () => {
     const hello = new Hello();
     expect(hello.hello).toEqual('Hello World!');
   });
