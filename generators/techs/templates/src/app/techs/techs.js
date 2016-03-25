@@ -16,7 +16,7 @@ module.exports = ng.Component({
   directives: [Tech]
 })
 .Class({
-  constructor: function TechsController() {
+  constructor: function TechsController() { // https://github.com/angular/angular/issues/7507
     var vm = this;
 
     axios

@@ -18,5 +18,5 @@ module.exports = ng.Component({
   directives: [Header, Title, Techs, Footer]
 })
 .Class({
-  constructor: function MainController() {}
+  constructor: function MainController() {} // https://github.com/angular/angular/issues/7507
 });
