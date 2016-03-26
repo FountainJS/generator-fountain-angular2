@@ -11,5 +11,5 @@ module.exports = ng.Component({
     '</footer>'
 })
 .Class({
-  constructor: function () {}
+  constructor: function FooterController() {} // https://github.com/angular/angular/issues/7507
 });

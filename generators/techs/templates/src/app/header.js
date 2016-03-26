@@ -15,5 +15,5 @@ module.exports = ng.Component({
     '</header>'
 })
 .Class({
-  constructor: function () {}
+  constructor: function HeaderController() {} // https://github.com/angular/angular/issues/7507
 });

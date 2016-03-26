@@ -14,5 +14,5 @@ module.exports = ng.Component({
   inputs: ['tech']
 })
 .Class({
-  constructor: function () {}
+  constructor: function TechController() {} // https://github.com/angular/angular/issues/7507
 });
