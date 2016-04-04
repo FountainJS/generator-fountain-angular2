@@ -6,6 +6,6 @@ var ng = require('angular2/bootstrap');
 
 require('./index.<%- css %>');
 
-var Main = require('./app/Main');
+var Main = require('./app/main');
 
 ng.bootstrap(Main);
