@@ -9,7 +9,7 @@ gulp.task('linter', eslintCheck);
 gulp.task('default', gulp.series('linter', gulp.series(istanbulCover, mochaTest)));
 
 function eslintCheck() {
-  return gulp.src('**/*.js')
+  return gulp.src(['**/*.js', '!**/templates/**'])
     .pipe(excludeGitignore())
     .pipe(eslint())
     .pipe(eslint.format())
