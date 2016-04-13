@@ -38,7 +38,7 @@ module.exports = fountain.Base.extend({
           'es6-promise': '^3.0.2',
           'reflect-metadata': '^0.1.2',
           'rxjs': '5.0.0-beta.4', // https://github.com/ReactiveX/rxjs/issues/1584
-          'zone.js': '^0.5.10'
+          'zone.js': '^0.6.6'
         }
       });
     },
