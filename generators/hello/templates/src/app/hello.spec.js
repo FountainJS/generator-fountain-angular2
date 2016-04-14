@@ -12,7 +12,7 @@ ngTest.describe('hello component', function () {
     return tcb.createAsync(Hello)
       .then(function (fixture) {
         fixture.detectChanges();
-        const hello = fixture.nativeElement;
+        var hello = fixture.nativeElement;
         ngTest.expect(hello.querySelector('h1').textContent).toBe('Hello World!');
       });
   }));
