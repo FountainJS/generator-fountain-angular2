@@ -3,7 +3,7 @@
 
 import 'reflect-metadata';
 import 'zone.js/dist/zone';
-import {bootstrap} from 'angular2/bootstrap';
+import {bootstrap} from 'angular2/platform/browser';
 
 import './index.<%- css %>';
 
