@@ -1,8 +1,7 @@
 require('reflect-metadata');
 require('zone.js');
-require('angular2/bundles/angular2-polyfills');
 
-var ng = require('angular2/bootstrap');
+var ng = require('angular2/platform/browser');
 
 require('./index.<%- css %>');
 

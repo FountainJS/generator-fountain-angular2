@@ -1,8 +1,19 @@
-var Hello = require('./hello');
+<% if (modules === 'webpack') { -%>
+import 'zone.js/dist/zone';
+<% } -%>
+import Hello from './hello';
+import ngTest from 'angular2/testing';
+import providers from 'angular2/platform/testing/browser';
 
-describe('hello component', function () {
-  it('should render hello world', function () {
-    var hello = new Hello();
-    expect(hello.hello).to.equal('Hello World!');
-  });
+ngTest.describe('hello component', function () {
+  ngTest.setBaseTestProviders(providers.TEST_BROWSER_PLATFORM_PROVIDERS, providers.TEST_BROWSER_APPLICATION_PROVIDERS);
+
+  ngTest.it('should render hello world', ngTest.injectAsync([ngTest.TestComponentBuilder], function (tcb) {
+    return tcb.createAsync(Hello)
+      .then(function (fixture) {
+        fixture.detectChanges();
+        var hello = fixture.nativeElement;
+        ngTest.expect(hello.querySelector('h1').textContent).toBe('Hello World!');
+      });
+  }));
 });
