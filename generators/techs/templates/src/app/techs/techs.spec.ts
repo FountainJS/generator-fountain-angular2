@@ -6,10 +6,13 @@
 <% if (modules === 'webpack') { -%>
 import 'zone.js/dist/zone';
 <% } -%>
-import {Component, Input} from 'angular2/core';
+import {MockBackend, MockConnection} from 'angular2/http/testing';
+import {Http, BaseRequestOptions, Response, ResponseOptions} from 'angular2/http';
+import {Component, Input, provide} from 'angular2/core';
 import {Techs, Tech} from './techs';
 import {TechComponent} from './tech';
-import {describe, it, expect, injectAsync, TestComponentBuilder} from 'angular2/testing';
+import {describe, it, expect, inject, injectAsync, TestComponentBuilder, beforeEachProviders} from 'angular2/testing';
+import {Observable} from 'rxjs/Rx';
 
 @Component({
   selector: 'Tech',
@@ -44,15 +47,49 @@ const techsJson = [
 ];
 
 describe('techs component', () => {
-  it('should render 3 elements <tech>', injectAsync([TestComponentBuilder], (tcb: TestComponentBuilder) => {
-    return tcb
-      .overrideDirective(Techs, TechComponent, MockComponent)
-      .createAsync(Techs)
-      .then(fixture => {
-        fixture.componentInstance.techs = techsJson;
-        fixture.detectChanges();
-        const techs = fixture.nativeElement;
-        expect(techs.querySelectorAll('tech').length).toBe(3);
+  describe('techs component methods', () => {
+    beforeEachProviders(() => [
+      Techs,
+      MockBackend,
+      BaseRequestOptions,
+      provide(Http, {
+        useFactory: (backend, defaultOptions) => new Http(backend, defaultOptions),
+        deps: [MockBackend, BaseRequestOptions]
+      })
+    ]);
+
+    it('should get techs', inject([MockBackend, Techs], (mockBackend: MockBackend, techs: Techs) => {
+      let conn: MockConnection;
+      const response = new Response(new ResponseOptions({body: techsJson}));
+      mockBackend.connections.subscribe((connection: MockConnection) => {
+        conn = connection;
       });
-  }));
+      techs.getTechs().subscribe((jsonObject => {
+        techs.techs = jsonObject;
+      }));
+      conn.mockRespond(response);
+      expect(techs.techs.length).toBe(3);
+      mockBackend.verifyNoPendingRequests();
+    }));
+  });
+
+  describe('techs component rendering', () => {
+    beforeEach(() => {
+      Techs.prototype.getTechs = function getTechs () {
+        const response = new Response(new ResponseOptions({body: techsJson}));
+        return Observable.of(response).map(response => response.json());
+      };
+    });
+
+    it('should mock the techs and render 3 elements <tech>', injectAsync([TestComponentBuilder], (tcb: TestComponentBuilder) => {
+      return tcb
+        .overrideDirective(Techs, TechComponent, MockComponent)
+        .createAsync(Techs)
+        .then(fixture => {
+          fixture.detectChanges();
+          const techs = fixture.nativeElement;
+          expect(techs.querySelectorAll('tech').length).toBe(3);
+        });
+    }));
+  });
 });
