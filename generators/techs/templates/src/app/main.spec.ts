@@ -1,5 +1,7 @@
 /// <reference path="../../typings/main.d.ts"/>
+<% if (modules === 'webpack') { -%>
 /// <reference path="../../node_modules/angular2/typings/browser.d.ts"/>
+<% } -%>
 
 <% if (modules === 'webpack') { -%>
 import 'zone.js/dist/zone';
