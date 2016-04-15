@@ -1,6 +1,7 @@
 var ng = require('angular2/core');
-var axios = require('axios');
+var ngHttp = require('angular2/http');
 var Tech = require('./tech');
+require('rxjs/Rx');
 
 module.exports = ng.Component({
   selector: 'Techs',
@@ -13,16 +14,22 @@ module.exports = ng.Component({
         '<Tech *ngFor="#tech of techs" [tech]="tech"></Tech>' +
       '</div>' +
     '</div>',
-  directives: [Tech]
+  directives: [Tech],
+  providers: [ngHttp.HTTP_PROVIDERS]
 })
 .Class({
-  constructor: function TechsController() { // https://github.com/angular/angular/issues/7507
+  constructor: [ngHttp.Http, function TechsController(http) { // https://github.com/angular/angular/issues/7507
     var vm = this;
-
-    axios
+    this.http = http;
+    vm.getTechs().subscribe(function (result) {
+      vm.techs = result;
+    });
+  }],
+  getTechs: function getTechs () { // http://stackoverflow.com/questions/33458481/angular-2-how-to-use-http-in-es5
+    return this.http
       .get('app/techs/techs.json')
-      .then(function (response) {
-        vm.techs = response.data;
+      .map(function (response) {
+        return response.json();
       });
   }
 });

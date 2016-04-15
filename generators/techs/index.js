@@ -5,18 +5,6 @@ module.exports = fountain.Base.extend({
     this.fountainPrompting();
   },
 
-  configuring() {
-    this.mergeJson('package.json', {
-      dependencies: {
-        axios: '^0.9.1'
-      }
-    });
-
-    if (this.props.js === 'typescript') {
-      this.env.addToTsd = `"axios": "github:DefinitelyTyped/DefinitelyTyped/axios/axios.d.ts#bcd5761826eb567876c197ccc6a87c4d05731054",`;
-    }
-  },
-
   writing: {
     src() {
       [
