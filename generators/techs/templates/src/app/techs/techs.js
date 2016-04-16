@@ -25,7 +25,7 @@ module.exports = ng.Component({
       vm.techs = result;
     });
   }],
-  getTechs: function getTechs () { // http://stackoverflow.com/questions/33458481/angular-2-how-to-use-http-in-es5
+  getTechs: function getTechs() { // http://stackoverflow.com/questions/33458481/angular-2-how-to-use-http-in-es5
     return this.http
       .get('app/techs/techs.json')
       .map(function (response) {
