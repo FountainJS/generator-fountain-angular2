@@ -1,5 +1,6 @@
 import {Component} from 'angular2/core';
-import axios from 'axios';
+import {Http, HTTP_PROVIDERS} from 'angular2/http';
+import 'rxjs/Rx';
 import {Tech} from './tech';
 
 @Component({
@@ -14,14 +15,24 @@ import {Tech} from './tech';
       </div>
     </div>
   `,
-  directives: [Tech]
+  directives: [Tech],
+  providers: [HTTP_PROVIDERS]
 })
 export class Techs {
-  constructor() {
-    axios
+  constructor(http) {
+    this.http = http;
+    this.getTechs().subscribe(result => {
+      this.techs = result;
+    });
+  }
+
+  static get parameters() { // http://stackoverflow.com/questions/34800150/angular-2-es6-inject-http
+    return [[Http]];
+  }
+
+  getTechs() {
+    return this.http
       .get('app/techs/techs.json')
-      .then(response => {
-        this.techs = response.data;
-      });
+      .map(response => response.json());
   }
 }

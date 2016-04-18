@@ -1,5 +1,7 @@
 import {Component} from 'angular2/core';
-import * as axios from 'axios';
+import {Http, HTTP_PROVIDERS} from 'angular2/http';
+import {Observable} from 'rxjs/Observable';
+import 'rxjs/Rx';
 import {TechComponent} from './tech';
 
 export class Tech {
@@ -23,17 +25,20 @@ export class Tech {
       </div>
     </div>
   `,
-  directives: [TechComponent]
+  directives: [TechComponent],
+  providers: [HTTP_PROVIDERS]
 })
 export class Techs {
   public techs: Tech[];
   public tech: Tech;
 
-  constructor() {
-    axios
+  constructor(public http: Http) {
+    this.getTechs().subscribe(result => this.techs = result);
+  }
+
+  getTechs(): Observable<Tech[]> {
+    return this.http
       .get('app/techs/techs.json')
-      .then(response => {
-        this.techs = response.data as Tech[];
-      });
+      .map(response => response.json());
   }
 }
