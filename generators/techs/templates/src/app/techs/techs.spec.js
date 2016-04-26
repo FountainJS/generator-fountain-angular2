@@ -1,6 +1,7 @@
 <% if (modules === 'webpack') { -%>
 import 'zone.js/dist/zone';
 <% } -%>
+import 'zone.js/dist/async-test';
 import ng from 'angular2/core';
 import ngHttpTesting from 'angular2/http/testing';
 import ngHttp from 'angular2/http';
@@ -83,7 +84,7 @@ ngTest.describe('techs component', function () {
       };
     });
 
-    ngTest.it('should mock the techs and render 3 elements <tech>', ngTest.injectAsync([ngTest.TestComponentBuilder], function (tcb) {
+    ngTest.it('should mock the techs and render 3 elements <tech>', ngTest.async(ngTest.inject([ngTest.TestComponentBuilder], function (tcb) {
       return tcb
         .overrideDirective(Techs, Tech, MockComponent)
         .createAsync(Techs)
@@ -92,6 +93,6 @@ ngTest.describe('techs component', function () {
           var techs = fixture.nativeElement;
           ngTest.expect(techs.querySelectorAll('tech').length).toBe(3);
         });
-    }));
+    })));
   });
 });

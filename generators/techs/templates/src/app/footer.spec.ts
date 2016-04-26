@@ -6,17 +6,18 @@
 <% if (modules === 'webpack') { -%>
 import 'zone.js/dist/zone';
 <% } -%>
+import 'zone.js/dist/async-test';
 import {Footer} from './footer';
-import {describe, it, expect, injectAsync, TestComponentBuilder} from 'angular2/testing';
+import {describe, it, expect, inject, async, TestComponentBuilder} from 'angular2/testing';
 
 
 describe('footer component', () => {
-  it('should render \'FountainJS team\'', injectAsync([TestComponentBuilder], (tcb: TestComponentBuilder) => {
-    return tcb.createAsync(Footer)
+  it('should render \'FountainJS team\'', async(inject([TestComponentBuilder], (tcb: TestComponentBuilder) => {
+    tcb.createAsync(Footer)
       .then(fixture => {
         fixture.detectChanges();
         const footer = fixture.nativeElement;
         expect(footer.querySelector('a').textContent.trim()).toBe('FountainJS team');
       });
-  }));
+  })));
 });

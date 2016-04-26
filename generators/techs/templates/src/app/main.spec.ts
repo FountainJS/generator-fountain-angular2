@@ -6,13 +6,14 @@
 <% if (modules === 'webpack') { -%>
 import 'zone.js/dist/zone';
 <% } -%>
+import 'zone.js/dist/async-test';
 import {Component} from 'angular2/core';
 import {Main} from './main';
 import {Techs} from './techs/techs';
 import {Footer} from './footer';
 import {Header} from './header';
 import {Title} from './title';
-import {describe, it, expect, injectAsync, TestComponentBuilder, setBaseTestProviders} from 'angular2/testing';
+import {describe, it, expect, inject, async, TestComponentBuilder, setBaseTestProviders} from 'angular2/testing';
 import {TEST_BROWSER_PLATFORM_PROVIDERS, TEST_BROWSER_APPLICATION_PROVIDERS} from 'angular2/platform/testing/browser';
 
 @Component({
@@ -39,8 +40,8 @@ class MockTitle {}
 describe('main component', () => {
   setBaseTestProviders(TEST_BROWSER_PLATFORM_PROVIDERS, TEST_BROWSER_APPLICATION_PROVIDERS);
 
-  it('should render the header, title, techs and footer', injectAsync([TestComponentBuilder], (tcb: TestComponentBuilder) => {
-    return tcb
+  it('should render the header, title, techs and footer', async(inject([TestComponentBuilder], (tcb: TestComponentBuilder) => {
+    tcb
       .overrideDirective(Main, Techs, MockTechs)
       .overrideDirective(Main, Footer, MockFooter)
       .overrideDirective(Main, Header, MockHeader)
@@ -54,5 +55,5 @@ describe('main component', () => {
         expect(main.querySelector('Techs')).toBeDefined();
         expect(main.querySelector('Footer')).toBeDefined();
       });
-  }));
+  })));
 });
