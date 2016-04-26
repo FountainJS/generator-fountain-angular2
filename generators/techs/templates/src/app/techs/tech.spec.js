@@ -1,12 +1,13 @@
 <% if (modules === 'webpack') { -%>
 import 'zone.js/dist/zone';
 <% } -%>
+import 'zone.js/dist/async-test';
 import Tech from './tech';
 import ngTest from 'angular2/testing';
 
 ngTest.describe('tech component', function () {
-  ngTest.it('should render Gulp', ngTest.injectAsync([ngTest.TestComponentBuilder], function (tcb) {
-    return tcb.createAsync(Tech)
+  ngTest.it('should render Gulp', ngTest.async(ngTest.inject([ngTest.TestComponentBuilder], function (tcb) {
+    tcb.createAsync(Tech)
       .then(function (fixture) {
         fixture.componentInstance.tech = {
           key: 'gulp',
@@ -19,5 +20,5 @@ ngTest.describe('tech component', function () {
         var tech = fixture.nativeElement;
         ngTest.expect(tech.querySelector('h3').textContent.trim()).toBe('Gulp');
       });
-  }));
+  })));
 });

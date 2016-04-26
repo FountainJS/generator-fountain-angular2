@@ -1,12 +1,13 @@
 <% if (modules === 'webpack') { -%>
 import 'zone.js/dist/zone';
 <% } -%>
+import 'zone.js/dist/async-test';
 import {MockBackend} from 'angular2/http/testing';
 import {Http, BaseRequestOptions, Response, ResponseOptions} from 'angular2/http';
 import {Component, Input, provide} from 'angular2/core';
 import {Techs} from './techs';
 import {Tech} from './tech';
-import {describe, it, expect, inject, injectAsync, TestComponentBuilder, beforeEachProviders} from 'angular2/testing';
+import {describe, it, expect, inject, async, TestComponentBuilder, beforeEachProviders} from 'angular2/testing';
 import {Observable} from 'rxjs/Rx';
 
 @Component({
@@ -76,7 +77,7 @@ describe('techs component', () => {
       };
     });
 
-    it('should mock the techs and render 3 elements <tech>', injectAsync([TestComponentBuilder], tcb => {
+    it('should mock the techs and render 3 elements <tech>', async(inject([TestComponentBuilder], tcb => {
       return tcb
         .overrideDirective(Techs, Tech, MockComponent)
         .createAsync(Techs)
@@ -85,6 +86,6 @@ describe('techs component', () => {
           const techs = fixture.nativeElement;
           expect(techs.querySelectorAll('tech').length).toBe(3);
         });
-    }));
+    })));
   });
 });

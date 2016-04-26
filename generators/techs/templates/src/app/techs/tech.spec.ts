@@ -6,12 +6,13 @@
 <% if (modules === 'webpack') { -%>
 import 'zone.js/dist/zone';
 <% } -%>
+import 'zone.js/dist/async-test';
 import {TechComponent} from './tech';
-import {describe, it, expect, injectAsync, TestComponentBuilder} from 'angular2/testing';
+import {describe, it, expect, inject, async, TestComponentBuilder} from 'angular2/testing';
 
 describe('tech component', () => {
-  it('should render Gulp', injectAsync([TestComponentBuilder], (tcb: TestComponentBuilder) => {
-    return tcb.createAsync(TechComponent)
+  it('should render Gulp', async(inject([TestComponentBuilder], (tcb: TestComponentBuilder) => {
+    tcb.createAsync(TechComponent)
       .then(fixture => {
         fixture.componentInstance.tech = {
           key: 'gulp',
@@ -24,5 +25,5 @@ describe('tech component', () => {
         const tech = fixture.nativeElement;
         expect(tech.querySelector('h3').textContent.trim()).toBe('Gulp');
       });
-  }));
+  })));
 });

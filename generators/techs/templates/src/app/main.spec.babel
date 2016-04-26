@@ -7,7 +7,7 @@ import {Techs} from './techs/techs';
 import {Footer} from './footer';
 import {Header} from './header';
 import {Title} from './title';
-import {describe, it, expect, injectAsync, TestComponentBuilder, setBaseTestProviders} from 'angular2/testing';
+import {describe, it, expect, inject, async, TestComponentBuilder, setBaseTestProviders} from 'angular2/testing';
 import {TEST_BROWSER_PLATFORM_PROVIDERS, TEST_BROWSER_APPLICATION_PROVIDERS} from 'angular2/platform/testing/browser';
 
 @Component({
@@ -34,8 +34,8 @@ class MockTitle {}
 describe('main component', () => {
   setBaseTestProviders(TEST_BROWSER_PLATFORM_PROVIDERS, TEST_BROWSER_APPLICATION_PROVIDERS);
 
-  it('should render the header, title, techs and footer', injectAsync([TestComponentBuilder], tcb => {
-    return tcb
+  it('should render the header, title, techs and footer', async(inject([TestComponentBuilder], tcb => {
+    tcb
       .overrideDirective(Main, Techs, MockTechs)
       .overrideDirective(Main, Footer, MockFooter)
       .overrideDirective(Main, Header, MockHeader)
@@ -49,5 +49,5 @@ describe('main component', () => {
         expect(main.querySelector('Techs')).toBeDefined();
         expect(main.querySelector('Footer')).toBeDefined();
       });
-  }));
+  })));
 });

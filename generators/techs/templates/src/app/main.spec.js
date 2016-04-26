@@ -1,6 +1,8 @@
 <% if (modules === 'webpack') { -%>
 import 'zone.js/dist/zone';
 <% } -%>
+import 'zone.js/dist/async-test';
+import 'zone.js/dist/async-test';
 import ng from 'angular2/core';
 import Main from './main';
 import Techs from './techs/techs';
@@ -42,8 +44,8 @@ var MockTitle = ng.Component({
 ngTest.describe('main component', function () {
   ngTest.setBaseTestProviders(providers.TEST_BROWSER_PLATFORM_PROVIDERS, providers.TEST_BROWSER_APPLICATION_PROVIDERS);
 
-  ngTest.it('should render the header, title, techs and footer', ngTest.injectAsync([ngTest.TestComponentBuilder], function (tcb) {
-    return tcb
+  ngTest.it('should render the header, title, techs and footer', ngTest.async(ngTest.inject([ngTest.TestComponentBuilder], function (tcb) {
+    tcb
       .overrideDirective(Main, Techs, MockTechs)
       .overrideDirective(Main, Footer, MockFooter)
       .overrideDirective(Main, Header, MockHeader)
@@ -57,5 +59,5 @@ ngTest.describe('main component', function () {
         ngTest.expect(main.querySelector('Techs')).toBeDefined();
         ngTest.expect(main.querySelector('Footer')).toBeDefined();
       });
-  }));
+  })));
 });
