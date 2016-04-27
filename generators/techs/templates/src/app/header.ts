@@ -6,7 +6,7 @@ import {Component} from 'angular2/core';
     <header class="header">
       <p class="header-title">
         <a href="https://github.com/FountainJS/generator-fountain-webapp" target="_blank">
-          Foutain Generator
+          Fountain Generator
         </a>
       </p>
       <p class="header-date">

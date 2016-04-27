@@ -2,7 +2,6 @@
 import 'zone.js/dist/zone';
 <% } -%>
 import 'zone.js/dist/async-test';
-import 'zone.js/dist/async-test';
 import ng from 'angular2/core';
 import Main from './main';
 import Techs from './techs/techs';
