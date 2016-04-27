@@ -3,9 +3,7 @@
 /// <reference path="../../node_modules/angular2/typings/browser.d.ts"/>
 <% } -%>
 
-<% if (modules === 'webpack') { -%>
 import 'zone.js/dist/zone';
-<% } -%>
 import 'zone.js/dist/async-test';
 import {Footer} from './footer';
 import {describe, it, expect, inject, async, TestComponentBuilder} from 'angular2/testing';
