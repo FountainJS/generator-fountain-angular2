@@ -3,9 +3,7 @@
 /// <reference path="../../../node_modules/angular2/typings/browser.d.ts"/>
 <% } -%>
 
-<% if (modules === 'webpack') { -%>
 import 'zone.js/dist/zone';
-<% } -%>
 import 'zone.js/dist/async-test';
 import {MockBackend, MockConnection} from 'angular2/http/testing';
 import {Http, BaseRequestOptions, Response, ResponseOptions} from 'angular2/http';

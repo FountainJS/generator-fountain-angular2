@@ -6,12 +6,12 @@ import Header from './header';
 import ngTest from 'angular2/testing';
 
 ngTest.describe('header component', () => {
-  ngTest.it('should render \'Foutain Generator\'', ngTest.async(ngTest.inject([ngTest.TestComponentBuilder], tcb => {
+  ngTest.it('should render \'Fountain Generator\'', ngTest.async(ngTest.inject([ngTest.TestComponentBuilder], tcb => {
     tcb.createAsync(Header)
       .then(fixture => {
         fixture.detectChanges();
         var header = fixture.nativeElement;
-        ngTest.expect(header.querySelector('a').textContent.trim()).toBe('Foutain Generator');
+        ngTest.expect(header.querySelector('a').textContent.trim()).toBe('Fountain Generator');
       });
   })));
 });
