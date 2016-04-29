@@ -21,7 +21,7 @@ export class Tech {
         Cooked with all these awesome technologies:
       </h2>
       <div class="techs">
-        <Tech *ngFor="#tech of techs" [tech]="tech"></Tech>
+        <Tech *ngFor="let tech of techs" [tech]="tech"></Tech>
       </div>
     </div>
   `,
