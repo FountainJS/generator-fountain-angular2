@@ -1,16 +1,15 @@
 /// <reference path="../../../typings/main.d.ts"/>
-<% if (modules === 'webpack') { -%>
-/// <reference path="../../../node_modules/angular2/typings/browser.d.ts"/>
-<% } -%>
 
 import 'zone.js/dist/zone';
 import 'zone.js/dist/async-test';
-import {MockBackend, MockConnection} from 'angular2/http/testing';
-import {Http, BaseRequestOptions, Response, ResponseOptions} from 'angular2/http';
-import {Component, Input, provide} from 'angular2/core';
+import {MockBackend, MockConnection} from '@angular/http/testing';
+import {Http, BaseRequestOptions, Response, ResponseOptions} from '@angular/http';
+import {Component, Input, provide} from '@angular/core';
 import {Techs, Tech} from './techs';
 import {TechComponent} from './tech';
-import {describe, it, expect, inject, async, TestComponentBuilder, beforeEachProviders} from 'angular2/testing';
+import {describe, it, expect, inject, async, beforeEachProviders} from '@angular/core/testing';
+import {TestComponentBuilder} from '@angular/compiler/testing';
+
 import {Observable} from 'rxjs/Rx';
 
 @Component({

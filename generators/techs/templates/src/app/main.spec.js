@@ -2,14 +2,16 @@
 import 'zone.js/dist/zone';
 <% } -%>
 import 'zone.js/dist/async-test';
-import ng from 'angular2/core';
+import ng from '@angular/core';
 import Main from './main';
 import Techs from './techs/techs';
 import Footer from './footer';
 import Header from './header';
 import Title from './title';
-import ngTest from 'angular2/testing';
-import providers from 'angular2/platform/testing/browser';
+import ngTest from '@angular/core/testing';
+import ngCompilerTest from '@angular/compiler/testing';
+import ngPlatformTest from '@angular/platform-browser/testing';
+import ngPlatformDynamic from '@angular/platform-browser-dynamic';
 
 var MockTechs = ng.Component({
   selector: 'Techs',
@@ -40,10 +42,15 @@ var MockTitle = ng.Component({
   constructor: function () {}
 });
 
+ngTest.setBaseTestProviders(
+  ngPlatformTest.TEST_BROWSER_STATIC_PLATFORM_PROVIDERS,
+  [
+    ngPlatformDynamic.BROWSER_APP_DYNAMIC_PROVIDERS,
+    ngPlatformTest.ADDITIONAL_TEST_BROWSER_PROVIDERS
+  ]
+);
 ngTest.describe('main component', function () {
-  ngTest.setBaseTestProviders(providers.TEST_BROWSER_PLATFORM_PROVIDERS, providers.TEST_BROWSER_APPLICATION_PROVIDERS);
-
-  ngTest.it('should render the header, title, techs and footer', ngTest.async(ngTest.inject([ngTest.TestComponentBuilder], function (tcb) {
+  ngTest.it('should render the header, title, techs and footer', ngTest.async(ngTest.inject([ngCompilerTest.TestComponentBuilder], function (tcb) {
     tcb
       .overrideDirective(Main, Techs, MockTechs)
       .overrideDirective(Main, Footer, MockFooter)

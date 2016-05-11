@@ -1,5 +1,5 @@
-import {Component} from 'angular2/core';
-import {Http, HTTP_PROVIDERS} from 'angular2/http';
+import {Component} from '@angular/core';
+import {Http, HTTP_PROVIDERS} from '@angular/http';
 import {Observable} from 'rxjs/Observable';
 import 'rxjs/Rx';
 import {TechComponent} from './tech';

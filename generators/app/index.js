@@ -34,11 +34,16 @@ module.exports = fountain.Base.extend({
     pkg() {
       this.mergeJson('package.json', {
         dependencies: {
-          'angular2': '^2.0.0-beta.0',
+          '@angular/core': '^2.0.0-rc.1',
+          '@angular/compiler': '^2.0.0-rc.1',
+          '@angular/common': '^2.0.0-rc.1',
+          '@angular/platform-browser': '^2.0.0-rc.1',
+          '@angular/platform-browser-dynamic': '^2.0.0-rc.1',
+          '@angular/http': '^2.0.0-rc.1',
+          'rxjs': '^5.0.0-beta.6',
+          'zone.js': '^0.6.12',
           'es6-promise': '^3.0.2',
-          'rxjs': '^5.0.0-beta.4',
-          'reflect-metadata': '0.1.2',
-          'zone.js': '^0.6.6'
+          'reflect-metadata': '0.1.2'
         }
       });
     },

@@ -1,7 +1,7 @@
 require('reflect-metadata');
 require('zone.js');
 
-var ng = require('angular2/platform/browser');
+var ng = require('@angular/platform-browser-dynamic');
 
 require('./index.<%- css %>');
 

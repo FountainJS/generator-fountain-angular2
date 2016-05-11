@@ -1,5 +1,5 @@
-var ng = require('angular2/core');
-var ngHttp = require('angular2/http');
+var ng = require('@angular/core');
+var ngHttp = require('@angular/http');
 var Tech = require('./tech');
 require('rxjs/Rx');
 

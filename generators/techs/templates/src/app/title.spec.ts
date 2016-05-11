@@ -1,12 +1,10 @@
 /// <reference path="../../typings/main.d.ts"/>
-<% if (modules === 'webpack') { -%>
-/// <reference path="../../node_modules/angular2/typings/browser.d.ts"/>
-<% } -%>
 
 import 'zone.js/dist/zone';
 import 'zone.js/dist/async-test';
 import {Title} from './title';
-import {describe, it, expect, inject, async, TestComponentBuilder} from 'angular2/testing';
+import {describe, it, expect, inject, async} from '@angular/core/testing';
+import {TestComponentBuilder} from '@angular/compiler/testing';
 
 describe('title component', () => {
   it('should render \'Allo, \'Allo!', async(inject([TestComponentBuilder], (tcb: TestComponentBuilder) => {

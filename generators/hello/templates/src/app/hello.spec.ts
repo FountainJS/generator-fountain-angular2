@@ -1,19 +1,23 @@
 /// <reference path="../../typings/main.d.ts"/>
-<% if (modules === 'webpack') { -%>
-/// <reference path="../../node_modules/angular2/typings/browser.d.ts"/>
-<% } -%>
 
 <% if (modules === 'webpack') { -%>
 import 'zone.js/dist/zone';
 <% } -%>
 import 'zone.js/dist/async-test';
 import {Hello} from './hello';
-import {describe, it, expect, inject, async, TestComponentBuilder, setBaseTestProviders} from 'angular2/testing';
-import {TEST_BROWSER_PLATFORM_PROVIDERS, TEST_BROWSER_APPLICATION_PROVIDERS} from 'angular2/platform/testing/browser';
+import {describe, it, expect, inject, async, setBaseTestProviders} from '@angular/core/testing';
+import {TestComponentBuilder} from '@angular/compiler/testing';
+import {TEST_BROWSER_STATIC_PLATFORM_PROVIDERS, ADDITIONAL_TEST_BROWSER_PROVIDERS} from '@angular/platform-browser/testing';
+import {BROWSER_APP_DYNAMIC_PROVIDERS} from '@angular/platform-browser-dynamic';
 
+setBaseTestProviders(
+  TEST_BROWSER_STATIC_PLATFORM_PROVIDERS,
+  [
+    BROWSER_APP_DYNAMIC_PROVIDERS,
+    ADDITIONAL_TEST_BROWSER_PROVIDERS
+  ]
+);
 describe('hello component', () => {
-  setBaseTestProviders(TEST_BROWSER_PLATFORM_PROVIDERS, TEST_BROWSER_APPLICATION_PROVIDERS);
-
   it('should render hello world', async(inject([TestComponentBuilder], (tcb: TestComponentBuilder) => {
     tcb.createAsync(Hello)
       .then(fixture => {

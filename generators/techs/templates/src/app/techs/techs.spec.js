@@ -2,12 +2,13 @@
 import 'zone.js/dist/zone';
 <% } -%>
 import 'zone.js/dist/async-test';
-import ng from 'angular2/core';
-import ngHttpTesting from 'angular2/http/testing';
-import ngHttp from 'angular2/http';
+import ng from '@angular/core';
+import ngHttpTesting from '@angular/http/testing';
+import ngHttp from '@angular/http';
 import Techs from './techs';
 import Tech from './tech';
-import ngTest from 'angular2/testing';
+import ngTest from '@angular/core/testing';
+import ngCompilerTest from '@angular/compiler/testing';
 import rxjs from 'rxjs/Rx';
 
 var MockComponent = ng.Component({
@@ -84,7 +85,7 @@ ngTest.describe('techs component', function () {
       };
     });
 
-    ngTest.it('should mock the techs and render 3 elements <tech>', ngTest.async(ngTest.inject([ngTest.TestComponentBuilder], function (tcb) {
+    ngTest.it('should mock the techs and render 3 elements <tech>', ngTest.async(ngTest.inject([ngCompilerTest.TestComponentBuilder], function (tcb) {
       return tcb
         .overrideDirective(Techs, Tech, MockComponent)
         .createAsync(Techs)

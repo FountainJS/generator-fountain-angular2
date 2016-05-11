@@ -1,4 +1,4 @@
-var ng = require('angular2/core');
+var ng = require('@angular/core');
 var Header = require('./header');
 var Title = require('./title');
 var Techs = require('./techs/techs');
