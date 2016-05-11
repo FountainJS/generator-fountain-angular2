@@ -24,7 +24,7 @@ module.exports = fountain.Base.extend({
       }];
 
       this.prompt(prompts, props => {
-        Object.assign(this.props, this.options, props);
+        Object.assign(this.props, props);
         done();
       });
     }
@@ -67,7 +67,14 @@ module.exports = fountain.Base.extend({
   },
 
   composing() {
-    this.composeWith(`fountain-angular2:${this.props.sample}`, {options: this.props}, {
+    this.composeWith(`fountain-angular2:${this.props.sample}`, {
+      options: {
+        framework: this.props.framework,
+        modules: this.props.modules,
+        js: this.props.js,
+        css: this.props.css
+      }
+    }, {
       local: require.resolve(`../${this.props.sample}`)
     });
     this.composeWith('fountain-gulp', {options: this.props}, {
