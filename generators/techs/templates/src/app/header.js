@@ -1,4 +1,4 @@
-var ng = require('angular2/core');
+var ng = require('@angular/core');
 
 module.exports = ng.Component({
   selector: 'Header',

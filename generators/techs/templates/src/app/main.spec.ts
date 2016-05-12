@@ -1,18 +1,17 @@
 /// <reference path="../../typings/main.d.ts"/>
-<% if (modules === 'webpack') { -%>
-/// <reference path="../../node_modules/angular2/typings/browser.d.ts"/>
-<% } -%>
 
 import 'zone.js/dist/zone';
 import 'zone.js/dist/async-test';
-import {Component} from 'angular2/core';
+import {Component} from '@angular/core';
 import {Main} from './main';
 import {Techs} from './techs/techs';
 import {Footer} from './footer';
 import {Header} from './header';
 import {Title} from './title';
-import {describe, it, expect, inject, async, TestComponentBuilder, setBaseTestProviders} from 'angular2/testing';
-import {TEST_BROWSER_PLATFORM_PROVIDERS, TEST_BROWSER_APPLICATION_PROVIDERS} from 'angular2/platform/testing/browser';
+import {describe, it, expect, inject, async, setBaseTestProviders} from '@angular/core/testing';
+import {TestComponentBuilder} from '@angular/compiler/testing';
+import {TEST_BROWSER_STATIC_PLATFORM_PROVIDERS, ADDITIONAL_TEST_BROWSER_PROVIDERS} from '@angular/platform-browser/testing';
+import {BROWSER_APP_DYNAMIC_PROVIDERS} from '@angular/platform-browser-dynamic';
 
 @Component({
   selector: 'Techs',
@@ -35,9 +34,14 @@ class MockHeader {}
 })
 class MockTitle {}
 
+setBaseTestProviders(
+  TEST_BROWSER_STATIC_PLATFORM_PROVIDERS,
+  [
+    BROWSER_APP_DYNAMIC_PROVIDERS,
+    ADDITIONAL_TEST_BROWSER_PROVIDERS
+  ]
+);
 describe('main component', () => {
-  setBaseTestProviders(TEST_BROWSER_PLATFORM_PROVIDERS, TEST_BROWSER_APPLICATION_PROVIDERS);
-
   it('should render the header, title, techs and footer', async(inject([TestComponentBuilder], (tcb: TestComponentBuilder) => {
     tcb
       .overrideDirective(Main, Techs, MockTechs)

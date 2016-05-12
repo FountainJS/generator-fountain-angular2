@@ -3,10 +3,11 @@ import 'zone.js/dist/zone';
 <% } -%>
 import 'zone.js/dist/async-test';
 import Footer from './footer';
-import ngTest from 'angular2/testing';
+import ngTest from '@angular/core/testing';
+import ngCompilerTest from '@angular/compiler/testing';
 
 ngTest.describe('footer component', function () {
-  ngTest.it('should render \'FountainJS team\'', ngTest.async(ngTest.inject([ngTest.TestComponentBuilder], function (tcb) {
+  ngTest.it('should render \'FountainJS team\'', ngTest.async(ngTest.inject([ngCompilerTest.TestComponentBuilder], function (tcb) {
     tcb.createAsync(Footer)
       .then(function (fixture) {
         fixture.detectChanges();
