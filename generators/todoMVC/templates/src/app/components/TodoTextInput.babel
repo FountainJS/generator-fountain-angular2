@@ -1,0 +1,52 @@
+import {Component, Input, Output, EventEmitter, ViewChild, Renderer} from '@angular/core';
+
+@Component({
+  selector: 'TodoTextInput',
+  template: `
+    <input
+      #myInput
+      [ngClass]="{'edit': editing, 'new-todo': newTodo}"
+      [(ngModel)]="text"
+      (keypress)="handleSubmit($event)"
+      (blur)="handleBlur()"
+      [ngClass]="{'new-todo': newTodo}"
+      [placeholder]="placeholder"
+      type="text"
+    />
+  `
+})
+export class TodoTextInput {
+  @ViewChild('myInput') input;
+  @Input() newTodo;
+  @Input() editing;
+  @Input() placeholder = '';
+  @Output() onSave = new EventEmitter(false);
+  @Input() text;
+
+  constructor(renderer) {
+    this.renderer = renderer;
+  }
+
+  static get parameters() {
+    return [[Renderer]];
+  }
+
+  ngAfterViewInit() {
+    this.renderer.invokeElementMethod(this.input.nativeElement, 'focus', []);
+  }
+
+  handleBlur() {
+    if (!this.newTodo) {
+      this.onSave.emit(this.text);
+    }
+  }
+
+  handleSubmit(e) {
+    if (e.keyCode === 13) {
+      this.onSave.emit(this.text);
+      if (this.newTodo) {
+        this.text = '';
+      }
+    }
+  }
+}
