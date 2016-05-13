@@ -1,8 +1,7 @@
 /// <reference path="../../typings/main.d.ts"/>
 
-<% if (modules === 'webpack') { -%>
+import 'reflect-metadata';
 import 'zone.js/dist/zone';
-<% } -%>
 import 'zone.js/dist/async-test';
 import {Hello} from './hello';
 import {describe, it, expect, inject, async, setBaseTestProviders} from '@angular/core/testing';

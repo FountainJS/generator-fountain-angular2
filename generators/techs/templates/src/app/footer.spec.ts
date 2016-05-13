@@ -1,5 +1,6 @@
 /// <reference path="../../typings/main.d.ts"/>
 
+import 'reflect-metadata';
 import 'zone.js/dist/zone';
 import 'zone.js/dist/async-test';
 import {Footer} from './footer';
