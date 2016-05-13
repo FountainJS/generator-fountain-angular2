@@ -72,17 +72,18 @@ module.exports = fountain.Base.extend({
   },
 
   composing() {
-    this.composeWith(`fountain-angular2:${this.props.sample}`, {
-      options: {
-        framework: this.props.framework,
-        modules: this.props.modules,
-        js: this.props.js,
-        css: this.props.css
-      }
-    }, {
+    const options = {
+      framework: this.props.framework,
+      modules: this.props.modules,
+      js: this.props.js,
+      css: this.props.css,
+      sample: this.props.sample
+    };
+
+    this.composeWith(`fountain-angular2:${this.props.sample}`, {options}, {
       local: require.resolve(`../${this.props.sample}`)
     });
-    this.composeWith('fountain-gulp', {options: this.props}, {
+    this.composeWith('fountain-gulp', {options}, {
       local: require.resolve('generator-fountain-gulp/generators/app')
     });
   },
