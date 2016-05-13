@@ -20,7 +20,7 @@ module.exports = fountain.Base.extend({
         choices: [
           {name: 'A working landing page', value: 'techs'},
           {name: 'Just a Hello World', value: 'hello'},
-          {name: 'Redux-like TodoMVC (using ngrx/store)', value: 'todoMVC'}
+          {name: 'Ngrx/store TodoMVC', value: 'todoMVC'}
         ]
       }];
 
