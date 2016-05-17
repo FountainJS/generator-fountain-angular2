@@ -19,6 +19,7 @@ import {production} from '@system-env';
 
 if (production) {
 <% } else { -%>
+declare var process: any;
 if (process.env.NODE_ENV === 'production') {
 <% } -%>
   enableProdMode();
