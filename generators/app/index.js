@@ -4,12 +4,10 @@ module.exports = fountain.Base.extend({
   prompting: {
     fountain() {
       this.options.framework = 'angular2';
-      this.fountainPrompting();
+      return this.fountainPrompting();
     },
 
     sample() {
-      const done = this.async();
-
       this.option('sample', {type: Boolean, required: false});
 
       const prompts = [{
@@ -24,9 +22,8 @@ module.exports = fountain.Base.extend({
         ]
       }];
 
-      this.prompt(prompts, props => {
+      return this.prompt(prompts).then(props => {
         Object.assign(this.props, props);
-        done();
       });
     }
   },
