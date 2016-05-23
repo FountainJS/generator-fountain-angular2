@@ -1,12 +1,11 @@
 import {Component} from '@angular/core';
 
-export const Hello =
-  Component({
-    selector: 'App',
-    template: '<h1>{{ hello }}</h1>'
-  })
-  .Class({
-    constructor() {
-      this.hello = 'Hello World!';
-    }
-  });
+@Component({
+  selector: 'App',
+  template: '<h1>{{ hello }}</h1>'
+})
+export class Hello {
+  constructor() {
+    this.hello = 'Hello World!';
+  }
+}
