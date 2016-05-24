@@ -12,7 +12,7 @@ ngTest.describe('tech component', function () {
         fixture.componentInstance.tech = {
           key: 'gulp',
           title: 'Gulp',
-          logo: 'https://raw.githubusercontent.com/FountainJS/generator-fountain-webapp/master/docs/assets/gulp.png',
+          logo: 'http://fountainjs.io/assets/imgs/gulp.png',
           text1: 'The streaming build system',
           text2: 'Automate and enhance your workflow'
         };
