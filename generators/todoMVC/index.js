@@ -4,9 +4,7 @@ module.exports = fountain.Base.extend({
   configuring() {
     this.mergeJson('package.json', {
       dependencies: {
-        '@ngrx/store': '^1.5.0'
-      },
-      devDependencies: {
+        '@ngrx/store': '^1.5.0',
         'todomvc-app-css': '^2.0.4'
       }
     });
