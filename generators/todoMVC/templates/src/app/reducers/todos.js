@@ -2,20 +2,20 @@ var assign = require('object-assign');
 var todoFilters = require('../constants/TodoFilters');
 var actionTypes = require('../constants/ActionTypes');
 
-var initialTodo = exports.initialTodo = {
+var initialTodo = {
   text: 'Use ngrx/store',
   completed: false,
   id: 0
 };
 
-var initialVisibility = exports.initialVisibility = {
+var initialVisibility = {
   type: todoFilters.SHOW_ALL,
   filter: function () {
     return true;
   }
 };
 
-exports.todos = function (state, action) {
+function todos(state, action) {
   state = state || [initialTodo];
   switch (action.type) {
     case actionTypes.ADD_TODO:
@@ -63,9 +63,9 @@ exports.todos = function (state, action) {
     default:
       return state;
   }
-};
+}
 
-exports.visibility = function (state, action) {
+function visibility(state, action) {
   state = state || initialVisibility;
   switch (action.type) {
     case todoFilters.SHOW_ALL:
@@ -92,4 +92,11 @@ exports.visibility = function (state, action) {
     default:
       return state;
   }
+}
+
+module.exports = {
+  initialTodo: initialTodo,
+  initialVisibility: initialVisibility,
+  todos: todos,
+  visibility: visibility
 };
