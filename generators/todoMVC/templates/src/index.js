@@ -1,11 +1,10 @@
 require('reflect-metadata');
 require('zone.js');
 require('todomvc-app-css/index.css<%- modules === 'systemjs' ? '!' : '' %>');
+var ng = require('@angular/platform-browser-dynamic');
 var ngrxStore = require('@ngrx/store');
 
 var reducers = require('./app/reducers/todos');
-
-var ng = require('@angular/platform-browser-dynamic');
 
 import './index.<%- css %>';
 var App = require('./app/containers/App');
