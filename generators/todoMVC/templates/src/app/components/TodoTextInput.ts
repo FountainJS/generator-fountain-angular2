@@ -9,7 +9,6 @@ import {Component, Input, Output, EventEmitter, ElementRef, Renderer, ViewChild,
       [(ngModel)]="text"
       (keypress)="handleSubmit($event)"
       (blur)="handleBlur()"
-      [ngClass]="{'new-todo': newTodo}"
       [placeholder]="placeholder"
       type="text"
     />
