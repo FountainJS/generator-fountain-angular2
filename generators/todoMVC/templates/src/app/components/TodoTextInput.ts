@@ -30,13 +30,13 @@ export class TodoTextInput implements AfterViewInit {
   }
 
   handleBlur() {
-    if (!this.newTodo) {
+    if (!this.newTodo && this.text.length) {
       this.onSave.emit(this.text);
     }
   }
 
   handleSubmit(e: any) {
-    if (e.keyCode === 13) {
+    if (e.keyCode === 13 && this.text.length) {
       this.onSave.emit(this.text);
       if (this.newTodo) {
         this.text = '';
