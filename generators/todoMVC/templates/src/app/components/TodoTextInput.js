@@ -33,13 +33,13 @@ module.exports = ng.Component({
   },
 
   handleBlur: function () {
-    if (!this.newTodo) {
+    if (!this.newTodo && this.text.length) {
       this.onSave.emit(this.text);
     }
   },
 
   handleSubmit: function (e) {
-    if (e.keyCode === 13) {
+    if (e.keyCode === 13 && this.text.length) {
       this.onSave.emit(this.text);
       if (this.newTodo) {
         this.text = '';
