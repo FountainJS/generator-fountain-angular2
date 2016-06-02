@@ -4,7 +4,7 @@ import 'zone.js/dist/async-test';
 import 'zone.js/dist/fake-async-test';
 import {Component, Input} from '@angular/core';
 import {describe, it, expect, fakeAsync, async, inject, beforeEach, beforeEachProviders} from '@angular/core/testing';
-import {TestComponentBuilder} from '@angular/compiler/testing';
+import {TestComponentBuilder, ComponentFixture} from '@angular/compiler/testing';
 import {By} from '@angular/platform-browser';
 import {provideStore, combineReducers} from '@ngrx/store';
 import {todos, visibility} from '../reducers/todos';
@@ -49,7 +49,7 @@ describe('components', () => {
         .overrideDirective(MainSection, TodoItem, MockTodoItem)
         .overrideDirective(MainSection, Footer, MockFooter)
         .createAsync(MainSection)
-        .then(fixture => {
+        .then((fixture: ComponentFixture<any>) => {
           fixture.detectChanges();
           const main = fixture.nativeElement;
           expect(main.querySelector('section')).not.toBeNull();
@@ -63,7 +63,7 @@ describe('components', () => {
           .overrideDirective(MainSection, TodoItem, MockTodoItem)
           .overrideDirective(MainSection, Footer, MockFooter)
           .createAsync(MainSection)
-          .then(fixture => {
+          .then((fixture: ComponentFixture<any>) => {
             fixture.detectChanges();
             const main = fixture.nativeElement;
             const input = main.querySelector('input');
@@ -78,7 +78,7 @@ describe('components', () => {
           .overrideDirective(MainSection, TodoItem, MockTodoItem)
           .overrideDirective(MainSection, Footer, MockFooter)
           .createAsync(MainSection)
-          .then(fixture => {
+          .then((fixture: ComponentFixture<any>) => {
             const MainCmp = fixture.componentInstance;
             MainCmp.store.dispatch(actions.completeAll());
             fixture.detectChanges();
@@ -93,7 +93,7 @@ describe('components', () => {
           .overrideDirective(MainSection, TodoItem, MockTodoItem)
           .overrideDirective(MainSection, Footer, MockFooter)
           .createAsync(MainSection)
-          .then(fixture => {
+          .then((fixture: ComponentFixture<any>) => {
             fixture.detectChanges();
             const input = fixture.nativeElement.querySelector('input');
             spyOn(actions, 'completeAll').and.callThrough();
@@ -109,7 +109,7 @@ describe('components', () => {
         tcb
           .overrideDirective(MainSection, TodoItem, MockTodoItem)
           .createAsync(MainSection)
-          .then(fixture => {
+          .then((fixture: ComponentFixture<any>) => {
             fixture.detectChanges();
             const footer = fixture.nativeElement.querySelector('footer');
             expect(footer.querySelector('footer')).not.toBeNull();
@@ -124,7 +124,7 @@ describe('components', () => {
         tcb
           .overrideDirective(MainSection, TodoItem, MockTodoItem)
           .createAsync(MainSection)
-          .then(fixture => {
+          .then((fixture: ComponentFixture<any>) => {
             fixture.detectChanges();
             const FooterCmp = fixture.debugElement.query(By.css('footer')).componentInstance;
             FooterCmp.onShow.emit(SHOW_COMPLETED);
@@ -137,7 +137,7 @@ describe('components', () => {
         tcb
           .overrideDirective(MainSection, TodoItem, MockTodoItem)
           .createAsync(MainSection)
-          .then(fixture => {
+          .then((fixture: ComponentFixture<any>) => {
             const MainCmp = fixture.componentInstance;
             MainCmp.store.dispatch(actions.completeAll());
             fixture.detectChanges();
@@ -155,7 +155,7 @@ describe('components', () => {
         tcb
           .overrideDirective(MainSection, Footer, MockFooter)
           .createAsync(MainSection)
-          .then(fixture => {
+          .then((fixture: ComponentFixture<any>) => {
             const MainCmp = fixture.componentInstance;
             MainCmp.store.dispatch(actions.addTodo('Run the test'));
             fixture.detectChanges();
@@ -178,7 +178,7 @@ describe('components', () => {
         tcb
           .overrideDirective(MainSection, TodoItem, MockTodoItem)
           .createAsync(MainSection)
-          .then(fixture => {
+          .then((fixture: ComponentFixture<any>) => {
             fixture.detectChanges();
             const MainCmp = fixture.componentInstance;
             MainCmp.store.dispatch(actions.addTodo('Run the test'));

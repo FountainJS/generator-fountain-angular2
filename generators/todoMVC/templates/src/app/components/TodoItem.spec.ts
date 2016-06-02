@@ -4,7 +4,7 @@ import 'zone.js/dist/async-test';
 import 'zone.js/dist/fake-async-test';
 import {Component, Input} from '@angular/core';
 import {describe, it, expect, async, fakeAsync, inject, beforeEach, tick} from '@angular/core/testing';
-import {TestComponentBuilder} from '@angular/compiler/testing';
+import {TestComponentBuilder, ComponentFixture} from '@angular/compiler/testing';
 import {By} from '@angular/platform-browser';
 import {TodoTextInput} from './TodoTextInput';
 import {TodoItem} from './TodoItem';
@@ -32,7 +32,7 @@ describe('components', () => {
       tcb
         .overrideDirective(TodoItem, TodoTextInput, MockTodoTextInput)
         .createAsync(TodoItem)
-        .then(fixture => {
+        .then((fixture: ComponentFixture<any>) => {
           const TodoItemCmp = fixture.componentInstance;
           TodoItemCmp.todo = {
             id: 0,
@@ -63,7 +63,7 @@ describe('components', () => {
       tcb
         .overrideDirective(TodoItem, TodoTextInput, MockTodoTextInput)
         .createAsync(TodoItem)
-        .then(fixture => {
+        .then((fixture: ComponentFixture<any>) => {
           tick();
           fixture.detectChanges();
           const TodoItemCmp = fixture.componentInstance;
@@ -85,7 +85,7 @@ describe('components', () => {
       tcb
         .overrideDirective(TodoItem, TodoTextInput, MockTodoTextInput)
         .createAsync(TodoItem)
-        .then(fixture => {
+        .then((fixture: ComponentFixture<any>) => {
           tick();
           fixture.detectChanges();
           const TodoItemCmp = fixture.componentInstance;
@@ -107,7 +107,7 @@ describe('components', () => {
       tcb
         .overrideDirective(TodoItem, TodoTextInput, MockTodoTextInput)
         .createAsync(TodoItem)
-        .then(fixture => {
+        .then((fixture: ComponentFixture<any>) => {
           fixture.detectChanges();
           const TodoItemCmp = fixture.componentInstance;
           TodoItemCmp.todo = {
@@ -128,7 +128,7 @@ describe('components', () => {
     it('edit state render', async(inject([], () => {
       tcb
         .createAsync(TodoItem)
-        .then(fixture => {
+        .then((fixture: ComponentFixture<any>) => {
           const TodoItemCmp = fixture.componentInstance;
           TodoItemCmp.editing = true;
           TodoItemCmp.todo = {
@@ -147,7 +147,7 @@ describe('components', () => {
     it('TodoTextInput onSave should call editTodo', async(inject([], () => {
       tcb
         .createAsync(TodoItem)
-        .then(fixture => {
+        .then((fixture: ComponentFixture<any>) => {
           const TodoItemCmp = fixture.componentInstance;
           TodoItemCmp.editing = true;
           fixture.detectChanges();
@@ -164,7 +164,7 @@ describe('components', () => {
     it('TodoTextInput onSave should exit component from edit state', async(inject([], () => {
       tcb
         .createAsync(TodoItem)
-        .then(fixture => {
+        .then((fixture: ComponentFixture<any>) => {
           const TodoItemCmp = fixture.componentInstance;
           TodoItemCmp.editing = true;
           fixture.detectChanges();

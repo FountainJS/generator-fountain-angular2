@@ -4,7 +4,7 @@ import 'zone.js/dist/zone';
 import 'zone.js/dist/async-test';
 import 'zone.js/dist/fake-async-test';
 import {describe, it, expect, async, inject, beforeEach, fakeAsync, tick} from '@angular/core/testing';
-import {TestComponentBuilder} from '@angular/compiler/testing';
+import {TestComponentBuilder, ComponentFixture} from '@angular/compiler/testing';
 import {TodoTextInput} from './TodoTextInput';
 
 describe('components', () => {
@@ -18,7 +18,7 @@ describe('components', () => {
     it('should render correctly', async(inject([], () => {
       tcb
         .createAsync(TodoTextInput)
-        .then(fixture => {
+        .then((fixture: ComponentFixture<any>) => {
           const TodoTextInputCmp = fixture.componentInstance;
           TodoTextInputCmp.text = 'Use ngrx/store';
           TodoTextInputCmp.placeholder = 'What needs to be done?';
@@ -37,7 +37,7 @@ describe('components', () => {
     it('should render correctly when editing=true', async(inject([], () => {
       tcb
         .createAsync(TodoTextInput)
-        .then(fixture => {
+        .then((fixture: ComponentFixture<any>) => {
           const TodoTextInputCmp = fixture.componentInstance;
           TodoTextInputCmp.editing = true;
           fixture.detectChanges();
@@ -50,7 +50,7 @@ describe('components', () => {
     it('should render correctly when newTodo=true', async(inject([], () => {
       tcb
         .createAsync(TodoTextInput)
-        .then(fixture => {
+        .then((fixture: ComponentFixture<any>) => {
           const TodoTextInputCmp = fixture.componentInstance;
           TodoTextInputCmp.newTodo = true;
           fixture.detectChanges();
@@ -63,7 +63,7 @@ describe('components', () => {
     it('should update value on change', fakeAsync(inject([], () => {
       tcb
         .createAsync(TodoTextInput)
-        .then(fixture => {
+        .then((fixture: ComponentFixture<any>) => {
           tick();
           const TodoTextInputCmp = fixture.componentInstance;
           TodoTextInputCmp.editing = true;
@@ -81,7 +81,7 @@ describe('components', () => {
     it('should call onSave on handleSubmit', async(inject([], () => {
       tcb
         .createAsync(TodoTextInput)
-        .then(fixture => {
+        .then((fixture: ComponentFixture<any>) => {
           fixture.detectChanges();
           const TodoTextInputCmp = fixture.componentInstance;
           TodoTextInputCmp.text = 'Use ngrx/store';
@@ -94,7 +94,7 @@ describe('components', () => {
     it('should not call onSave on handleSubmit with empty text', async(inject([], () => {
       tcb
         .createAsync(TodoTextInput)
-        .then(fixture => {
+        .then((fixture: ComponentFixture<any>) => {
           fixture.detectChanges();
           const TodoTextInputCmp = fixture.componentInstance;
           TodoTextInputCmp.text = '';
@@ -107,7 +107,7 @@ describe('components', () => {
     it('should reset state on handleSubmit if newTodo', async(inject([], () => {
       tcb
         .createAsync(TodoTextInput)
-        .then(fixture => {
+        .then((fixture: ComponentFixture<any>) => {
           const TodoTextInputCmp = fixture.componentInstance;
           TodoTextInputCmp.newTodo = true;
           const input = fixture.nativeElement.querySelector('input');
@@ -123,7 +123,7 @@ describe('components', () => {
     it('should call onSave on handleBlur', async(inject([], () => {
       tcb
         .createAsync(TodoTextInput)
-        .then(fixture => {
+        .then((fixture: ComponentFixture<any>) => {
           fixture.detectChanges();
           const TodoTextInputCmp = fixture.componentInstance;
           TodoTextInputCmp.newTodo = false;
@@ -137,7 +137,7 @@ describe('components', () => {
     it('should not call onSave on handleBlur with empty text', async(inject([], () => {
       tcb
         .createAsync(TodoTextInput)
-        .then(fixture => {
+        .then((fixture: ComponentFixture<any>) => {
           fixture.detectChanges();
           const TodoTextInputCmp = fixture.componentInstance;
           TodoTextInputCmp.newTodo = false;

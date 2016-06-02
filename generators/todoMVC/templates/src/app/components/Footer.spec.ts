@@ -5,7 +5,7 @@ import 'zone.js/dist/async-test';
 import 'zone.js/dist/fake-async-test';
 import {Footer} from './Footer';
 import {describe, it, expect, async, inject, beforeEach} from '@angular/core/testing';
-import {TestComponentBuilder} from '@angular/compiler/testing';
+import {TestComponentBuilder, ComponentFixture} from '@angular/compiler/testing';
 import {SHOW_ACTIVE} from '../constants/TodoFilters';
 
 describe('components', () => {
@@ -18,7 +18,7 @@ describe('components', () => {
   describe('Footer', () => {
     it('should render \'Test\'', async(inject([], () => {
       tcb.createAsync(Footer)
-        .then(fixture => {
+        .then((fixture: ComponentFixture<any>) => {
           fixture.detectChanges();
           const footer = fixture.nativeElement;
           expect(footer.querySelector('footer')).not.toBeNull();
@@ -28,7 +28,7 @@ describe('components', () => {
 
     it('should display active count when 0', async(inject([], () => {
       tcb.createAsync(Footer)
-        .then(fixture => {
+        .then((fixture: ComponentFixture<any>) => {
           const footer = fixture.nativeElement;
           const FooterCmp = fixture.componentInstance;
           FooterCmp.activeCount = 0;
@@ -39,7 +39,7 @@ describe('components', () => {
 
     it('should display active count when above 0', async(inject([], () => {
       tcb.createAsync(Footer)
-        .then(fixture => {
+        .then((fixture: ComponentFixture<any>) => {
           const footer = fixture.nativeElement;
           const FooterCmp = fixture.componentInstance;
           FooterCmp.activeCount = 1;
@@ -50,7 +50,7 @@ describe('components', () => {
 
     it('should call onShow when a filter is clicked', async(inject([], () => {
       tcb.createAsync(Footer)
-        .then(fixture => {
+        .then((fixture: ComponentFixture<any>) => {
           const footer = fixture.nativeElement;
           const FooterCmp = fixture.componentInstance;
           fixture.detectChanges();
@@ -62,7 +62,7 @@ describe('components', () => {
 
     it('shouldnt show clear button when no completed todos', async(inject([], () => {
       tcb.createAsync(Footer)
-        .then(fixture => {
+        .then((fixture: ComponentFixture<any>) => {
           const footer = fixture.nativeElement;
           const FooterCmp = fixture.componentInstance;
           FooterCmp.completedCount = 0;
@@ -73,7 +73,7 @@ describe('components', () => {
 
     it('should call onClearCompleted on clear button click', async(inject([], () => {
       tcb.createAsync(Footer)
-        .then(fixture => {
+        .then((fixture: ComponentFixture<any>) => {
           const footer = fixture.nativeElement;
           const FooterCmp = fixture.componentInstance;
           FooterCmp.completedCount = 1;

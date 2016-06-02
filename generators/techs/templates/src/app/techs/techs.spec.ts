@@ -8,7 +8,7 @@ import {Component, Input, provide} from '@angular/core';
 import {Techs, Tech} from './techs';
 import {TechComponent} from './tech';
 import {describe, it, expect, inject, async, beforeEachProviders} from '@angular/core/testing';
-import {TestComponentBuilder} from '@angular/compiler/testing';
+import {TestComponentBuilder, ComponentFixture} from '@angular/compiler/testing';
 
 import {Observable} from 'rxjs/Rx';
 
@@ -83,7 +83,7 @@ describe('techs component', () => {
       return tcb
         .overrideDirective(Techs, TechComponent, MockComponent)
         .createAsync(Techs)
-        .then(fixture => {
+        .then((fixture: ComponentFixture<any>) => {
           fixture.detectChanges();
           const techs = fixture.nativeElement;
           expect(techs.querySelectorAll('tech').length).toBe(3);
