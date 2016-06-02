@@ -18,7 +18,7 @@ module.exports = ng.Component({
   providers: [ngHttp.HTTP_PROVIDERS]
 })
 .Class({
-  constructor: [ngHttp.Http, function TechsController(http) { // https://github.com/angular/angular/issues/7507
+  constructor: [ngHttp.Http, function (http) {
     var vm = this;
     this.http = http;
     vm.getTechs().subscribe(function (result) {
