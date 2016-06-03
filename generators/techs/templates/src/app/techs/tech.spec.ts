@@ -4,12 +4,12 @@ import 'zone.js/dist/zone';
 import 'zone.js/dist/async-test';
 import {TechComponent} from './tech';
 import {describe, it, expect, inject, async} from '@angular/core/testing';
-import {TestComponentBuilder} from '@angular/compiler/testing';
+import {TestComponentBuilder, ComponentFixture} from '@angular/compiler/testing';
 
 describe('tech component', () => {
   it('should render Gulp', async(inject([TestComponentBuilder], (tcb: TestComponentBuilder) => {
     tcb.createAsync(TechComponent)
-      .then(fixture => {
+      .then((fixture: ComponentFixture<any>) => {
         fixture.componentInstance.tech = {
           key: 'gulp',
           title: 'Gulp',

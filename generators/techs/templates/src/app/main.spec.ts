@@ -9,7 +9,7 @@ import {Footer} from './footer';
 import {Header} from './header';
 import {Title} from './title';
 import {describe, it, expect, inject, async, setBaseTestProviders} from '@angular/core/testing';
-import {TestComponentBuilder} from '@angular/compiler/testing';
+import {TestComponentBuilder, ComponentFixture} from '@angular/compiler/testing';
 import {TEST_BROWSER_STATIC_PLATFORM_PROVIDERS, ADDITIONAL_TEST_BROWSER_PROVIDERS} from '@angular/platform-browser/testing';
 import {BROWSER_APP_DYNAMIC_PROVIDERS} from '@angular/platform-browser-dynamic';
 
@@ -49,7 +49,7 @@ describe('main component', () => {
       .overrideDirective(Main, Header, MockHeader)
       .overrideDirective(Main, Title, MockTitle)
       .createAsync(Main)
-      .then(fixture => {
+      .then((fixture: ComponentFixture<any>) => {
         fixture.detectChanges();
         const main = fixture.nativeElement;
         expect(main.querySelector('Header')).toBeDefined();

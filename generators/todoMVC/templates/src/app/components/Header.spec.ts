@@ -6,7 +6,7 @@ import {provideStore} from '@ngrx/store';
 import {Header} from './Header';
 import {By} from '@angular/platform-browser';
 import {describe, it, expect, async, inject, beforeEach, beforeEachProviders} from '@angular/core/testing';
-import {TestComponentBuilder} from '@angular/compiler/testing';
+import {TestComponentBuilder, ComponentFixture} from '@angular/compiler/testing';
 
 describe('components', () => {
   let tcb: TestComponentBuilder;
@@ -22,7 +22,7 @@ describe('components', () => {
   describe('Header', () => {
     it('should render correctly', async(inject([], () => {
       tcb.createAsync(Header)
-        .then(fixture => {
+        .then((fixture: ComponentFixture<any>) => {
           fixture.detectChanges();
           const header = fixture.nativeElement;
           expect(header.querySelector('header')).not.toBeNull();
@@ -38,7 +38,7 @@ describe('components', () => {
 
     it('should call addTodo if length of text is greater than 0', async(inject([], () => {
       tcb.createAsync(Header)
-        .then(fixture => {
+        .then((fixture: ComponentFixture<any>) => {
           fixture.detectChanges();
           const HeaderCmp = fixture.componentInstance;
           const todoTextInput = fixture.debugElement.query(By.css('TodoTextInput')).componentInstance;
