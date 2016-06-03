@@ -1,17 +1,17 @@
 <% if (modules === 'webpack') { -%>
-import 'zone.js/dist/zone';
+require('zone.js/dist/zone');
 <% } -%>
-import 'zone.js/dist/async-test';
-import ng from '@angular/core';
-import Main from './main';
-import Techs from './techs/techs';
-import Footer from './footer';
-import Header from './header';
-import Title from './title';
-import ngTest from '@angular/core/testing';
-import ngCompilerTest from '@angular/compiler/testing';
-import ngPlatformTest from '@angular/platform-browser/testing';
-import ngPlatformDynamic from '@angular/platform-browser-dynamic';
+require('zone.js/dist/async-test');
+var ng = require('@angular/core');
+var Main = require('./main');
+var Techs = require('./techs/techs');
+var Footer = require('./footer');
+var Header = require('./header');
+var Title = require('./title');
+var ngTest = require('@angular/core/testing');
+var ngCompilerTest = require('@angular/compiler/testing');
+var ngPlatformTest = require('@angular/platform-browser/testing');
+var ngPlatformDynamic = require('@angular/platform-browser-dynamic');
 
 var MockTechs = ng.Component({
   selector: 'Techs',

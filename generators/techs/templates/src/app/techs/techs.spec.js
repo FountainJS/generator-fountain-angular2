@@ -1,15 +1,15 @@
 <% if (modules === 'webpack') { -%>
-import 'zone.js/dist/zone';
+require('zone.js/dist/zone');
 <% } -%>
-import 'zone.js/dist/async-test';
-import ng from '@angular/core';
-import ngHttpTesting from '@angular/http/testing';
-import ngHttp from '@angular/http';
-import Techs from './techs';
-import Tech from './tech';
-import ngTest from '@angular/core/testing';
-import ngCompilerTest from '@angular/compiler/testing';
-import rxjs from 'rxjs/Rx';
+require('zone.js/dist/async-test');
+var ng = require('@angular/core');
+var ngHttpTesting = require('@angular/http/testing');
+var ngHttp = require('@angular/http');
+var Techs = require('./techs');
+var Tech = require('./tech');
+var ngTest = require('@angular/core/testing');
+var ngCompilerTest = require('@angular/compiler/testing');
+var rxjs = require('rxjs/Rx');
 
 var MockComponent = ng.Component({
   selector: 'Tech',

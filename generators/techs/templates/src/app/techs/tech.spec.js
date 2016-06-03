@@ -1,10 +1,10 @@
 <% if (modules === 'webpack') { -%>
-import 'zone.js/dist/zone';
+require('zone.js/dist/zone');
 <% } -%>
-import 'zone.js/dist/async-test';
-import Tech from './tech';
-import ngTest from '@angular/core/testing';
-import ngCompilerTest from '@angular/compiler/testing';
+require('zone.js/dist/async-test');
+var Tech = require('./tech');
+var ngTest = require('@angular/core/testing');
+var ngCompilerTest = require('@angular/compiler/testing');
 
 ngTest.describe('tech component', function () {
   ngTest.it('should render Gulp', ngTest.async(ngTest.inject([ngCompilerTest.TestComponentBuilder], function (tcb) {
