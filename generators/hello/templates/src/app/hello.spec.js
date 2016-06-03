@@ -1,12 +1,12 @@
 <% if (modules === 'webpack') { -%>
-import 'zone.js/dist/zone';
+require('zone.js/dist/zone');
 <% } -%>
-import 'zone.js/dist/async-test';
-import Hello from './hello';
-import ngTest from '@angular/core/testing';
-import ngCompilerTest from '@angular/compiler/testing';
-import ngPlatformTest from '@angular/platform-browser/testing';
-import ngPlatformDynamic from '@angular/platform-browser-dynamic';
+require('zone.js/dist/async-test');
+var Hello = require('./hello');
+var ngTest = require('@angular/core/testing');
+var ngCompilerTest = require('@angular/compiler/testing');
+var ngPlatformTest = require('@angular/platform-browser/testing');
+var ngPlatformDynamic = require('@angular/platform-browser-dynamic');
 
 ngTest.setBaseTestProviders(
   ngPlatformTest.TEST_BROWSER_STATIC_PLATFORM_PROVIDERS,
