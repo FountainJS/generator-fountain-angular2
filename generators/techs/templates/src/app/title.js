@@ -13,5 +13,5 @@ module.exports = ng.Component({
     '</div>'
 })
 .Class({
-  constructor: function TitleController() {} // https://github.com/angular/angular/issues/7507
+  constructor: function () {}
 });

@@ -38,7 +38,7 @@ module.exports = ng.Component({
   ]
 })
 .Class({
-  constructor: function FooterController() { // https://github.com/angular/angular/issues/7507
+  constructor: function () {
     this.onClearCompleted = new ng.EventEmitter(false);
     this.onShow = new ng.EventEmitter(false);
     this.filters = [todoFilters.SHOW_ALL, todoFilters.SHOW_ACTIVE, todoFilters.SHOW_COMPLETED];

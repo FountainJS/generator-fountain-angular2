@@ -31,7 +31,7 @@ module.exports = ng.Component({
   directives: [TodoTextInput]
 })
 .Class({
-  constructor: function TodoItemController() { // https://github.com/angular/angular/issues/7507
+  constructor: function () {
     this.onDestroy = new ng.EventEmitter(false);
     this.onSave = new ng.EventEmitter(false);
     this.onChange = new ng.EventEmitter(false);

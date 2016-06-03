@@ -17,7 +17,7 @@ module.exports = ng.Component({
   directives: [TodoTextInput]
 })
 .Class({
-  constructor: [ngrxStore.Store, function HeaderController(store) { // https://github.com/angular/angular/issues/7507
+  constructor: [ngrxStore.Store, function (store) {
     this.store = store;
   }],
 

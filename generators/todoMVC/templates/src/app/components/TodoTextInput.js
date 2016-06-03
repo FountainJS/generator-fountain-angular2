@@ -23,7 +23,7 @@ module.exports = ng.Component({
   }
 })
 .Class({
-  constructor: [ng.Renderer, function TodoTextInputController(renderer) { // https://github.com/angular/angular/issues/7507
+  constructor: [ng.Renderer, function (renderer) {
     this.renderer = renderer;
     this.onSave = new ng.EventEmitter(false);
   }],
