@@ -1,4 +1,5 @@
 const fountain = require('fountain-generator');
+const version = require('../../package.json').version;
 
 module.exports = fountain.Base.extend({
   prompting: {
@@ -29,6 +30,11 @@ module.exports = fountain.Base.extend({
   },
 
   configuring: {
+    config() {
+      this.config.set('version', version);
+      this.config.set('props', this.props);
+    },
+
     pkg() {
       this.mergeJson('package.json', {
         dependencies: {
