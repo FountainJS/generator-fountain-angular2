@@ -1,0 +1,16 @@
+<% if (modules === 'webpack') { -%>
+import 'zone.js/dist/zone';
+<% } -%>
+import 'zone.js/dist/async-test';
+import {<%- className %>} from './<%- name %>';
+import {describe, it, expect, inject, async} from '@angular/core/testing';
+import {TestComponentBuilder} from '@angular/compiler/testing';
+
+describe('<%- componentName %> component', () => {
+  it('should...', async(inject([TestComponentBuilder], tcb => {
+    tcb.createAsync(<%- className %>)
+      .then(fixture => {
+        fixture.detectChanges();
+      });
+  })));
+});
