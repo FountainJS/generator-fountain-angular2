@@ -89,19 +89,6 @@ describe('components', () => {
         });
     })));
 
-    it('should not call onSave on handleSubmit with empty text', async(inject([], () => {
-      tcb
-        .createAsync(TodoTextInput)
-        .then(fixture => {
-          fixture.detectChanges();
-          const TodoTextInputCmp = fixture.componentInstance;
-          TodoTextInputCmp.text = '';
-          spyOn(TodoTextInputCmp.onSave, 'emit').and.callThrough();
-          TodoTextInputCmp.handleSubmit({keyCode: 13});
-          expect(TodoTextInputCmp.onSave.emit).not.toHaveBeenCalled();
-        });
-    })));
-
     it('should reset state on handleSubmit if newTodo', async(inject([], () => {
       tcb
         .createAsync(TodoTextInput)
@@ -129,20 +116,6 @@ describe('components', () => {
           spyOn(TodoTextInputCmp.onSave, 'emit').and.callThrough();
           TodoTextInputCmp.handleBlur();
           expect(TodoTextInputCmp.onSave.emit).toHaveBeenCalledWith('Use ngrx/store');
-        });
-    })));
-
-    it('should not call onSave on handleBlur with empty text', async(inject([], () => {
-      tcb
-        .createAsync(TodoTextInput)
-        .then(fixture => {
-          fixture.detectChanges();
-          const TodoTextInputCmp = fixture.componentInstance;
-          TodoTextInputCmp.newTodo = false;
-          TodoTextInputCmp.text = '';
-          spyOn(TodoTextInputCmp.onSave, 'emit').and.callThrough();
-          TodoTextInputCmp.handleBlur();
-          expect(TodoTextInputCmp.onSave.emit).not.toHaveBeenCalled();
         });
     })));
   });

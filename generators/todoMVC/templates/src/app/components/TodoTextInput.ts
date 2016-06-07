@@ -20,7 +20,7 @@ export class TodoTextInput implements AfterViewInit {
   @Input() editing: boolean;
   @Input() placeholder: string = '';
   @Output() onSave: EventEmitter<any> = new EventEmitter(false);
-  @Input() text: string;
+  @Input() text: string = '';
 
   constructor(private renderer: Renderer) {
   }
@@ -30,13 +30,13 @@ export class TodoTextInput implements AfterViewInit {
   }
 
   handleBlur() {
-    if (!this.newTodo && this.text.length) {
+    if (!this.newTodo) {
       this.onSave.emit(this.text);
     }
   }
 
   handleSubmit(e: any) {
-    if (e.keyCode === 13 && this.text.length) {
+    if (e.keyCode === 13) {
       this.onSave.emit(this.text);
       if (this.newTodo) {
         this.text = '';

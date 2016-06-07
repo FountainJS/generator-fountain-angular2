@@ -89,19 +89,6 @@ ngTest.describe('components', function () {
         });
     })));
 
-    ngTest.it('should not call onSave on handleSubmit with empty text', ngTest.async(ngTest.inject([], function () {
-      tcb
-        .createAsync(TodoTextInput)
-        .then(function (fixture) {
-          fixture.detectChanges();
-          var TodoTextInputCmp = fixture.componentInstance;
-          TodoTextInputCmp.text = '';
-          spyOn(TodoTextInputCmp.onSave, 'emit').and.callThrough();
-          TodoTextInputCmp.handleSubmit({keyCode: 13});
-          ngTest.expect(TodoTextInputCmp.onSave.emit).not.toHaveBeenCalled();
-        });
-    })));
-
     ngTest.it('should reset state on handleSubmit if newTodo', ngTest.async(ngTest.inject([], function () {
       tcb
         .createAsync(TodoTextInput)
@@ -129,20 +116,6 @@ ngTest.describe('components', function () {
           spyOn(TodoTextInputCmp.onSave, 'emit').and.callThrough();
           TodoTextInputCmp.handleBlur();
           ngTest.expect(TodoTextInputCmp.onSave.emit).toHaveBeenCalledWith('Use ngrx/store');
-        });
-    })));
-
-    ngTest.it('should not call onSave on handleBlur with empty text', ngTest.async(ngTest.inject([], function () {
-      tcb
-        .createAsync(TodoTextInput)
-        .then(function (fixture) {
-          fixture.detectChanges();
-          var TodoTextInputCmp = fixture.componentInstance;
-          TodoTextInputCmp.newTodo = false;
-          TodoTextInputCmp.text = '';
-          spyOn(TodoTextInputCmp.onSave, 'emit').and.callThrough();
-          TodoTextInputCmp.handleBlur();
-          ngTest.expect(TodoTextInputCmp.onSave.emit).not.toHaveBeenCalled();
         });
     })));
   });
