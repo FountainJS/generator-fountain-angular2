@@ -1,6 +1,9 @@
 <!doctype html>
 <html>
   <head>
+<% if (router === 'uirouter') { -%>
+    <base href="/">
+<% } -%>
     <meta charset="utf-8">
     <title>ngrx/store TodoMVC</title>
     <meta name="description" content="">
@@ -9,7 +12,11 @@
 
   <body>
     <div class="todoapp">
+<% if (router === 'uirouter') { -%>
+      <ui-view></ui-view>
+<% } else { -%>
       <App>Loading...</App>
+<% } -%>
     </div>
   </body>
 </html>
