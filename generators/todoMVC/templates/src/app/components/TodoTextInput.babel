@@ -20,7 +20,7 @@ export class TodoTextInput {
   @Input() editing;
   @Input() placeholder = '';
   @Output() onSave = new EventEmitter(false);
-  @Input() text;
+  @Input() text = '';
 
   constructor(renderer) {
     this.renderer = renderer;
@@ -35,13 +35,13 @@ export class TodoTextInput {
   }
 
   handleBlur() {
-    if (!this.newTodo && this.text.length) {
+    if (!this.newTodo) {
       this.onSave.emit(this.text);
     }
   }
 
   handleSubmit(e) {
-    if (e.keyCode === 13 && this.text.length) {
+    if (e.keyCode === 13) {
       this.onSave.emit(this.text);
       if (this.newTodo) {
         this.text = '';
