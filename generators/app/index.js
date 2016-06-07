@@ -50,6 +50,9 @@ module.exports = fountain.Base.extend({
           'reflect-metadata': '0.1.2'
         }
       });
+      if (this.props.js === 'typescript') {
+        this.mergeJson('package.json', {dependencies: {'es6-shim': '^0.35.0'}});
+      }
     },
 
     babel() {
