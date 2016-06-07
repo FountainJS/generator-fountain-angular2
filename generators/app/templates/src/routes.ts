@@ -1,3 +1,5 @@
+/// <reference path="../typings/index.d.ts"/>
+
 import {Injectable} from '@angular/core';
 import {UIRouter} from 'ui-router-ng2/router';
 <% if (sample === 'hello') { -%>
