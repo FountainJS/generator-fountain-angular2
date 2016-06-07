@@ -7,9 +7,17 @@ import {provideStore, combineReducers} from '@ngrx/store';
 import {todos, visibility, initialTodo, initialVisibility} from './app/reducers/todos';
 
 import './index.<%- css %>';
-import {App} from './app/containers/App';
 
+<% if (router === 'uirouter') { -%>
+import {enableProdMode, provide} from '@angular/core';
+import {UIRouterConfig, UIROUTER_PROVIDERS, UiView} from 'ui-router-ng2';
+import {LocationStrategy, PathLocationStrategy, PlatformLocation} from '@angular/common';
+import {BrowserPlatformLocation} from '@angular/platform-browser';
+import {MyUIRouterConfig} from './routes';
+<% } else { -%>
+import {App} from './app/containers/App';
 import {enableProdMode} from '@angular/core';
+<% } -%>
 
 <% if (modules === 'systemjs') { -%>
 import {production} from '@system-env';
@@ -21,6 +29,16 @@ if (process.env.NODE_ENV === 'production') {
   enableProdMode();
 }
 
+<% if (router === 'uirouter') { -%>
+bootstrap(UiView, [
+  ...UIROUTER_PROVIDERS,
+  provide(LocationStrategy, {useClass: PathLocationStrategy}),
+  provide(PlatformLocation, {useClass: BrowserPlatformLocation}),
+  provide(UIRouterConfig, {useClass: MyUIRouterConfig}),
+  provideStore(combineReducers({todos, visibility}), {todos: [initialTodo], visibility: initialVisibility})
+]);
+<% } else { -%>
 bootstrap(App, [
   provideStore(combineReducers({todos, visibility}), {todos: [initialTodo], visibility: initialVisibility})
 ]);
+<% } -%>
