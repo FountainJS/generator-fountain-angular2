@@ -17,10 +17,10 @@ module.exports = ng.Class({
   configure: function (uiRouter) {
     INITIAL_STATES.forEach(function (state) {
       uiRouter.stateRegistry.register(state);
+      uiRouter.stateRegistry.root();
       uiRouter.urlRouterProvider.otherwise(function () {
         uiRouter.stateService.go('App', null, null);
       });
-      uiRouter.stateRegistry.root();
     });
   }
 });

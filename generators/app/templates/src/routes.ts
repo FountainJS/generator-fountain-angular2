@@ -15,10 +15,8 @@ const INITIAL_STATES: any[] = [
 @Injectable()
 export class MyUIRouterConfig {
   configure(uiRouter: UIRouter) {
-    INITIAL_STATES.forEach(state => {
-      uiRouter.stateRegistry.register(state);
-      uiRouter.urlRouterProvider.otherwise(() => uiRouter.stateService.go('App', null, null));
-      uiRouter.stateRegistry.root();
-    });
+    uiRouter.urlRouterProvider.otherwise(() => uiRouter.stateService.go('App', null, null));
+    uiRouter.stateRegistry.root();
+    INITIAL_STATES.forEach(state => uiRouter.stateRegistry.register(state));
   }
 }
