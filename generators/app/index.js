@@ -53,6 +53,9 @@ module.exports = fountain.Base.extend({
       if (this.props.js === 'typescript') {
         this.mergeJson('package.json', {dependencies: {'es6-shim': '^0.35.0'}});
       }
+      if (this.props.sample === 'jhipster') {
+        this.mergeJson('package.json', {dependencies: {bootstrap: '^3.3.6'}});
+      }
     },
 
     babel() {
@@ -96,6 +99,7 @@ module.exports = fountain.Base.extend({
   },
 
   writing() {
-    this.copyTemplate('src/index.html', 'src/index.html');
+    const prefix = this.props.sample === 'jhipster' ? 'src/main/webapp' : 'src';
+    this.copyTemplate('src/index.html', `${prefix}/index.html`);
   }
 });
