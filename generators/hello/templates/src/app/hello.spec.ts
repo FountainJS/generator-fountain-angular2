@@ -6,16 +6,10 @@ import 'zone.js/dist/async-test';
 import {Hello} from './hello';
 import {describe, it, expect, inject, async, setBaseTestProviders} from '@angular/core/testing';
 import {TestComponentBuilder, ComponentFixture} from '@angular/compiler/testing';
-import {TEST_BROWSER_STATIC_PLATFORM_PROVIDERS, ADDITIONAL_TEST_BROWSER_PROVIDERS} from '@angular/platform-browser/testing';
-import {BROWSER_APP_DYNAMIC_PROVIDERS} from '@angular/platform-browser-dynamic';
+import {TEST_BROWSER_DYNAMIC_PLATFORM_PROVIDERS, TEST_BROWSER_DYNAMIC_APPLICATION_PROVIDERS} from '@angular/platform-browser-dynamic/testing';
 
-setBaseTestProviders(
-  TEST_BROWSER_STATIC_PLATFORM_PROVIDERS,
-  [
-    BROWSER_APP_DYNAMIC_PROVIDERS,
-    ADDITIONAL_TEST_BROWSER_PROVIDERS
-  ]
-);
+setBaseTestProviders(TEST_BROWSER_DYNAMIC_PLATFORM_PROVIDERS, TEST_BROWSER_DYNAMIC_APPLICATION_PROVIDERS);
+
 describe('hello component', () => {
   it('should render hello world', async(inject([TestComponentBuilder], (tcb: TestComponentBuilder) => {
     tcb.createAsync(Hello)
