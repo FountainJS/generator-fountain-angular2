@@ -1,4 +1,6 @@
+<% if (modules !== 'systemjs') { -%>
 require('reflect-metadata');
+<% } -%>
 require('zone.js');
 
 var ng = require('@angular/platform-browser-dynamic');

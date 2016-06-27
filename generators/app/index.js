@@ -57,7 +57,7 @@ module.exports = fountain.Base.extend({
           'rxjs': '5.0.0-beta.8',
           'zone.js': '^0.6.12',
           'es6-promise': '^3.0.2',
-          'reflect-metadata': '0.1.2'
+          'reflect-metadata': '0.1.3'
         }
       });
       if (this.props.js === 'typescript') {

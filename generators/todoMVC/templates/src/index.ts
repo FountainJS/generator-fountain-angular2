@@ -1,6 +1,8 @@
 /// <reference path="../typings/index.d.ts"/>
 
+<% if (modules !== 'systemjs') { -%>
 import 'reflect-metadata';
+<% } -%>
 import 'zone.js/dist/zone';
 import {bootstrap} from '@angular/platform-browser-dynamic';
 import 'todomvc-app-css/index.css<%- modules === 'systemjs' ? '!' : '' %>';
