@@ -14,6 +14,10 @@ import {UIRouterConfig, UIROUTER_PROVIDERS, UiView} from 'ui-router-ng2';
 import {LocationStrategy, PathLocationStrategy, PlatformLocation} from '@angular/common';
 import {BrowserPlatformLocation} from '@angular/platform-browser';
 import {MyUIRouterConfig} from './routes';
+<% } else if (router === 'router') { -%>
+import {provideRouter} from '@angular/router';
+import {enableProdMode} from '@angular/core';
+import {routes, Root} from './routes';
 <% } else { -%>
 import {Hello} from './app/hello';
 import {enableProdMode} from '@angular/core';
@@ -36,6 +40,10 @@ bootstrap(UiView, [
   provide(LocationStrategy, {useClass: PathLocationStrategy}),
   provide(PlatformLocation, {useClass: BrowserPlatformLocation}),
   provide(UIRouterConfig, {useClass: MyUIRouterConfig})
+]);
+<% } else if (router === 'router') { -%>
+bootstrap(Root, [
+  provideRouter(routes)
 ]);
 <% } else { -%>
 bootstrap(Hello);
