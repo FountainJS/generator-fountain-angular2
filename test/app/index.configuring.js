@@ -33,7 +33,7 @@ test('Call this.config.set twice', () => {
 test(`Add '@angular/core' to package.json dependencies`, t => {
   context.props = {js: 'babel'};
   TestUtils.call(context, 'configuring.pkg');
-  t.is(context.mergeJson['package.json'].dependencies['@angular/core'], '2.0.0-rc.1');
+  t.is(context.mergeJson['package.json'].dependencies['@angular/core'], '2.0.0-rc.3');
 });
 
 test(`Add 'es6-shim' to package.json dependencies when js is 'typescript'`, t => {
