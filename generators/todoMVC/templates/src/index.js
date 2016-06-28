@@ -43,7 +43,8 @@ ng.bootstrap(uiRouter.UiView, uiRouter.UIROUTER_PROVIDERS.concat([
 ]));
 <% } else if (router === 'router') { -%>
 bootstrap(Root, [
-  provideRouter(routes)
+  ngRouter.provideRouter(routes),
+  ngrxStore.provideStore(ngrxStore.combineReducers({todos: reducers.todos, visibility: reducers.visibility}), {todos: [reducers.initialTodo], visibility: reducers.initialVisibility})
 ]);
 <% } else { -%>
 ng.bootstrap(App, [

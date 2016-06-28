@@ -48,7 +48,8 @@ bootstrap(UiView, [
 ]);
 <% } else if (router === 'router') { -%>
 bootstrap(Root, [
-  provideRouter(routes)
+  provideRouter(routes),
+  provideStore(combineReducers({todos, visibility}), {todos: [initialTodo], visibility: initialVisibility})
 ]);
 <% } else { -%>
 bootstrap(App, [
