@@ -63,7 +63,7 @@ test(`Add 'babel-plugin-angular2-annotations' to package.json devDependencies wi
 test(`Add '@angular/router' to package.json dependencies`, t => {
   context.props = {router: 'router'};
   TestUtils.call(context, 'configuring.router');
-  t.is(context.mergeJson['package.json'].dependencies['@angular/router'], '2.0.0-rc.1');
+  t.is(context.mergeJson['package.json'].dependencies['@angular/router'], '3.0.0-alpha.8');
 });
 
 test(`Add 'ui-router-ng2' to package.json dependencies`, t => {
