@@ -4,6 +4,9 @@
   </a>
 </p>
 
+[![Build Status](https://travis-ci.org/FountainJS/generator-fountain-angular2.svg?branch=master)](https://travis-ci.org/FountainJS/generator-fountain-angular2)
+[![codecov](https://codecov.io/gh/FountainJS/generator-fountain-angular2/branch/master/graph/badge.svg)](https://codecov.io/gh/FountainJS/generator-fountain-angular2)
+
 # Fountain Angular 2 Generator
 
 [![Angular 2](http://fountainjs.io/assets/imgs/angular2.png)](https://angular.io/)
