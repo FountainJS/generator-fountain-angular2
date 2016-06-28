@@ -10,8 +10,7 @@ var Header = require('./header');
 var Title = require('./title');
 var ngTest = require('@angular/core/testing');
 var ngCompilerTest = require('@angular/compiler/testing');
-var ngPlatformTest = require('@angular/platform-browser/testing');
-var ngPlatformDynamic = require('@angular/platform-browser-dynamic');
+var ngPlatformDynamic = require('@angular/platform-browser-dynamic/testing');
 
 var MockTechs = ng.Component({
   selector: 'Techs',
@@ -42,13 +41,8 @@ var MockTitle = ng.Component({
   constructor: function () {}
 });
 
-ngTest.setBaseTestProviders(
-  ngPlatformTest.TEST_BROWSER_STATIC_PLATFORM_PROVIDERS,
-  [
-    ngPlatformDynamic.BROWSER_APP_DYNAMIC_PROVIDERS,
-    ngPlatformTest.ADDITIONAL_TEST_BROWSER_PROVIDERS
-  ]
-);
+ngTest.setBaseTestProviders(ngPlatformDynamic.TEST_BROWSER_DYNAMIC_PLATFORM_PROVIDERS, ngPlatformDynamic.TEST_BROWSER_DYNAMIC_APPLICATION_PROVIDERS);
+
 ngTest.describe('main component', function () {
   ngTest.it('should render the header, title, techs and footer', ngTest.async(ngTest.inject([ngCompilerTest.TestComponentBuilder], function (tcb) {
     tcb

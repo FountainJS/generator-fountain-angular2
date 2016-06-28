@@ -48,16 +48,16 @@ module.exports = fountain.Base.extend({
     pkg() {
       this.mergeJson('package.json', {
         dependencies: {
-          '@angular/core': '2.0.0-rc.1',
-          '@angular/compiler': '2.0.0-rc.1',
-          '@angular/common': '2.0.0-rc.1',
-          '@angular/platform-browser': '2.0.0-rc.1',
-          '@angular/platform-browser-dynamic': '2.0.0-rc.1',
-          '@angular/http': '2.0.0-rc.1',
+          '@angular/core': '2.0.0-rc.3',
+          '@angular/compiler': '2.0.0-rc.3',
+          '@angular/common': '2.0.0-rc.3',
+          '@angular/platform-browser': '2.0.0-rc.3',
+          '@angular/platform-browser-dynamic': '2.0.0-rc.3',
+          '@angular/http': '2.0.0-rc.3',
           'rxjs': '5.0.0-beta.8',
           'zone.js': '^0.6.12',
           'es6-promise': '^3.0.2',
-          'reflect-metadata': '0.1.2'
+          'reflect-metadata': '0.1.3'
         }
       });
       if (this.props.js === 'typescript') {

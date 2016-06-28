@@ -1,4 +1,6 @@
+<% if (modules !== 'systemjs') { -%>
 require('reflect-metadata');
+<% } -%>
 require('zone.js');
 require('todomvc-app-css/index.css<%- modules === 'systemjs' ? '!' : '' %>');
 var ng = require('@angular/platform-browser-dynamic');

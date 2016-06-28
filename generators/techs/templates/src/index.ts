@@ -1,12 +1,10 @@
 /// <reference path="../typings/index.d.ts"/>
 
 import 'es6-shim';
+<% if (modules !== 'systemjs') { -%>
 import 'reflect-metadata';
-<% if (modules === 'webpack') { -%>
-import 'zone.js/dist/zone';
-<% } else { -%>
-import 'zone.js';
 <% } -%>
+import 'zone.js/dist/zone';
 
 import {bootstrap} from '@angular/platform-browser-dynamic';
 

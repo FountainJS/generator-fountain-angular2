@@ -5,16 +5,10 @@ require('zone.js/dist/async-test');
 var Hello = require('./hello');
 var ngTest = require('@angular/core/testing');
 var ngCompilerTest = require('@angular/compiler/testing');
-var ngPlatformTest = require('@angular/platform-browser/testing');
-var ngPlatformDynamic = require('@angular/platform-browser-dynamic');
+var ngPlatformDynamic = require('@angular/platform-browser-dynamic/testing');
 
-ngTest.setBaseTestProviders(
-  ngPlatformTest.TEST_BROWSER_STATIC_PLATFORM_PROVIDERS,
-  [
-    ngPlatformDynamic.BROWSER_APP_DYNAMIC_PROVIDERS,
-    ngPlatformTest.ADDITIONAL_TEST_BROWSER_PROVIDERS
-  ]
-);
+ngTest.setBaseTestProviders(ngPlatformDynamic.TEST_BROWSER_DYNAMIC_PLATFORM_PROVIDERS, ngPlatformDynamic.TEST_BROWSER_DYNAMIC_APPLICATION_PROVIDERS);
+
 ngTest.describe('hello component', function () {
   ngTest.it('should render hello world', ngTest.async(ngTest.inject([ngCompilerTest.TestComponentBuilder], function (tcb) {
     tcb.createAsync(Hello)

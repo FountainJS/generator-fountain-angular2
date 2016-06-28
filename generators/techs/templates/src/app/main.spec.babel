@@ -10,8 +10,7 @@ import {Header} from './header';
 import {Title} from './title';
 import {describe, it, expect, inject, async, setBaseTestProviders} from '@angular/core/testing';
 import {TestComponentBuilder} from '@angular/compiler/testing';
-import {TEST_BROWSER_STATIC_PLATFORM_PROVIDERS, ADDITIONAL_TEST_BROWSER_PROVIDERS} from '@angular/platform-browser/testing';
-import {BROWSER_APP_DYNAMIC_PROVIDERS} from '@angular/platform-browser-dynamic';
+import {TEST_BROWSER_DYNAMIC_PLATFORM_PROVIDERS, TEST_BROWSER_DYNAMIC_APPLICATION_PROVIDERS} from '@angular/platform-browser-dynamic/testing';
 
 @Component({
   selector: 'Techs',
@@ -34,13 +33,8 @@ class MockHeader {}
 })
 class MockTitle {}
 
-setBaseTestProviders(
-  TEST_BROWSER_STATIC_PLATFORM_PROVIDERS,
-  [
-    BROWSER_APP_DYNAMIC_PROVIDERS,
-    ADDITIONAL_TEST_BROWSER_PROVIDERS
-  ]
-);
+setBaseTestProviders(TEST_BROWSER_DYNAMIC_PLATFORM_PROVIDERS, TEST_BROWSER_DYNAMIC_APPLICATION_PROVIDERS);
+
 describe('main component', () => {
   it('should render the header, title, techs and footer', async(inject([TestComponentBuilder], tcb => {
     tcb
