@@ -28,6 +28,7 @@
   "devDependencies": {
     "ava": "^0.15.2",
     "babel-eslint": "^6.0.2",
+    "chai": "^3.5.0",
     "chai-spies": "^0.7.1",
     "cross-spawn": "^4.0.0",
     "eslint": "^2.7.0",
