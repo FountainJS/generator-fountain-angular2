@@ -7,27 +7,12 @@ var actions = require('../actions/index');
 
 module.exports = ng.Component({
   selector: 'MainSection',
-  template:
-    '<section class="main">' +
-      '<input *ngIf="(todos | async)?.length"' +
-        ' class="toggle-all"' +
-        ' type="checkbox"' +
-        ' [checked]="(completedCount | async) === (todos | async)?.length"' +
-        ' (click)="handleCompleteAll()"' +
-        '/>' +
-      '<ul class="todo-list">' +
-        '<template ngFor let-todo [ngForOf]="(filteredTodos | async)">' +
-          '<TodoItem [todo]="todo" (onDestroy)="handleDestroy($event)" (onChange)="handleChange($event)" (onSave)="handleSave($event)"></TodoItem>' +
-        '</template>' +
-      '</ul>' +
-      '<Footer *ngIf="(todos | async)?.length"' +
-        ' [completedCount]="completedCount | async"' +
-        ' [activeCount]="activeCount | async"' +
-        ' [filter]="visibilityFilter | async"' +
-        ' (onClearCompleted)="handleClearCompleted()"' +
-        ' (onShow)="handleShow($event)"' +
-      '></Footer>' +
-    '</section>',
+<% if (modules === 'systemjs') { -%>
+  moduleId: __moduleName,
+  templateUrl: 'MainSection.html',
+<% } else { -%>
+  template: require('./MainSection.html'),
+<% } -%>
   directives: [TodoItem, Footer]
 })
 .Class({

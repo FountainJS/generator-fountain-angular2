@@ -2,13 +2,11 @@ import {Component} from '@angular/core';
 
 @Component({
   selector: 'Footer',
-  template: `
-    <footer class="footer">
-      Build with ♥ by the&nbsp;
-      <a href="https://github.com/orgs/FountainJS/people">
-        FountainJS team
-      </a>
-    </footer>
-  `
+<% if (modules === 'systemjs') { -%>
+  moduleId: __moduleName,
+  templateUrl: 'footer.html'
+<% } else { -%>
+  template: require('./footer.html')
+<% } -%>
 })
 export class Footer {}

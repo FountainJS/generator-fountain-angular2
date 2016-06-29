@@ -3,25 +3,12 @@ var todoFilters = require('../constants/TodoFilters');
 
 module.exports = ng.Component({
   selector: 'Footer',
-  template:
-    '<footer class="footer">' +
-      '<span class="todo-count">' +
-        '<strong>{{activeCount || "No"}}</strong> {{activeCount === 1 ? "item" : "items"}} left' +
-      '</span>' +
-      '<ul class="filters">' +
-        '<template ngFor let-filter [ngForOf]="filters">' +
-          '<li key="filter">' +
-            '<a [ngClass]="{\'selected\': filter === selectedFilter?.type}" (click)="handleChange(filter)">{{filterTitles[filter]}}</a>' +
-          '</li>' +
-        '</template>' +
-      '</ul>' +
-      '<button *ngIf="completedCount > 0"' +
-        ' class="clear-completed"' +
-        ' (click)="handleClear($event)"' +
-        '>' +
-        'Clear completed' +
-      '</button>' +
-    '</footer>',
+<% if (modules === 'systemjs') { -%>
+  moduleId: __moduleName,
+  templateUrl: 'Footer.html',
+<% } else { -%>
+  template: require('./Footer.html'),
+<% } -%>
   inputs: [
     'completedCount',
     'activeCount',

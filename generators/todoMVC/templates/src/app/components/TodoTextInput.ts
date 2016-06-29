@@ -2,17 +2,12 @@ import {Component, Input, Output, EventEmitter, ElementRef, Renderer, ViewChild,
 
 @Component({
   selector: 'TodoTextInput',
-  template: `
-    <input
-      #myInput
-      [ngClass]="{'edit': editing, 'new-todo': newTodo}"
-      [(ngModel)]="text"
-      (keypress)="handleSubmit($event)"
-      (blur)="handleBlur()"
-      [placeholder]="placeholder"
-      type="text"
-    />
-  `
+<% if (modules === 'systemjs') { -%>
+  moduleId: __moduleName,
+  templateUrl: 'TodoTextInput.html',
+<% } else { -%>
+  template: require('./TodoTextInput.html'),
+<% } -%>
 })
 export class TodoTextInput implements AfterViewInit {
   @ViewChild('myInput') input: ElementRef;

@@ -2,17 +2,11 @@ import {Component} from '@angular/core';
 
 @Component({
   selector: 'Header',
-  template: `
-    <header class="header">
-      <p class="header-title">
-        <a href="https://github.com/FountainJS/generator-fountain-webapp" target="_blank">
-          Fountain Generator
-        </a>
-      </p>
-      <p class="header-date">
-        Generated with FountainJS v<%- version %> on <%- date %>
-      </p>
-    </header>
-  `
+<% if (modules === 'systemjs') { -%>
+  moduleId: __moduleName,
+  templateUrl: 'header.html'
+<% } else { -%>
+  template: require('./header.html')
+<% } -%>
 })
 export class Header {}

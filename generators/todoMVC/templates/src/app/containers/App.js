@@ -4,9 +4,12 @@ var MainSection = require('../components/MainSection');
 
 module.exports = ng.Component({
   selector: 'App',
-  template:
-    '<Header></Header>' +
-    '<MainSection></MainSection>',
+<% if (modules === 'systemjs') { -%>
+  moduleId: __moduleName,
+  templateUrl: 'App.html',
+<% } else { -%>
+  template: require('./App.html'),
+<% } -%>
   directives: [Header, MainSection]
 })
 .Class({

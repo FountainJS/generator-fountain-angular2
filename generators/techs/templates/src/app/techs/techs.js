@@ -5,15 +5,11 @@ require('rxjs/Rx');
 
 module.exports = ng.Component({
   selector: 'Techs',
-  template:
-    '<div class="techs-container">' +
-      '<h2 class="techs-h2">' +
-        'Cooked with all these awesome technologies:' +
-      '</h2>' +
-      '<div class="techs">' +
-        '<Tech *ngFor="let tech of techs" [tech]="tech"></Tech>' +
-      '</div>' +
-    '</div>',
+<% if (modules === 'systemjs') { -%>
+  templateUrl: 'src/app/techs/techs.html',
+<% } else { -%>
+  template: require('./techs.html'),
+<% } -%>
   directives: [Tech],
   providers: [ngHttp.HTTP_PROVIDERS]
 })
