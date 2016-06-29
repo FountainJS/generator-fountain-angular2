@@ -58,11 +58,10 @@ ngTest.describe('components', function () {
         });
     })));
 
-    ngTest.it('should update value on change', ngTest.fakeAsync(ngTest.inject([], function () {
+    ngTest.it('should update value on change', ngTest.async(ngTest.inject([], function () {
       tcb
         .createAsync(TodoTextInput)
         .then(function (fixture) {
-          ngTest.tick();
           var TodoTextInputCmp = fixture.componentInstance;
           TodoTextInputCmp.editing = true;
           fixture.detectChanges();
@@ -71,7 +70,6 @@ ngTest.describe('components', function () {
           input.value = 'Use ngrx/store';
           var evt = new CustomEvent('input');
           input.dispatchEvent(evt);
-          ngTest.tick(50);
           ngTest.expect(TodoTextInputCmp.text).toBe('Use ngrx/store');
         });
     })));

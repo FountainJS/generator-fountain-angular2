@@ -3,7 +3,7 @@
 import 'zone.js/dist/zone';
 import 'zone.js/dist/async-test';
 import 'zone.js/dist/fake-async-test';
-import {describe, it, expect, async, inject, beforeEach, fakeAsync, tick} from '@angular/core/testing';
+import {describe, it, expect, async, inject, beforeEach} from '@angular/core/testing';
 import {TestComponentBuilder, ComponentFixture} from '@angular/compiler/testing';
 import {TodoTextInput} from './TodoTextInput';
 
@@ -60,11 +60,10 @@ describe('components', () => {
         });
     })));
 
-    it('should update value on change', fakeAsync(inject([], () => {
+    it('should update value on change', async(inject([], () => {
       tcb
         .createAsync(TodoTextInput)
         .then((fixture: ComponentFixture<any>) => {
-          tick();
           const TodoTextInputCmp = fixture.componentInstance;
           TodoTextInputCmp.editing = true;
           fixture.detectChanges();
@@ -73,7 +72,6 @@ describe('components', () => {
           input.value = 'Use ngrx/store';
           let evt = new CustomEvent('input');
           input.dispatchEvent(evt);
-          tick(50);
           expect(TodoTextInputCmp.text).toBe('Use ngrx/store');
         });
     })));
