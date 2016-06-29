@@ -21,7 +21,7 @@ export class Root {
 export const routes: RouterConfig = [
   {
     path: '',
-    component: <% if (sample === 'hello') { -%>Hello<% } else if (sample === 'techs') { -%>Main<% } else { -%>App<% } -%>,
-    index: true
+    component: <% if (sample === 'hello') { -%>Hello<% } else if (sample === 'techs') { -%>Main<% } else { -%>App<% } -%>
+
   }
 ];
