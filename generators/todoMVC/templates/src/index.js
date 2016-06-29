@@ -17,8 +17,7 @@ var ngPlatformBrowser = require('@angular/platform-browser');
 var MyUIRouterConfig = require('./routes');
 <% } else if (router === 'router') { -%>
 var ngRouter = require('@angular/router');
-var routes = require('./routes').routes;
-var Root = require('./routes').Root;
+var rts = require('./routes');
 <% } else { -%>
 var App = require('./app/containers/App');
 <% } -%>
@@ -42,8 +41,8 @@ ng.bootstrap(uiRouter.UiView, uiRouter.UIROUTER_PROVIDERS.concat([
   ngrxStore.provideStore(ngrxStore.combineReducers({todos: reducers.todos, visibility: reducers.visibility}), {todos: [reducers.initialTodo], visibility: reducers.initialVisibility})
 ]));
 <% } else if (router === 'router') { -%>
-bootstrap(Root, [
-  ngRouter.provideRouter(routes),
+ng.bootstrap(rts.Root, [
+  ngRouter.provideRouter(rts.routes),
   ngrxStore.provideStore(ngrxStore.combineReducers({todos: reducers.todos, visibility: reducers.visibility}), {todos: [reducers.initialTodo], visibility: reducers.initialVisibility})
 ]);
 <% } else { -%>

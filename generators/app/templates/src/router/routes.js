@@ -8,7 +8,7 @@ var Main = require('./app/main');
 var App = require('./app/containers/App');
 <% } -%>
 
-module.exports.Root =
+var Root =
   ng.Component({
     selector: 'root',
     template: '<router-outlet></router-outlet>',
@@ -19,10 +19,12 @@ module.exports.Root =
     }
   });
 
-module.exports.routes = [
+var routes = [
   {
     path: '',
     component: <% if (sample === 'hello') { -%>Hello<% } else if (sample === 'techs') { -%>Main<% } else { -%>App<% } -%>
 
   }
 ];
+
+module.exports = {Root: Root, routes: routes};
