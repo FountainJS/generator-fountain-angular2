@@ -4,7 +4,7 @@ module.exports = ng.Component({
   selector: 'Header',
 <% if (modules === 'systemjs') { -%>
   moduleId: __moduleName,
-  templateUrl: '/header.html'
+  templateUrl: 'header.html'
 <% } else { -%>
   template: require('./header.html')
 <% } -%>

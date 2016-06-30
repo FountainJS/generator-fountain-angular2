@@ -6,7 +6,8 @@ require('rxjs/Rx');
 module.exports = ng.Component({
   selector: 'Techs',
 <% if (modules === 'systemjs') { -%>
-  templateUrl: 'src/app/techs/techs.html',
+  moduleId: __moduleName,
+  templateUrl: 'techs.html',
 <% } else { -%>
   template: require('./techs.html'),
 <% } -%>

@@ -3,7 +3,8 @@ var ng = require('@angular/core');
 module.exports = ng.Component({
   selector: 'Tech',
 <% if (modules === 'systemjs') { -%>
-  templateUrl: 'src/app/techs/tech.html',
+  moduleId: __moduleName,
+  templateUrl: 'tech.html',
 <% } else { -%>
   template: require('./tech.html'),
 <% } -%>

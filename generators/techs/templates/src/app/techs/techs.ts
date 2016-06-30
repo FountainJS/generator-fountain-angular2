@@ -17,9 +17,9 @@ export class Tech {
   selector: 'Techs',
 <% if (modules === 'systemjs') { -%>
   moduleId: __moduleName,
-  templateUrl: 'techs.html'
+  templateUrl: 'techs.html',
 <% } else { -%>
-  template: require('./techs.html')
+  template: require('./techs.html'),
 <% } -%>
   directives: [TechComponent],
   providers: [HTTP_PROVIDERS]
