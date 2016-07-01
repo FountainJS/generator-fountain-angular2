@@ -58,9 +58,6 @@ module.exports = fountain.Base.extend({
           'zone.js': '^0.6.12',
           'es6-promise': '^3.0.2',
           'reflect-metadata': '0.1.3'
-        },
-        devDependencies: {
-          'gulp-inline-ng2-template': '^2.0.4'
         }
       });
       if (this.props.js === 'typescript') {
