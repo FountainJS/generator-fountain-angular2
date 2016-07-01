@@ -1,0 +1,9 @@
+<input
+  #myInput
+  [ngClass]="{'edit': editing, 'new-todo': newTodo}"
+  [(ngModel)]="text"
+  (keypress)="handleSubmit($event)"
+  (blur)="handleBlur()"
+  [placeholder]="placeholder"
+  type="text"
+/>

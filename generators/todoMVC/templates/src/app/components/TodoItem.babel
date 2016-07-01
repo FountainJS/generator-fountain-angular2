@@ -3,26 +3,12 @@ import {TodoTextInput} from './TodoTextInput';
 
 @Component({
   selector: 'TodoItem',
-  template: `
-    <li [ngClass]="{'editing': editing, 'completed': todo?.completed}">
-      <TodoTextInput
-        *ngIf="editing"
-        [text]="todo?.text"
-        [editing]="editing"
-        (onSave)="handleSave($event)"
-        ></TodoTextInput>
-      <div class="view" *ngIf="!editing">
-        <input
-          class="toggle"
-          type="checkbox"
-          [checked]="todo?.completed"
-          (click)="handleChange()"
-          />
-        <label (dblclick)="handleDoubleClick()">{{todo?.text}}</label>
-        <button class="destroy" (click)="handleClick()"></button>
-      </div>
-    </li>
-  `,
+<% if (modules === 'systemjs') { -%>
+  moduleId: __moduleName,
+  templateUrl: 'TodoItem.html',
+<% } else { -%>
+  template: require('./TodoItem.html'),
+<% } -%>
   directives: [TodoTextInput]
 })
 export class TodoItem {

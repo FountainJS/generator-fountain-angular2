@@ -56,12 +56,11 @@ ngTest.describe('components', function () {
         });
     })));
 
-    ngTest.it('input onChange should call completeTodo', ngTest.fakeAsync(ngTest.inject([], function () {
+    ngTest.it('input onChange should call completeTodo', ngTest.async(ngTest.inject([], function () {
       tcb
         .overrideDirective(TodoItem, TodoTextInput, MockTodoTextInput)
         .createAsync(TodoItem)
         .then(function (fixture) {
-          ngTest.tick();
           fixture.detectChanges();
           var TodoItemCmp = fixture.componentInstance;
           TodoItemCmp.todo = {
@@ -73,17 +72,15 @@ ngTest.describe('components', function () {
           spyOn(TodoItemCmp.onChange, 'emit');
           var evt = new CustomEvent('click');
           input.dispatchEvent(evt);
-          ngTest.tick(50);
           ngTest.expect(TodoItemCmp.onChange.emit).toHaveBeenCalledWith(0);
         });
     })));
 
-    ngTest.it('button onClick should call deleteTodo', ngTest.fakeAsync(ngTest.inject([], function () {
+    ngTest.it('button onClick should call deleteTodo', ngTest.async(ngTest.inject([], function () {
       tcb
         .overrideDirective(TodoItem, TodoTextInput, MockTodoTextInput)
         .createAsync(TodoItem)
         .then(function (fixture) {
-          ngTest.tick();
           fixture.detectChanges();
           var TodoItemCmp = fixture.componentInstance;
           TodoItemCmp.todo = {
@@ -95,7 +92,6 @@ ngTest.describe('components', function () {
           spyOn(TodoItemCmp.onDestroy, 'emit').and.callThrough();
           var evt = new CustomEvent('click');
           button.dispatchEvent(evt);
-          ngTest.tick(50);
           ngTest.expect(TodoItemCmp.onDestroy.emit).toHaveBeenCalledWith(0);
         });
     })));

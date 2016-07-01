@@ -3,7 +3,12 @@ var ng = require('@angular/core');
 module.exports =
   ng.Component({
     selector: 'App',
-    template: '<h1>{{ hello }}</h1>'
+<% if (modules === 'systemjs') { -%>
+    moduleId: __moduleName,
+    templateUrl: 'hello.html'
+<% } else { -%>
+    template: require('./hello.html')
+<% } -%>
   })
   .Class({
     constructor: function () {

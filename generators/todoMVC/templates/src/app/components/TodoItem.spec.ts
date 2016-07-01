@@ -1,9 +1,10 @@
 /// <reference path="../../../typings/index.d.ts"/>
+
 import 'zone.js/dist/zone';
 import 'zone.js/dist/async-test';
 import 'zone.js/dist/fake-async-test';
 import {Component, Input} from '@angular/core';
-import {describe, it, expect, async, fakeAsync, inject, beforeEach, tick} from '@angular/core/testing';
+import {describe, it, expect, async, inject, beforeEach} from '@angular/core/testing';
 import {TestComponentBuilder, ComponentFixture} from '@angular/compiler/testing';
 import {By} from '@angular/platform-browser';
 import {TodoTextInput} from './TodoTextInput';
@@ -59,12 +60,11 @@ describe('components', () => {
         });
     })));
 
-    it('input onChange should call completeTodo', fakeAsync(inject([], () => {
+    it('input onChange should call completeTodo', async(inject([], () => {
       tcb
         .overrideDirective(TodoItem, TodoTextInput, MockTodoTextInput)
         .createAsync(TodoItem)
         .then((fixture: ComponentFixture<any>) => {
-          tick();
           fixture.detectChanges();
           const TodoItemCmp = fixture.componentInstance;
           TodoItemCmp.todo = {
@@ -76,17 +76,15 @@ describe('components', () => {
           spyOn(TodoItemCmp.onChange, 'emit');
           const evt = new CustomEvent('click');
           input.dispatchEvent(evt);
-          tick(50);
           expect(TodoItemCmp.onChange.emit).toHaveBeenCalledWith(0);
         });
     })));
 
-    it('button onClick should call deleteTodo', fakeAsync(inject([], () => {
+    it('button onClick should call deleteTodo', async(inject([], () => {
       tcb
         .overrideDirective(TodoItem, TodoTextInput, MockTodoTextInput)
         .createAsync(TodoItem)
         .then((fixture: ComponentFixture<any>) => {
-          tick();
           fixture.detectChanges();
           const TodoItemCmp = fixture.componentInstance;
           TodoItemCmp.todo = {
@@ -98,7 +96,6 @@ describe('components', () => {
           spyOn(TodoItemCmp.onDestroy, 'emit').and.callThrough();
           const evt = new CustomEvent('click');
           button.dispatchEvent(evt);
-          tick(50);
           expect(TodoItemCmp.onDestroy.emit).toHaveBeenCalledWith(0);
         });
     })));

@@ -1,9 +1,10 @@
 /// <reference path="../../../typings/index.d.ts"/>
+
 import 'zone.js/dist/zone';
 import 'zone.js/dist/async-test';
 import 'zone.js/dist/fake-async-test';
 import {Component, Input} from '@angular/core';
-import {describe, it, expect, fakeAsync, async, inject, beforeEach, beforeEachProviders} from '@angular/core/testing';
+import {describe, it, expect, async, inject, beforeEach, beforeEachProviders} from '@angular/core/testing';
 import {TestComponentBuilder, ComponentFixture} from '@angular/compiler/testing';
 import {By} from '@angular/platform-browser';
 import {provideStore, combineReducers} from '@ngrx/store';
@@ -88,7 +89,7 @@ describe('components', () => {
           });
       })));
 
-      it('should call completeAll on change', fakeAsync(inject([], () => {
+      it('should call completeAll on change', async(inject([], () => {
         tcb
           .overrideDirective(MainSection, TodoItem, MockTodoItem)
           .overrideDirective(MainSection, Footer, MockFooter)

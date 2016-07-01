@@ -6,16 +6,12 @@ import {Footer} from './footer';
 
 @Component({
   selector: 'App',
-  template: `
-    <div class="main-container">
-      <Header></Header>
-      <main class="main">
-        <TitleComponent></TitleComponent>
-        <Techs></Techs>
-      </main>
-      <Footer></Footer>
-    </div>
-  `,
+<% if (modules === 'systemjs') { -%>
+  moduleId: __moduleName,
+  templateUrl: 'main.html',
+<% } else { -%>
+  template: require('./main.html'),
+<% } -%>
   directives: [Header, Title, Techs, Footer]
 })
 export class Main {}

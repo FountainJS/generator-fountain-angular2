@@ -87,7 +87,7 @@ ngTest.describe('components', function () {
           });
       })));
 
-      ngTest.it('should call completeAll on change', ngTest.fakeAsync(ngTest.inject([], function () {
+      ngTest.it('should call completeAll on change', ngTest.async(ngTest.inject([], function () {
         tcb
           .overrideDirective(MainSection, TodoItem, MockTodoItem)
           .overrideDirective(MainSection, Footer, MockFooter)

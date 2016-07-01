@@ -23,20 +23,26 @@ module.exports = fountain.Base.extend({
         'src/index.css',
 
         'src/app/actions/index.js',
+        'src/app/components/Footer.html',
         'src/app/components/Footer.js',
         'src/app/components/Footer.spec.js',
+        'src/app/components/Header.html',
         'src/app/components/Header.js',
         'src/app/components/Header.spec.js',
+        'src/app/components/MainSection.html',
         'src/app/components/MainSection.js',
         'src/app/components/MainSection.spec.js',
+        'src/app/components/TodoItem.html',
         'src/app/components/TodoItem.js',
         'src/app/components/TodoItem.spec.js',
+        'src/app/components/TodoTextInput.html',
         'src/app/components/TodoTextInput.js',
         'src/app/components/TodoTextInput.spec.js',
 
         'src/app/constants/ActionTypes.js',
         'src/app/constants/TodoFilters.js',
 
+        'src/app/containers/App.html',
         'src/app/containers/App.js',
 
         'src/app/reducers/todos.js',

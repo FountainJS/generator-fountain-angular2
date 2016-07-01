@@ -5,16 +5,12 @@ import {TodoTextInput} from './TodoTextInput';
 
 @Component({
   selector: 'Header',
-  template: `
-    <header class="header">
-      <h1>todos</h1>
-      <TodoTextInput
-        [newTodo]="true"
-        (onSave)="handleSave($event)"
-        [placeholder]="'What needs to be done?'"
-      ></TodoTextInput>
-    </header>
-  `,
+<% if (modules === 'systemjs') { -%>
+  moduleId: __moduleName,
+  templateUrl: 'Header.html',
+<% } else { -%>
+  template: require('./Header.html'),
+<% } -%>
   directives: [TodoTextInput]
 })
 export class Header {
