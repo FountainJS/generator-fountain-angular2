@@ -4,8 +4,7 @@ import 'reflect-metadata';
 import 'zone.js/dist/zone';
 import 'zone.js/dist/async-test';
 import {<%- className %>} from './<%- name %>';
-import {describe, it, expect, inject, async} from '@angular/core/testing';
-import {TestComponentBuilder, ComponentFixture} from '@angular/compiler/testing';
+import {inject, async, TestComponentBuilder, ComponentFixture} from '@angular/core/testing';
 
 describe('<%- componentName %> component', () => {
   it('should render...', async(inject([TestComponentBuilder], (tcb: TestComponentBuilder) => {

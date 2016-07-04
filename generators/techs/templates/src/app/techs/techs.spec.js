@@ -8,7 +8,6 @@ var ngHttp = require('@angular/http');
 var Techs = require('./techs');
 var Tech = require('./tech');
 var ngTest = require('@angular/core/testing');
-var ngCompilerTest = require('@angular/compiler/testing');
 var rxjs = require('rxjs/Rx');
 
 var MockComponent = ng.Component({
@@ -44,10 +43,10 @@ var techsJson = [
   }
 ];
 
-ngTest.describe('techs component', function () {
-  ngTest.describe('techs component methods', function () {
-    ngTest.beforeEachProviders(function () {
-      return [
+describe('techs component', function () {
+  describe('techs component methods', function () {
+    beforeEach(function () {
+      ngTest.addProviders([
         Techs,
         ngHttpTesting.MockBackend,
         ngHttp.BaseRequestOptions,
@@ -57,10 +56,10 @@ ngTest.describe('techs component', function () {
           },
           deps: [ngHttpTesting.MockBackend, ngHttp.BaseRequestOptions]
         })
-      ];
+      ]);
     });
 
-    ngTest.it('should get techs', ngTest.inject([ngHttpTesting.MockBackend, Techs], function (mockBackend, techs) {
+    it('should get techs', ngTest.inject([ngHttpTesting.MockBackend, Techs], function (mockBackend, techs) {
       var conn;
       var response = new ngHttp.Response(new ngHttp.ResponseOptions({body: techsJson}));
       mockBackend.connections.subscribe(function (connection) {
@@ -70,12 +69,12 @@ ngTest.describe('techs component', function () {
         techs.techs = jsonObject;
       });
       conn.mockRespond(response);
-      ngTest.expect(techs.techs.length).toBe(3);
+      expect(techs.techs.length).toBe(3);
       mockBackend.verifyNoPendingRequests();
     }));
   });
 
-  ngTest.describe('techs component rendering', function () {
+  describe('techs component rendering', function () {
     beforeEach(function () {
       Techs.prototype.getTechs = function getTechs() {
         var response = new ngHttp.Response(new ngHttp.ResponseOptions({body: techsJson}));
@@ -85,14 +84,14 @@ ngTest.describe('techs component', function () {
       };
     });
 
-    ngTest.it('should mock the techs and render 3 elements <tech>', ngTest.async(ngTest.inject([ngCompilerTest.TestComponentBuilder], function (tcb) {
+    it('should mock the techs and render 3 elements <tech>', ngTest.async(ngTest.inject([ngTest.TestComponentBuilder], function (tcb) {
       return tcb
         .overrideDirective(Techs, Tech, MockComponent)
         .createAsync(Techs)
         .then(function (fixture) {
           fixture.detectChanges();
           var techs = fixture.nativeElement;
-          ngTest.expect(techs.querySelectorAll('tech').length).toBe(3);
+          expect(techs.querySelectorAll('tech').length).toBe(3);
         });
     })));
   });

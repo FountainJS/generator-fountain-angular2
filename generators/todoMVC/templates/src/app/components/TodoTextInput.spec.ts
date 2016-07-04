@@ -3,8 +3,7 @@
 import 'zone.js/dist/zone';
 import 'zone.js/dist/async-test';
 import 'zone.js/dist/fake-async-test';
-import {describe, it, expect, async, inject, beforeEach} from '@angular/core/testing';
-import {TestComponentBuilder, ComponentFixture} from '@angular/compiler/testing';
+import {async, inject, beforeEach, TestComponentBuilder, ComponentFixture} from '@angular/core/testing';
 import {TodoTextInput} from './TodoTextInput';
 
 describe('components', () => {

@@ -4,8 +4,7 @@ import 'zone.js/dist/zone';
 import 'zone.js/dist/async-test';
 import 'zone.js/dist/fake-async-test';
 import {Component, Input} from '@angular/core';
-import {describe, it, expect, async, inject, beforeEach, beforeEachProviders} from '@angular/core/testing';
-import {TestComponentBuilder, ComponentFixture} from '@angular/compiler/testing';
+import {async, inject, TestComponentBuilder, ComponentFixture, addProviders} from '@angular/core/testing';
 import {By} from '@angular/platform-browser';
 import {provideStore, combineReducers} from '@ngrx/store';
 import {todos, visibility} from '../reducers/todos';
@@ -36,9 +35,11 @@ class MockFooter {
 describe('components', () => {
   let tcb: TestComponentBuilder;
 
-  beforeEachProviders(() => [
-    provideStore(combineReducers({todos, visibility}), {})
-  ]);
+  beforeEach(() => {
+    addProviders([
+      provideStore(combineReducers({todos, visibility}), {})
+    ]);
+  });
 
   beforeEach(inject([TestComponentBuilder], (_tcb: TestComponentBuilder) => {
     tcb = _tcb;

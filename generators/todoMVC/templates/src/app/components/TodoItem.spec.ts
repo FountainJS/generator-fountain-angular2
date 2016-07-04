@@ -4,8 +4,7 @@ import 'zone.js/dist/zone';
 import 'zone.js/dist/async-test';
 import 'zone.js/dist/fake-async-test';
 import {Component, Input} from '@angular/core';
-import {describe, it, expect, async, inject, beforeEach} from '@angular/core/testing';
-import {TestComponentBuilder, ComponentFixture} from '@angular/compiler/testing';
+import {async, inject, TestComponentBuilder, ComponentFixture} from '@angular/core/testing';
 import {By} from '@angular/platform-browser';
 import {TodoTextInput} from './TodoTextInput';
 import {TodoItem} from './TodoItem';
@@ -29,7 +28,7 @@ describe('components', () => {
   }));
 
   describe('TodoItem', () => {
-    it('initial render', async(inject([], () => {
+    it('should render the correct elements', async(inject([], () => {
       tcb
         .overrideDirective(TodoItem, TodoTextInput, MockTodoTextInput)
         .createAsync(TodoItem)
@@ -60,7 +59,7 @@ describe('components', () => {
         });
     })));
 
-    it('input onChange should call completeTodo', async(inject([], () => {
+    it('should call onChange when click on input', async(inject([], () => {
       tcb
         .overrideDirective(TodoItem, TodoTextInput, MockTodoTextInput)
         .createAsync(TodoItem)
@@ -80,7 +79,7 @@ describe('components', () => {
         });
     })));
 
-    it('button onClick should call deleteTodo', async(inject([], () => {
+    it('should call onDestroy when click on button', async(inject([], () => {
       tcb
         .overrideDirective(TodoItem, TodoTextInput, MockTodoTextInput)
         .createAsync(TodoItem)
@@ -100,7 +99,7 @@ describe('components', () => {
         });
     })));
 
-    it('label onDoubleClick should put component in edit state', async(inject([], () => {
+    it(`should change class names to 'editing' when double click on label`, async(inject([], () => {
       tcb
         .overrideDirective(TodoItem, TodoTextInput, MockTodoTextInput)
         .createAsync(TodoItem)
@@ -122,7 +121,7 @@ describe('components', () => {
         });
     })));
 
-    it('edit state render', async(inject([], () => {
+    it('should render the correct input when editing is true', async(inject([], () => {
       tcb
         .createAsync(TodoItem)
         .then((fixture: ComponentFixture<any>) => {
@@ -141,11 +140,16 @@ describe('components', () => {
         });
     })));
 
-    it('TodoTextInput onSave should call editTodo', async(inject([], () => {
+    it('should call handleSave when onSave event is emitted', async(inject([], () => {
       tcb
         .createAsync(TodoItem)
         .then((fixture: ComponentFixture<any>) => {
           const TodoItemCmp = fixture.componentInstance;
+          TodoItemCmp.todo = {
+            id: 0,
+            text: 'Use ngrx/store',
+            completed: false
+          };
           TodoItemCmp.editing = true;
           fixture.detectChanges();
           spyOn(TodoItemCmp.onSave, 'emit');
@@ -153,12 +157,12 @@ describe('components', () => {
           spyOn(todoTextInput.onSave, 'emit').and.callThrough();
           spyOn(TodoItemCmp, 'handleSave');
           fixture.detectChanges();
-          todoTextInput.onSave.emit('Use ngrx/store');
-          expect(TodoItemCmp.handleSave).toHaveBeenCalledWith('Use ngrx/store');
+          todoTextInput.onSave.emit('Edit todo');
+          expect(TodoItemCmp.handleSave).toHaveBeenCalledWith('Edit todo');
         });
     })));
 
-    it('TodoTextInput onSave should exit component from edit state', async(inject([], () => {
+    it('should remove class name when onSave event is emitted', async(inject([], () => {
       tcb
         .createAsync(TodoItem)
         .then((fixture: ComponentFixture<any>) => {

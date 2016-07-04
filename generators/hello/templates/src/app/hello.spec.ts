@@ -4,8 +4,7 @@ import 'reflect-metadata';
 import 'zone.js/dist/zone';
 import 'zone.js/dist/async-test';
 import {Hello} from './hello';
-import {describe, it, expect, inject, async, setBaseTestProviders} from '@angular/core/testing';
-import {TestComponentBuilder, ComponentFixture} from '@angular/compiler/testing';
+import {inject, async, setBaseTestProviders, TestComponentBuilder, ComponentFixture} from '@angular/core/testing';
 import {TEST_BROWSER_DYNAMIC_PLATFORM_PROVIDERS, TEST_BROWSER_DYNAMIC_APPLICATION_PROVIDERS} from '@angular/platform-browser-dynamic/testing';
 
 setBaseTestProviders(TEST_BROWSER_DYNAMIC_PLATFORM_PROVIDERS, TEST_BROWSER_DYNAMIC_APPLICATION_PROVIDERS);

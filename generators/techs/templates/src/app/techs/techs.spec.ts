@@ -7,8 +7,7 @@ import {Http, BaseRequestOptions, Response, ResponseOptions} from '@angular/http
 import {Component, Input, provide} from '@angular/core';
 import {Techs, Tech} from './techs';
 import {TechComponent} from './tech';
-import {describe, it, expect, inject, async, beforeEachProviders} from '@angular/core/testing';
-import {TestComponentBuilder, ComponentFixture} from '@angular/compiler/testing';
+import {inject, async, TestComponentBuilder, ComponentFixture, addProviders} from '@angular/core/testing';
 
 import {Observable} from 'rxjs/Rx';
 
@@ -46,15 +45,17 @@ const techsJson = [
 
 describe('techs component', () => {
   describe('techs component methods', () => {
-    beforeEachProviders(() => [
-      Techs,
-      MockBackend,
-      BaseRequestOptions,
-      provide(Http, {
-        useFactory: (backend, defaultOptions) => new Http(backend, defaultOptions),
-        deps: [MockBackend, BaseRequestOptions]
-      })
-    ]);
+    beforeEach(() => {
+      addProviders([
+        Techs,
+        MockBackend,
+        BaseRequestOptions,
+        provide(Http, {
+          useFactory: (backend, defaultOptions) => new Http(backend, defaultOptions),
+          deps: [MockBackend, BaseRequestOptions]
+        })
+      ]);
+    });
 
     it('should get techs', async(inject([MockBackend, Techs], (mockBackend: MockBackend, techs: Techs) => {
       let conn: MockConnection;

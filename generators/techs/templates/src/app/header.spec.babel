@@ -3,8 +3,7 @@ import 'zone.js/dist/zone';
 <% } -%>
 import 'zone.js/dist/async-test';
 import {Header} from './header';
-import {describe, it, expect, async, inject} from '@angular/core/testing';
-import {TestComponentBuilder} from '@angular/compiler/testing';
+import {async, inject, TestComponentBuilder} from '@angular/core/testing';
 
 describe('header component', () => {
   it('should render \'Fountain Generator\'', async(inject([TestComponentBuilder], tcb => {

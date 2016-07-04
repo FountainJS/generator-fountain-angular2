@@ -5,7 +5,7 @@ import 'zone.js/dist/fake-async-test';
 import {todos, visibility} from './todos';
 import * as types from '../constants/ActionTypes';
 import * as filters from '../constants/TodoFilters';
-import {describe, it, expect, setBaseTestProviders} from '@angular/core/testing';
+import {setBaseTestProviders} from '@angular/core/testing';
 import {TEST_BROWSER_DYNAMIC_PLATFORM_PROVIDERS, TEST_BROWSER_DYNAMIC_APPLICATION_PROVIDERS} from '@angular/platform-browser-dynamic/testing';
 
 setBaseTestProviders(TEST_BROWSER_DYNAMIC_PLATFORM_PROVIDERS, TEST_BROWSER_DYNAMIC_APPLICATION_PROVIDERS);

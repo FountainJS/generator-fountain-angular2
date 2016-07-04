@@ -8,8 +8,7 @@ import {Techs} from './techs/techs';
 import {Footer} from './footer';
 import {Header} from './header';
 import {Title} from './title';
-import {describe, it, expect, inject, async, setBaseTestProviders} from '@angular/core/testing';
-import {TestComponentBuilder} from '@angular/compiler/testing';
+import {inject, async, setBaseTestProviders, TestComponentBuilder} from '@angular/core/testing';
 import {TEST_BROWSER_DYNAMIC_PLATFORM_PROVIDERS, TEST_BROWSER_DYNAMIC_APPLICATION_PROVIDERS} from '@angular/platform-browser-dynamic/testing';
 
 @Component({

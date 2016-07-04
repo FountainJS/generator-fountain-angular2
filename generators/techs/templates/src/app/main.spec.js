@@ -9,7 +9,6 @@ var Footer = require('./footer');
 var Header = require('./header');
 var Title = require('./title');
 var ngTest = require('@angular/core/testing');
-var ngCompilerTest = require('@angular/compiler/testing');
 var ngPlatformDynamic = require('@angular/platform-browser-dynamic/testing');
 
 var MockTechs = ng.Component({
@@ -43,8 +42,8 @@ var MockTitle = ng.Component({
 
 ngTest.setBaseTestProviders(ngPlatformDynamic.TEST_BROWSER_DYNAMIC_PLATFORM_PROVIDERS, ngPlatformDynamic.TEST_BROWSER_DYNAMIC_APPLICATION_PROVIDERS);
 
-ngTest.describe('main component', function () {
-  ngTest.it('should render the header, title, techs and footer', ngTest.async(ngTest.inject([ngCompilerTest.TestComponentBuilder], function (tcb) {
+describe('main component', function () {
+  it('should render the header, title, techs and footer', ngTest.async(ngTest.inject([ngTest.TestComponentBuilder], function (tcb) {
     tcb
       .overrideDirective(Main, Techs, MockTechs)
       .overrideDirective(Main, Footer, MockFooter)
@@ -54,10 +53,10 @@ ngTest.describe('main component', function () {
       .then(function (fixture) {
         fixture.detectChanges();
         var main = fixture.nativeElement;
-        ngTest.expect(main.querySelector('Header')).toBeDefined();
-        ngTest.expect(main.querySelector('TitleComponent')).toBeDefined();
-        ngTest.expect(main.querySelector('Techs')).toBeDefined();
-        ngTest.expect(main.querySelector('Footer')).toBeDefined();
+        expect(main.querySelector('Header')).toBeDefined();
+        expect(main.querySelector('TitleComponent')).toBeDefined();
+        expect(main.querySelector('Techs')).toBeDefined();
+        expect(main.querySelector('Footer')).toBeDefined();
       });
   })));
 });
