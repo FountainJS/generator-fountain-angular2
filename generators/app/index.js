@@ -91,13 +91,13 @@ module.exports = fountain.Base.extend({
       if (this.props.router === 'router') {
         this.mergeJson('package.json', {
           dependencies: {
-            '@angular/router': '3.0.0-alpha.8'
+            '@angular/router': '3.0.0-beta.2'
           }
         });
       } else if (this.props.router === 'uirouter') {
         this.mergeJson('package.json', {
           dependencies: {
-            'ui-router-ng2': '^1.0.0-alpha.5'
+            'ui-router-ng2': '1.0.0-alpha.5'
           }
         });
       }
