@@ -4,10 +4,9 @@ require('zone.js/dist/zone');
 require('zone.js/dist/async-test');
 var Tech = require('./tech');
 var ngTest = require('@angular/core/testing');
-var ngCompilerTest = require('@angular/compiler/testing');
 
-ngTest.describe('tech component', function () {
-  ngTest.it('should render Gulp', ngTest.async(ngTest.inject([ngCompilerTest.TestComponentBuilder], function (tcb) {
+describe('tech component', function () {
+  it('should render Gulp', ngTest.async(ngTest.inject([ngTest.TestComponentBuilder], function (tcb) {
     tcb.createAsync(Tech)
       .then(function (fixture) {
         fixture.componentInstance.tech = {
@@ -19,7 +18,7 @@ ngTest.describe('tech component', function () {
         };
         fixture.detectChanges();
         var tech = fixture.nativeElement;
-        ngTest.expect(tech.querySelector('h3').textContent.trim()).toBe('Gulp');
+        expect(tech.querySelector('h3').textContent.trim()).toBe('Gulp');
       });
   })));
 });

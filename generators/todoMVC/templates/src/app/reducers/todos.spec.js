@@ -9,10 +9,10 @@ var ngPlatformDynamic = require('@angular/platform-browser-dynamic/testing');
 
 ngTest.setBaseTestProviders(ngPlatformDynamic.TEST_BROWSER_DYNAMIC_PLATFORM_PROVIDERS, ngPlatformDynamic.TEST_BROWSER_DYNAMIC_APPLICATION_PROVIDERS);
 
-ngTest.describe('Reducers', function () {
-  ngTest.describe('todo reducer', function () {
-    ngTest.it('should handle initial state', function () {
-      ngTest.expect(reducers.todos(undefined, {})).toEqual([
+describe('Reducers', function () {
+  describe('todo reducer', function () {
+    it('should handle initial state', function () {
+      expect(reducers.todos(undefined, {})).toEqual([
         {
           text: 'Use ngrx/store',
           completed: false,
@@ -21,8 +21,8 @@ ngTest.describe('Reducers', function () {
       ]);
     });
 
-    ngTest.it('should handle ADD_TODO', function () {
-      ngTest.expect(
+    it('should handle ADD_TODO', function () {
+      expect(
         reducers.todos([], {
           type: types.ADD_TODO,
           text: 'Run the tests'
@@ -35,7 +35,7 @@ ngTest.describe('Reducers', function () {
         }
       ]);
 
-      ngTest.expect(
+      expect(
         reducers.todos([
           {
             text: 'Use ngrx/store',
@@ -58,7 +58,7 @@ ngTest.describe('Reducers', function () {
         }
       ]);
 
-      ngTest.expect(
+      expect(
         reducers.todos([
           {
             text: 'Run the tests',
@@ -90,8 +90,8 @@ ngTest.describe('Reducers', function () {
       ]);
     });
 
-    ngTest.it('should handle DELETE_TODO', function () {
-      ngTest.expect(
+    it('should handle DELETE_TODO', function () {
+      expect(
         reducers.todos([
           {
             text: 'Run the tests',
@@ -115,8 +115,8 @@ ngTest.describe('Reducers', function () {
       ]);
     });
 
-    ngTest.it('should handle EDIT_TODO', function () {
-      ngTest.expect(
+    it('should handle EDIT_TODO', function () {
+      expect(
         reducers.todos([
           {
             text: 'Run the tests',
@@ -145,8 +145,8 @@ ngTest.describe('Reducers', function () {
       ]);
     });
 
-    ngTest.it('should handle COMPLETE_TODO', function () {
-      ngTest.expect(
+    it('should handle COMPLETE_TODO', function () {
+      expect(
         reducers.todos([
           {
             text: 'Run the tests',
@@ -174,8 +174,8 @@ ngTest.describe('Reducers', function () {
       ]);
     });
 
-    ngTest.it('should handle COMPLETE_ALL', function () {
-      ngTest.expect(
+    it('should handle COMPLETE_ALL', function () {
+      expect(
         reducers.todos([
           {
             text: 'Run the tests',
@@ -202,7 +202,7 @@ ngTest.describe('Reducers', function () {
       ]);
 
       // unmark if all todos are currently completed
-      ngTest.expect(
+      expect(
         reducers.todos([
           {
             text: 'Run the tests',
@@ -229,8 +229,8 @@ ngTest.describe('Reducers', function () {
       ]);
     });
 
-    ngTest.it('should handle CLEAR_COMPLETED', function () {
-      ngTest.expect(
+    it('should handle CLEAR_COMPLETED', function () {
+      expect(
         reducers.todos([
           {
             text: 'Run the tests',
@@ -253,8 +253,8 @@ ngTest.describe('Reducers', function () {
       ]);
     });
 
-    ngTest.it('should not generate duplicate ids after CLEAR_COMPLETED', function () {
-      ngTest.expect(
+    it('should not generate duplicate ids after CLEAR_COMPLETED', function () {
+      expect(
         [
           {
             type: types.COMPLETE_TODO,
@@ -290,28 +290,28 @@ ngTest.describe('Reducers', function () {
     });
   });
 
-  ngTest.describe('visibility reducer', function () {
-    ngTest.it('should handle initial state', function () {
-      ngTest.expect(reducers.visibility(undefined, {}).type).toEqual(filters.SHOW_ALL);
-      ngTest.expect(reducers.visibility(undefined, {}).filter()).toEqual(true);
+  describe('visibility reducer', function () {
+    it('should handle initial state', function () {
+      expect(reducers.visibility(undefined, {}).type).toEqual(filters.SHOW_ALL);
+      expect(reducers.visibility(undefined, {}).filter()).toEqual(true);
     });
 
-    ngTest.it('should handle SHOW_COMPLETED', function () {
+    it('should handle SHOW_COMPLETED', function () {
       const showCompleted = reducers.visibility(() => true, {type: filters.SHOW_COMPLETED});
-      ngTest.expect(showCompleted.filter({completed: false})).toEqual(false);
-      ngTest.expect(showCompleted.filter({completed: true})).toEqual(true);
+      expect(showCompleted.filter({completed: false})).toEqual(false);
+      expect(showCompleted.filter({completed: true})).toEqual(true);
     });
 
-    ngTest.it('should handle SHOW_ACTIVE', function () {
+    it('should handle SHOW_ACTIVE', function () {
       const showActive = reducers.visibility(() => true, {type: filters.SHOW_ACTIVE});
-      ngTest.expect(showActive.filter({completed: false})).toEqual(true);
-      ngTest.expect(showActive.filter({completed: true})).toEqual(false);
+      expect(showActive.filter({completed: false})).toEqual(true);
+      expect(showActive.filter({completed: true})).toEqual(false);
     });
 
-    ngTest.it('should handle SHOW_ALL', function () {
+    it('should handle SHOW_ALL', function () {
       const showAll = reducers.visibility(undefined, {type: filters.SHOW_ALL});
-      ngTest.expect(showAll.filter({completed: false})).toEqual(true);
-      ngTest.expect(showAll.filter({completed: true})).toEqual(true);
+      expect(showAll.filter({completed: false})).toEqual(true);
+      expect(showAll.filter({completed: true})).toEqual(true);
     });
   });
 });

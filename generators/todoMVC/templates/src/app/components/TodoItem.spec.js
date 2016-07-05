@@ -3,7 +3,6 @@ require('zone.js/dist/async-test');
 require('zone.js/dist/fake-async-test');
 var ng = require('@angular/core');
 var ngTest = require('@angular/core/testing');
-var ngCompilerTest = require('@angular/compiler/testing');
 var ngPlatform = require('@angular/platform-browser');
 var TodoTextInput = require('./TodoTextInput');
 var TodoItem = require('./TodoItem');
@@ -17,15 +16,15 @@ var MockTodoTextInput = ng.Component({
   constructor: function () {}
 });
 
-ngTest.describe('components', function () {
+describe('components', function () {
   var tcb;
 
-  ngTest.beforeEach(ngTest.inject([ngCompilerTest.TestComponentBuilder], function (_tcb) {
+  beforeEach(ngTest.inject([ngTest.TestComponentBuilder], function (_tcb) {
     tcb = _tcb;
   }));
 
-  ngTest.describe('TodoItem', function () {
-    ngTest.it('initial render', ngTest.async(ngTest.inject([], function () {
+  describe('TodoItem', function () {
+    it('should render the correct elements', ngTest.async(ngTest.inject([], function () {
       tcb
         .overrideDirective(TodoItem, TodoTextInput, MockTodoTextInput)
         .createAsync(TodoItem)
@@ -39,24 +38,24 @@ ngTest.describe('components', function () {
           fixture.detectChanges();
           var todoItem = fixture.nativeElement;
           var li = todoItem.querySelector('li');
-          ngTest.expect(li).not.toBeNull();
-          ngTest.expect(li.className).toBe('');
+          expect(li).not.toBeNull();
+          expect(li.className).toBe('');
           var div = todoItem.querySelector('div');
-          ngTest.expect(div).not.toBeNull();
-          ngTest.expect(div.className).toBe('view');
+          expect(div).not.toBeNull();
+          expect(div.className).toBe('view');
           var input = todoItem.querySelector('input');
-          ngTest.expect(input).not.toBeNull();
-          ngTest.expect(input.checked).toBe(false);
+          expect(input).not.toBeNull();
+          expect(input.checked).toBe(false);
           var label = todoItem.querySelector('label');
-          ngTest.expect(label).not.toBeNull();
-          ngTest.expect(label.textContent.trim()).toBe('Use ngrx/store');
+          expect(label).not.toBeNull();
+          expect(label.textContent.trim()).toBe('Use ngrx/store');
           var button = todoItem.querySelector('button');
-          ngTest.expect(button).not.toBeNull();
-          ngTest.expect(button.className).toBe('destroy');
+          expect(button).not.toBeNull();
+          expect(button.className).toBe('destroy');
         });
     })));
 
-    ngTest.it('input onChange should call completeTodo', ngTest.async(ngTest.inject([], function () {
+    it('should call onChange when click on input', ngTest.async(ngTest.inject([], function () {
       tcb
         .overrideDirective(TodoItem, TodoTextInput, MockTodoTextInput)
         .createAsync(TodoItem)
@@ -72,11 +71,11 @@ ngTest.describe('components', function () {
           spyOn(TodoItemCmp.onChange, 'emit');
           var evt = new CustomEvent('click');
           input.dispatchEvent(evt);
-          ngTest.expect(TodoItemCmp.onChange.emit).toHaveBeenCalledWith(0);
+          expect(TodoItemCmp.onChange.emit).toHaveBeenCalledWith(0);
         });
     })));
 
-    ngTest.it('button onClick should call deleteTodo', ngTest.async(ngTest.inject([], function () {
+    it('should call onDestroy when click on button', ngTest.async(ngTest.inject([], function () {
       tcb
         .overrideDirective(TodoItem, TodoTextInput, MockTodoTextInput)
         .createAsync(TodoItem)
@@ -92,11 +91,11 @@ ngTest.describe('components', function () {
           spyOn(TodoItemCmp.onDestroy, 'emit').and.callThrough();
           var evt = new CustomEvent('click');
           button.dispatchEvent(evt);
-          ngTest.expect(TodoItemCmp.onDestroy.emit).toHaveBeenCalledWith(0);
+          expect(TodoItemCmp.onDestroy.emit).toHaveBeenCalledWith(0);
         });
     })));
 
-    ngTest.it('label onDoubleClick should put component in edit state', ngTest.async(ngTest.inject([], function () {
+    it(`should change class names to 'editing' when double click on label`, ngTest.async(ngTest.inject([], function () {
       tcb
         .overrideDirective(TodoItem, TodoTextInput, MockTodoTextInput)
         .createAsync(TodoItem)
@@ -114,11 +113,11 @@ ngTest.describe('components', function () {
           label.dispatchEvent(evt);
           fixture.detectChanges();
           var li = fixture.nativeElement.querySelector('li');
-          ngTest.expect(li.className).toBe('editing');
+          expect(li.className).toBe('editing');
         });
     })));
 
-    ngTest.it('edit state render', ngTest.async(ngTest.inject([], function () {
+    it('should render the correct input when editing is true', ngTest.async(ngTest.inject([], function () {
       tcb
         .createAsync(TodoItem)
         .then(function (fixture) {
@@ -131,17 +130,22 @@ ngTest.describe('components', function () {
           };
           fixture.detectChanges();
           var todoTextInput = fixture.debugElement.query(ngPlatform.By.css('todotextinput')).componentInstance;
-          ngTest.expect(todoTextInput).not.toBeNull();
-          ngTest.expect(todoTextInput.text).toBe('Use ngrx/store');
-          ngTest.expect(todoTextInput.editing).toBe(true);
+          expect(todoTextInput).not.toBeNull();
+          expect(todoTextInput.text).toBe('Use ngrx/store');
+          expect(todoTextInput.editing).toBe(true);
         });
     })));
 
-    ngTest.it('TodoTextInput onSave should call editTodo', ngTest.async(ngTest.inject([], function () {
+    it('should call handleSave when onSave event is emitted', ngTest.async(ngTest.inject([], function () {
       tcb
         .createAsync(TodoItem)
         .then(function (fixture) {
           var TodoItemCmp = fixture.componentInstance;
+          TodoItemCmp.todo = {
+            id: 0,
+            text: 'Use ngrx/store',
+            completed: false
+          };
           TodoItemCmp.editing = true;
           fixture.detectChanges();
           spyOn(TodoItemCmp.onSave, 'emit');
@@ -149,12 +153,12 @@ ngTest.describe('components', function () {
           spyOn(todoTextInput.onSave, 'emit').and.callThrough();
           spyOn(TodoItemCmp, 'handleSave');
           fixture.detectChanges();
-          todoTextInput.onSave.emit('Use ngrx/store');
-          ngTest.expect(TodoItemCmp.handleSave).toHaveBeenCalledWith('Use ngrx/store');
+          todoTextInput.onSave.emit('Edit todo');
+          expect(TodoItemCmp.handleSave).toHaveBeenCalledWith('Edit todo');
         });
     })));
 
-    ngTest.it('TodoTextInput onSave should exit component from edit state', ngTest.async(ngTest.inject([], function () {
+    it('should remove class name when onSave event is emitted', ngTest.async(ngTest.inject([], function () {
       tcb
         .createAsync(TodoItem)
         .then(function (fixture) {
@@ -170,7 +174,7 @@ ngTest.describe('components', function () {
           todoTextInput.onSave.emit('Use ngrx/store');
           fixture.detectChanges();
           var li = fixture.nativeElement.querySelector('li');
-          ngTest.expect(li.className).toBe('');
+          expect(li.className).toBe('');
         });
     })));
   });

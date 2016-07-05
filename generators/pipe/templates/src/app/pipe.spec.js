@@ -4,12 +4,12 @@ require('zone.js/dist/zone');
 var <%- className %> = require('./<%- name %>');
 var ngTest = require('@angular/core/testing');
 
-ngTest.describe('<%- pipeName %> pipe', function () {
-  ngTest.beforeEachProviders(function () {
-    return [<%- className %>];
+describe('<%- pipeName %> pipe', function () {
+  beforeEach(function () {
+    ngTest.addProviders([<%- className %>]);
   });
 
-  ngTest.it('should...', ngTest.inject([<%- className %>], function (pipe) {
-    ngTest.expect(pipe.transform('fountain')).toEqual('FOUNTAIN');
+  it('should...', ngTest.inject([<%- className %>], function (pipe) {
+    expect(pipe.transform('fountain')).toEqual('FOUNTAIN');
   }));
 });

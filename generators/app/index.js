@@ -48,12 +48,12 @@ module.exports = fountain.Base.extend({
     pkg() {
       this.mergeJson('package.json', {
         dependencies: {
-          '@angular/core': '2.0.0-rc.3',
-          '@angular/compiler': '2.0.0-rc.3',
-          '@angular/common': '2.0.0-rc.3',
-          '@angular/platform-browser': '2.0.0-rc.3',
-          '@angular/platform-browser-dynamic': '2.0.0-rc.3',
-          '@angular/http': '2.0.0-rc.3',
+          '@angular/core': '2.0.0-rc.4',
+          '@angular/compiler': '2.0.0-rc.4',
+          '@angular/common': '2.0.0-rc.4',
+          '@angular/platform-browser': '2.0.0-rc.4',
+          '@angular/platform-browser-dynamic': '2.0.0-rc.4',
+          '@angular/http': '2.0.0-rc.4',
           'rxjs': '5.0.0-beta.8',
           'zone.js': '^0.6.12',
           'es6-promise': '^3.0.2',
@@ -91,13 +91,13 @@ module.exports = fountain.Base.extend({
       if (this.props.router === 'router') {
         this.mergeJson('package.json', {
           dependencies: {
-            '@angular/router': '3.0.0-alpha.8'
+            '@angular/router': '3.0.0-beta.2'
           }
         });
       } else if (this.props.router === 'uirouter') {
         this.mergeJson('package.json', {
           dependencies: {
-            'ui-router-ng2': '^1.0.0-alpha.5'
+            'ui-router-ng2': '1.0.0-alpha.5'
           }
         });
       }

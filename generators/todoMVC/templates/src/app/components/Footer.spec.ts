@@ -5,8 +5,7 @@ import 'zone.js/dist/zone';
 import 'zone.js/dist/async-test';
 import 'zone.js/dist/fake-async-test';
 import {Footer} from './Footer';
-import {describe, it, expect, async, inject, beforeEach} from '@angular/core/testing';
-import {TestComponentBuilder, ComponentFixture} from '@angular/compiler/testing';
+import {async, inject, TestComponentBuilder, ComponentFixture} from '@angular/core/testing';
 import {SHOW_ACTIVE} from '../constants/TodoFilters';
 
 describe('components', () => {

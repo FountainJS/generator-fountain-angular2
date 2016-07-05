@@ -6,15 +6,16 @@ import 'zone.js/dist/fake-async-test';
 import {provideStore} from '@ngrx/store';
 import {Header} from './Header';
 import {By} from '@angular/platform-browser';
-import {describe, it, expect, async, inject, beforeEach, beforeEachProviders} from '@angular/core/testing';
-import {TestComponentBuilder, ComponentFixture} from '@angular/compiler/testing';
+import {async, inject, TestComponentBuilder, ComponentFixture, addProviders} from '@angular/core/testing';
 
 describe('components', () => {
   let tcb: TestComponentBuilder;
 
-  beforeEachProviders(() => [
-    provideStore({}, {})
-  ]);
+  beforeEach(() => {
+    addProviders([
+      provideStore({}, {})
+    ]);
+  });
 
   beforeEach(inject([TestComponentBuilder], (_tcb: TestComponentBuilder) => {
     tcb = _tcb;
