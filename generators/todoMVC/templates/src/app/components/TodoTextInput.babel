@@ -2,12 +2,7 @@ import {Component, Input, Output, EventEmitter, ViewChild, Renderer} from '@angu
 
 @Component({
   selector: 'TodoTextInput',
-<% if (modules === 'systemjs') { -%>
-  moduleId: __moduleName,
-  templateUrl: 'TodoTextInput.html'
-<% } else { -%>
   template: require('./TodoTextInput.html')
-<% } -%>
 })
 export class TodoTextInput {
   @ViewChild('myInput') input;

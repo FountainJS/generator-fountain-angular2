@@ -3,12 +3,7 @@ var TodoTextInput = require('./TodoTextInput');
 
 module.exports = ng.Component({
   selector: 'TodoItem',
-<% if (modules === 'systemjs') { -%>
-  moduleId: __moduleName,
-  templateUrl: 'TodoItem.html',
-<% } else { -%>
   template: require('./TodoItem.html'),
-<% } -%>
   inputs: ['todo'],
   outputs: [
     'onDestroy',

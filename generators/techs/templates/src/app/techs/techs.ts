@@ -15,12 +15,7 @@ export class Tech {
 
 @Component({
   selector: 'Techs',
-<% if (modules === 'systemjs') { -%>
-  moduleId: __moduleName,
-  templateUrl: 'techs.html',
-<% } else { -%>
   template: require('./techs.html'),
-<% } -%>
   directives: [TechComponent],
   providers: [HTTP_PROVIDERS]
 })

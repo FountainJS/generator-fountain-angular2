@@ -5,12 +5,7 @@ import {TodoTextInput} from './TodoTextInput';
 
 @Component({
   selector: 'Header',
-<% if (modules === 'systemjs') { -%>
-  moduleId: __moduleName,
-  templateUrl: 'Header.html',
-<% } else { -%>
   template: require('./Header.html'),
-<% } -%>
   directives: [TodoTextInput]
 })
 export class Header {

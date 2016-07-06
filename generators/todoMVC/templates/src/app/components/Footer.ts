@@ -3,12 +3,7 @@ import {SHOW_ALL, SHOW_COMPLETED, SHOW_ACTIVE} from '../constants/TodoFilters';
 
 @Component({
   selector: 'Footer',
-<% if (modules === 'systemjs') { -%>
-  moduleId: __moduleName,
-  templateUrl: 'Footer.html',
-<% } else { -%>
   template: require('./Footer.html'),
-<% } -%>
   styles: [`
     a {
       cursor: pointer

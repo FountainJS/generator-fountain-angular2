@@ -3,12 +3,7 @@ var todoFilters = require('../constants/TodoFilters');
 
 module.exports = ng.Component({
   selector: 'Footer',
-<% if (modules === 'systemjs') { -%>
-  moduleId: __moduleName,
-  templateUrl: 'Footer.html',
-<% } else { -%>
   template: require('./Footer.html'),
-<% } -%>
   inputs: [
     'completedCount',
     'activeCount',

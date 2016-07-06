@@ -5,12 +5,7 @@ var TodoTextInput = require('./TodoTextInput');
 
 module.exports = ng.Component({
   selector: 'Header',
-<% if (modules === 'systemjs') { -%>
-  moduleId: __moduleName,
-  templateUrl: 'Header.html',
-<% } else { -%>
   template: require('./Header.html'),
-<% } -%>
   directives: [TodoTextInput]
 })
 .Class({
