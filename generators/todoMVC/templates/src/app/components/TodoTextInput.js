@@ -2,12 +2,7 @@ var ng = require('@angular/core');
 
 module.exports = ng.Component({
   selector: 'TodoTextInput',
-<% if (modules === 'systemjs') { -%>
-  moduleId: __moduleName,
-  templateUrl: 'TodoTextInput.html',
-<% } else { -%>
   template: require('./TodoTextInput.html'),
-<% } -%>
   inputs: [
     'newTodo',
     'editing',

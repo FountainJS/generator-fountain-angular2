@@ -7,12 +7,7 @@ var actions = require('../actions/index');
 
 module.exports = ng.Component({
   selector: 'MainSection',
-<% if (modules === 'systemjs') { -%>
-  moduleId: __moduleName,
-  templateUrl: 'MainSection.html',
-<% } else { -%>
   template: require('./MainSection.html'),
-<% } -%>
   directives: [TodoItem, Footer]
 })
 .Class({

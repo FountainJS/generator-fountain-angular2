@@ -2,12 +2,7 @@ import {Component, Input, Output, EventEmitter, ElementRef, Renderer, ViewChild,
 
 @Component({
   selector: 'TodoTextInput',
-<% if (modules === 'systemjs') { -%>
-  moduleId: __moduleName,
-  templateUrl: 'TodoTextInput.html',
-<% } else { -%>
   template: require('./TodoTextInput.html'),
-<% } -%>
 })
 export class TodoTextInput implements AfterViewInit {
   @ViewChild('myInput') input: ElementRef;

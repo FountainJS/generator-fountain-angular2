@@ -7,12 +7,7 @@ import * as actions from '../actions/index';
 
 @Component({
   selector: 'MainSection',
-<% if (modules === 'systemjs') { -%>
-  moduleId: __moduleName,
-  templateUrl: 'MainSection.html',
-<% } else { -%>
   template: require('./MainSection.html'),
-<% } -%>
   directives: [TodoItem, Footer]
 })
 export class MainSection {

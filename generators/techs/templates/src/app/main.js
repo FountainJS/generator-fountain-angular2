@@ -6,12 +6,7 @@ var Footer = require('./footer');
 
 module.exports = ng.Component({
   selector: 'App',
-<% if (modules === 'systemjs') { -%>
-  moduleId: __moduleName,
-  templateUrl: 'main.html',
-<% } else { -%>
   template: require('./main.html'),
-<% } -%>
   directives: [Header, Title, Techs, Footer]
 })
 .Class({

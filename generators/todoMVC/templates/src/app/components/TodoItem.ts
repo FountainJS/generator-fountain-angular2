@@ -3,12 +3,7 @@ import {TodoTextInput} from './TodoTextInput';
 
 @Component({
   selector: 'TodoItem',
-<% if (modules === 'systemjs') { -%>
-  moduleId: __moduleName,
-  templateUrl: 'TodoItem.html',
-<% } else { -%>
   template: require('./TodoItem.html'),
-<% } -%>
   directives: [TodoTextInput]
 })
 export class TodoItem {
