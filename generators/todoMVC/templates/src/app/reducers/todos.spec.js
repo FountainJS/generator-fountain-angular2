@@ -5,9 +5,6 @@ var reducers = require('./todos');
 var types = require('../constants/ActionTypes');
 var filters = require('../constants/TodoFilters');
 var ngTest = require('@angular/core/testing');
-var ngPlatformDynamic = require('@angular/platform-browser-dynamic/testing');
-
-ngTest.setBaseTestProviders(ngPlatformDynamic.TEST_BROWSER_DYNAMIC_PLATFORM_PROVIDERS, ngPlatformDynamic.TEST_BROWSER_DYNAMIC_APPLICATION_PROVIDERS);
 
 describe('Reducers', function () {
   describe('todo reducer', function () {
