@@ -22,7 +22,9 @@ test('Call this.composeWith twice', () => {
     js: context.props.js,
     css: context.props.css,
     router: context.props.router,
-    sample: context.props.sample
+    sample: context.props.sample,
+    skipInstall: context.props.skipInstall,
+    skipCache: context.props.skipCache
   };
   expect(spy).to.have.been.called.twice();
   expect(spy).to.have.been.called.with(`fountain-angular2:techs`, {options}, {local: require.resolve('../../generators/techs')});
