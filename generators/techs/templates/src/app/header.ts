@@ -1,7 +1,7 @@
 import {Component} from '@angular/core';
 
 @Component({
-  selector: 'Header',
+  selector: 'fountain-header',
   template: require('./header.html')
 })
-export class Header {}
+export class HeaderComponent {}

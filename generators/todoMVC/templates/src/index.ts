@@ -21,9 +21,9 @@ import {MyUIRouterConfig} from './routes';
 <% } else if (router === 'router') { -%>
 import {provideRouter} from '@angular/router';
 import {enableProdMode} from '@angular/core';
-import {routes, Root} from './routes';
+import {routes, RootComponent} from './routes';
 <% } else { -%>
-import {App} from './app/containers/App';
+import {AppComponent} from './app/containers/App';
 import {enableProdMode} from '@angular/core';
 <% } -%>
 
@@ -47,12 +47,12 @@ bootstrap(UiView, [
   provideStore(combineReducers({todos, visibility}), {todos: [initialTodo], visibility: initialVisibility})
 ]);
 <% } else if (router === 'router') { -%>
-bootstrap(Root, [
+bootstrap(RootComponent, [
   provideRouter(routes),
   provideStore(combineReducers({todos, visibility}), {todos: [initialTodo], visibility: initialVisibility})
 ]);
 <% } else { -%>
-bootstrap(App, [
+bootstrap(AppComponent, [
   provideStore(combineReducers({todos, visibility}), {todos: [initialTodo], visibility: initialVisibility})
 ]);
 <% } -%>

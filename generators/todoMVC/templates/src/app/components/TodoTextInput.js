@@ -1,7 +1,7 @@
 var ng = require('@angular/core');
 
 module.exports = ng.Component({
-  selector: 'TodoTextInput',
+  selector: 'fountain-todo-text-input',
   template: require('./TodoTextInput.html'),
   inputs: [
     'newTodo',

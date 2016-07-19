@@ -1,11 +1,11 @@
 var ng = require('@angular/core');
-var Header = require('../components/Header');
-var MainSection = require('../components/MainSection');
+var HeaderComponent = require('../components/Header');
+var MainSectionComponent = require('../components/MainSection');
 
 module.exports = ng.Component({
-  selector: 'App',
+  selector: 'fountain-app',
   template: require('./App.html'),
-  directives: [Header, MainSection]
+  directives: [HeaderComponent, MainSectionComponent]
 })
 .Class({
   constructor: function AppController() {

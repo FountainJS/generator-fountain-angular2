@@ -1,7 +1,7 @@
 require('zone.js');
 require('zone.js/dist/async-test');
 require('zone.js/dist/fake-async-test');
-var Footer = require('./Footer');
+var FooterComponent = require('./Footer');
 var ngTest = require('@angular/core/testing');
 var filters = require('../constants/TodoFilters');
 
@@ -14,7 +14,7 @@ describe('components', function () {
 
   describe('Footer', function () {
     it('should render \'Test\'', ngTest.async(ngTest.inject([], function () {
-      tcb.createAsync(Footer)
+      tcb.createAsync(FooterComponent)
         .then(function (fixture) {
           fixture.detectChanges();
           var footer = fixture.nativeElement;
@@ -24,7 +24,7 @@ describe('components', function () {
     })));
 
     it('should display active count when 0', ngTest.async(ngTest.inject([], function () {
-      tcb.createAsync(Footer)
+      tcb.createAsync(FooterComponent)
         .then(function (fixture) {
           var footer = fixture.nativeElement;
           var FooterCmp = fixture.componentInstance;
@@ -35,7 +35,7 @@ describe('components', function () {
     })));
 
     it('should display active count when above 0', ngTest.async(ngTest.inject([], function () {
-      tcb.createAsync(Footer)
+      tcb.createAsync(FooterComponent)
         .then(function (fixture) {
           var footer = fixture.nativeElement;
           var FooterCmp = fixture.componentInstance;
@@ -46,7 +46,7 @@ describe('components', function () {
     })));
 
     it('should call onShow when a filter is clicked', ngTest.async(ngTest.inject([], function () {
-      tcb.createAsync(Footer)
+      tcb.createAsync(FooterComponent)
         .then(function (fixture) {
           var footer = fixture.nativeElement;
           var FooterCmp = fixture.componentInstance;
@@ -58,7 +58,7 @@ describe('components', function () {
     })));
 
     it('shouldnt show clear button when no completed todos', ngTest.async(ngTest.inject([], function () {
-      tcb.createAsync(Footer)
+      tcb.createAsync(FooterComponent)
         .then(function (fixture) {
           var footer = fixture.nativeElement;
           var FooterCmp = fixture.componentInstance;
@@ -69,7 +69,7 @@ describe('components', function () {
     })));
 
     it('should call onClearCompleted on clear button click', ngTest.async(ngTest.inject([], function () {
-      tcb.createAsync(Footer)
+      tcb.createAsync(FooterComponent)
         .then(function (fixture) {
           var footer = fixture.nativeElement;
           var FooterCmp = fixture.componentInstance;

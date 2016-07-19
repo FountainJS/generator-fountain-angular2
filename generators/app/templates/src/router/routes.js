@@ -1,16 +1,16 @@
 var ng = require('@angular/core');
 var ngRouter = require('@angular/router');
 <% if (sample === 'hello') { -%>
-var Hello = require('./app/hello');
+var HelloComponent = require('./app/hello');
 <% } else if (sample === 'techs') { -%>
-var Main = require('./app/main');
+var MainComponent = require('./app/main');
 <% } else { -%>
-var App = require('./app/containers/App');
+var AppComponent = require('./app/containers/App');
 <% } -%>
 
-var Root =
+var RootComponent =
   ng.Component({
-    selector: 'root',
+    selector: 'fountain-root',
     template: '<router-outlet></router-outlet>',
     directives: [ngRouter.ROUTER_DIRECTIVES]
   })
@@ -22,9 +22,9 @@ var Root =
 var routes = [
   {
     path: '',
-    component: <% if (sample === 'hello') { -%>Hello<% } else if (sample === 'techs') { -%>Main<% } else { -%>App<% } -%>
+    component: <% if (sample === 'hello') { -%>HelloComponent<% } else if (sample === 'techs') { -%>MainComponent<% } else { -%>AppComponent<% } -%>
 
   }
 ];
 
-module.exports = {Root: Root, routes: routes};
+module.exports = {RootComponent: RootComponent, routes: routes};

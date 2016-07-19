@@ -2,7 +2,7 @@ require('zone.js');
 require('zone.js/dist/async-test');
 require('zone.js/dist/fake-async-test');
 var ngrxStore = require('@ngrx/store');
-var Header = require('./Header');
+var HeaderComponent = require('./Header');
 var ngPlatform = require('@angular/platform-browser');
 var ngTest = require('@angular/core/testing');
 
@@ -19,7 +19,7 @@ describe('components', function () {
 
   describe('Header', function () {
     it('should render correctly', ngTest.async(ngTest.inject([], function () {
-      tcb.createAsync(Header)
+      tcb.createAsync(HeaderComponent)
         .then(function (fixture) {
           fixture.detectChanges();
           var header = fixture.nativeElement;
@@ -28,18 +28,18 @@ describe('components', function () {
           var h1 = header.querySelector('h1');
           expect(h1).not.toBeNull();
           expect(h1.textContent.trim()).toBe('todos');
-          var todoTextInput = fixture.debugElement.query(ngPlatform.By.css('TodoTextInput')).componentInstance;
+          var todoTextInput = fixture.debugElement.query(ngPlatform.By.css('fountain-todo-text-input')).componentInstance;
           expect(todoTextInput.newTodo).toBe(true);
           expect(todoTextInput.placeholder).toBe('What needs to be done?');
         });
     })));
 
     it('should call addTodo if length of text is greater than 0', ngTest.async(ngTest.inject([], function () {
-      tcb.createAsync(Header)
+      tcb.createAsync(HeaderComponent)
         .then(function (fixture) {
           fixture.detectChanges();
           var HeaderCmp = fixture.componentInstance;
-          var todoTextInput = fixture.debugElement.query(ngPlatform.By.css('TodoTextInput')).componentInstance;
+          var todoTextInput = fixture.debugElement.query(ngPlatform.By.css('fountain-todo-text-input')).componentInstance;
           spyOn(HeaderCmp.store, 'dispatch');
           todoTextInput.onSave.emit('');
           expect(HeaderCmp.store.dispatch.calls.count()).toBe(0);

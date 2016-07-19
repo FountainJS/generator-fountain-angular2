@@ -8,25 +8,25 @@ import {async, inject, TestComponentBuilder, ComponentFixture, addProviders} fro
 import {By} from '@angular/platform-browser';
 import {provideStore, combineReducers} from '@ngrx/store';
 import {todos, visibility} from '../reducers/todos';
-import {MainSection} from './MainSection';
-import {TodoItem} from './TodoItem';
-import {Footer} from './Footer';
+import {MainSectionComponent} from './MainSection';
+import {TodoItemComponent} from './TodoItem';
+import {FooterComponent} from './Footer';
 import * as actions from '../actions/index';
 import {SHOW_ALL, SHOW_COMPLETED} from '../constants/TodoFilters';
 
 @Component({
-  selector: 'TodoItem',
+  selector: 'fountain-todo-item',
   template: ''
 })
-class MockTodoItem {
+class MockTodoItemComponent {
   @Input() todo;
 }
 
 @Component({
-  selector: 'Footer',
+  selector: 'fountain-footer',
   template: ''
 })
-class MockFooter {
+class MockFooterComponent {
   @Input() completedCount;
   @Input() activeCount;
   @Input() filter;
@@ -48,9 +48,9 @@ describe('components', () => {
   describe('MainSection', () => {
     it('should render container', async(inject([], () => {
       tcb
-        .overrideDirective(MainSection, TodoItem, MockTodoItem)
-        .overrideDirective(MainSection, Footer, MockFooter)
-        .createAsync(MainSection)
+        .overrideDirective(MainSectionComponent, TodoItemComponent, MockTodoItemComponent)
+        .overrideDirective(MainSectionComponent, FooterComponent, MockFooterComponent)
+        .createAsync(MainSectionComponent)
         .then((fixture: ComponentFixture<any>) => {
           fixture.detectChanges();
           const main = fixture.nativeElement;
@@ -62,9 +62,9 @@ describe('components', () => {
     describe('toggle all input', () => {
       it('should render', async(inject([], () => {
         tcb
-          .overrideDirective(MainSection, TodoItem, MockTodoItem)
-          .overrideDirective(MainSection, Footer, MockFooter)
-          .createAsync(MainSection)
+          .overrideDirective(MainSectionComponent, TodoItemComponent, MockTodoItemComponent)
+          .overrideDirective(MainSectionComponent, FooterComponent, MockFooterComponent)
+          .createAsync(MainSectionComponent)
           .then((fixture: ComponentFixture<any>) => {
             fixture.detectChanges();
             const main = fixture.nativeElement;
@@ -77,9 +77,9 @@ describe('components', () => {
 
       it('should be checked if all todos completed', async(inject([], () => {
         tcb
-          .overrideDirective(MainSection, TodoItem, MockTodoItem)
-          .overrideDirective(MainSection, Footer, MockFooter)
-          .createAsync(MainSection)
+          .overrideDirective(MainSectionComponent, TodoItemComponent, MockTodoItemComponent)
+          .overrideDirective(MainSectionComponent, FooterComponent, MockFooterComponent)
+          .createAsync(MainSectionComponent)
           .then((fixture: ComponentFixture<any>) => {
             const MainCmp = fixture.componentInstance;
             MainCmp.store.dispatch(actions.completeAll());
@@ -92,9 +92,9 @@ describe('components', () => {
 
       it('should call completeAll on change', async(inject([], () => {
         tcb
-          .overrideDirective(MainSection, TodoItem, MockTodoItem)
-          .overrideDirective(MainSection, Footer, MockFooter)
-          .createAsync(MainSection)
+          .overrideDirective(MainSectionComponent, TodoItemComponent, MockTodoItemComponent)
+          .overrideDirective(MainSectionComponent, FooterComponent, MockFooterComponent)
+          .createAsync(MainSectionComponent)
           .then((fixture: ComponentFixture<any>) => {
             fixture.detectChanges();
             const input = fixture.nativeElement.querySelector('input');
@@ -109,42 +109,42 @@ describe('components', () => {
     describe('footer', () => {
       it('should render', async(inject([], () => {
         tcb
-          .overrideDirective(MainSection, TodoItem, MockTodoItem)
-          .createAsync(MainSection)
+          .overrideDirective(MainSectionComponent, TodoItemComponent, MockTodoItemComponent)
+          .createAsync(MainSectionComponent)
           .then((fixture: ComponentFixture<any>) => {
             fixture.detectChanges();
-            const footer = fixture.nativeElement.querySelector('footer');
+            const footer = fixture.nativeElement.querySelector('fountain-footer');
             expect(footer.querySelector('footer')).not.toBeNull();
-            const FooterCmp = fixture.debugElement.query(By.css('footer')).componentInstance;
+            const FooterCmp = fixture.debugElement.query(By.css('fountain-footer')).componentInstance;
             expect(FooterCmp.completedCount).toBe(0);
             expect(FooterCmp.activeCount).toBe(1);
-            expect(FooterCmp.selectedFilter.type).toBe(SHOW_ALL);
+            expect(FooterCmp.filter.type).toBe(SHOW_ALL);
           });
       })));
 
       it('onShow should set the filter', async(inject([], () => {
         tcb
-          .overrideDirective(MainSection, TodoItem, MockTodoItem)
-          .createAsync(MainSection)
+          .overrideDirective(MainSectionComponent, TodoItemComponent, MockTodoItemComponent)
+          .createAsync(MainSectionComponent)
           .then((fixture: ComponentFixture<any>) => {
             fixture.detectChanges();
-            const FooterCmp = fixture.debugElement.query(By.css('footer')).componentInstance;
+            const FooterCmp = fixture.debugElement.query(By.css('fountain-footer')).componentInstance;
             FooterCmp.onShow.emit(SHOW_COMPLETED);
             fixture.detectChanges();
-            expect(FooterCmp.selectedFilter.type).toBe(SHOW_COMPLETED);
+            expect(FooterCmp.filter.type).toBe(SHOW_COMPLETED);
           });
       })));
 
       it('onClearCompleted should call clearCompleted', async(inject([], () => {
         tcb
-          .overrideDirective(MainSection, TodoItem, MockTodoItem)
-          .createAsync(MainSection)
+          .overrideDirective(MainSectionComponent, TodoItemComponent, MockTodoItemComponent)
+          .createAsync(MainSectionComponent)
           .then((fixture: ComponentFixture<any>) => {
             const MainCmp = fixture.componentInstance;
             MainCmp.store.dispatch(actions.completeAll());
             fixture.detectChanges();
             spyOn(actions, 'clearCompleted').and.callThrough();
-            const FooterCmp = fixture.debugElement.query(By.css('footer')).componentInstance;
+            const FooterCmp = fixture.debugElement.query(By.css('fountain-footer')).componentInstance;
             FooterCmp.onClearCompleted.emit();
             fixture.detectChanges();
             expect(actions.clearCompleted).toHaveBeenCalled();
@@ -155,22 +155,22 @@ describe('components', () => {
     describe('todo list', () => {
       it('should render', async(inject([], () => {
         tcb
-          .overrideDirective(MainSection, Footer, MockFooter)
-          .createAsync(MainSection)
+          .overrideDirective(MainSectionComponent, FooterComponent, MockFooterComponent)
+          .createAsync(MainSectionComponent)
           .then((fixture: ComponentFixture<any>) => {
             const MainCmp = fixture.componentInstance;
             MainCmp.store.dispatch(actions.addTodo('Run the test'));
             fixture.detectChanges();
             const ul = fixture.nativeElement.querySelector('ul');
             expect(ul).not.toBeNull();
-            const todoitems = fixture.debugElement.queryAllNodes(By.css('todoitem'));
+            const todoitems = fixture.debugElement.queryAllNodes(By.css('fountain-todo-item'));
             expect(todoitems.length).toBe(2);
             let todos;
             MainCmp.todos.subscribe((_todos: any) => {
               todos = _todos;
             });
             Array.prototype.forEach.call(todoitems, (item, i) => {
-              expect(item.name).toBe('TodoItem');
+              expect(item.name).toBe('fountain-todo-item');
               expect(item.componentInstance.todo).toBe(todos[i]);
             });
           });
@@ -178,16 +178,16 @@ describe('components', () => {
 
       it('should filter items', async(inject([], () => {
         tcb
-          .overrideDirective(MainSection, TodoItem, MockTodoItem)
-          .createAsync(MainSection)
+          .overrideDirective(MainSectionComponent, TodoItemComponent, MockTodoItemComponent)
+          .createAsync(MainSectionComponent)
           .then((fixture: ComponentFixture<any>) => {
             fixture.detectChanges();
             const MainCmp = fixture.componentInstance;
             MainCmp.store.dispatch(actions.addTodo('Run the test'));
             MainCmp.store.dispatch(actions.completeTodo('1'));
-            const FooterCmp = fixture.debugElement.query(By.css('footer')).componentInstance;
+            const FooterCmp = fixture.debugElement.query(By.css('fountain-footer')).componentInstance;
             FooterCmp.onShow.emit(SHOW_COMPLETED);
-            const updatedList = fixture.debugElement.queryAllNodes(By.css('todoitem'));
+            const updatedList = fixture.debugElement.queryAllNodes(By.css('fountain-todo-item'));
             let todos;
             MainCmp.todos.subscribe((_todos: any) => {
               todos = _todos;

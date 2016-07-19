@@ -16,7 +16,7 @@ var MyUIRouterConfig = require('./routes');
 var ngRouter = require('@angular/router');
 var rts = require('./routes');
 <% } else { -%>
-var Hello = require('./app/hello');
+var HelloComponent = require('./app/hello');
 <% } -%>
 var ngCore = require('@angular/core');
 
@@ -37,9 +37,9 @@ ng.bootstrap(uiRouter.UiView, uiRouter.UIROUTER_PROVIDERS.concat([
   ngCore.provide(uiRouter.UIRouterConfig, {useClass: MyUIRouterConfig})
 ]));
 <% } else if (router === 'router') { -%>
-ng.bootstrap(rts.Root, [
+ng.bootstrap(rts.RootComponent, [
   ngRouter.provideRouter(rts.routes)
 ]);
 <% } else { -%>
-ng.bootstrap(Hello);
+ng.bootstrap(HelloComponent);
 <% } -%>

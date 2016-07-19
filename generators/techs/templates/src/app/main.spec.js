@@ -3,36 +3,36 @@ require('zone.js/dist/zone');
 <% } -%>
 require('zone.js/dist/async-test');
 var ng = require('@angular/core');
-var Main = require('./main');
-var Techs = require('./techs/techs');
-var Footer = require('./footer');
-var Header = require('./header');
-var Title = require('./title');
+var MainComponent = require('./main');
+var TechsComponent = require('./techs/techs');
+var FooterComponent = require('./footer');
+var HeaderComponent = require('./header');
+var TitleComponent = require('./title');
 var ngTest = require('@angular/core/testing');
 
-var MockTechs = ng.Component({
-  selector: 'Techs',
+var MockTechsComponent = ng.Component({
+  selector: 'fountain-techs',
   template: ''
 })
 .Class({
   constructor: function () {}
 });
-var MockFooter = ng.Component({
-  selector: 'Footer',
+var MockFooterComponent = ng.Component({
+  selector: 'fountain-footer',
   template: ''
 })
 .Class({
   constructor: function () {}
 });
-var MockHeader = ng.Component({
-  selector: 'Header',
+var MockHeaderComponent = ng.Component({
+  selector: 'fountain-header',
   template: ''
 })
 .Class({
   constructor: function () {}
 });
-var MockTitle = ng.Component({
-  selector: 'Title',
+var MockTitleComponent = ng.Component({
+  selector: 'fountain-title',
   template: ''
 })
 .Class({
@@ -42,18 +42,18 @@ var MockTitle = ng.Component({
 describe('main component', function () {
   it('should render the header, title, techs and footer', ngTest.async(ngTest.inject([ngTest.TestComponentBuilder], function (tcb) {
     tcb
-      .overrideDirective(Main, Techs, MockTechs)
-      .overrideDirective(Main, Footer, MockFooter)
-      .overrideDirective(Main, Header, MockHeader)
-      .overrideDirective(Main, Title, MockTitle)
-      .createAsync(Main)
+      .overrideDirective(MainComponent, TechsComponent, MockTechsComponent)
+      .overrideDirective(MainComponent, FooterComponent, MockFooterComponent)
+      .overrideDirective(MainComponent, HeaderComponent, MockHeaderComponent)
+      .overrideDirective(MainComponent, TitleComponent, MockTitleComponent)
+      .createAsync(MainComponent)
       .then(function (fixture) {
         fixture.detectChanges();
         var main = fixture.nativeElement;
-        expect(main.querySelector('Header')).toBeDefined();
-        expect(main.querySelector('TitleComponent')).toBeDefined();
-        expect(main.querySelector('Techs')).toBeDefined();
-        expect(main.querySelector('Footer')).toBeDefined();
+        expect(main.querySelector('fountain-header')).toBeDefined();
+        expect(main.querySelector('fountain-title')).toBeDefined();
+        expect(main.querySelector('fountain-techs')).toBeDefined();
+        expect(main.querySelector('fountain-footer')).toBeDefined();
       });
   })));
 });

@@ -4,7 +4,6 @@ require('zone.js/dist/fake-async-test');
 var reducers = require('./todos');
 var types = require('../constants/ActionTypes');
 var filters = require('../constants/TodoFilters');
-var ngTest = require('@angular/core/testing');
 
 describe('Reducers', function () {
   describe('todo reducer', function () {

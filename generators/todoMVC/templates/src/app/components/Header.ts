@@ -1,14 +1,14 @@
 import {Component} from '@angular/core';
 import {Store} from '@ngrx/store';
 import * as actions from '../actions/index';
-import {TodoTextInput} from './TodoTextInput';
+import {TodoTextInputComponent} from './TodoTextInput';
 
 @Component({
-  selector: 'Header',
+  selector: 'fountain-header',
   template: require('./Header.html'),
-  directives: [TodoTextInput]
+  directives: [TodoTextInputComponent]
 })
-export class Header {
+export class HeaderComponent {
   constructor(public store: Store<any[]>) {
   }
 

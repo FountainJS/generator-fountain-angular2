@@ -2,12 +2,12 @@
 require('zone.js/dist/zone');
 <% } -%>
 require('zone.js/dist/async-test');
-var Tech = require('./tech');
+var TechComponent = require('./tech');
 var ngTest = require('@angular/core/testing');
 
 describe('tech component', function () {
   it('should render Gulp', ngTest.async(ngTest.inject([ngTest.TestComponentBuilder], function (tcb) {
-    tcb.createAsync(Tech)
+    tcb.createAsync(TechComponent)
       .then(function (fixture) {
         fixture.componentInstance.tech = {
           key: 'gulp',

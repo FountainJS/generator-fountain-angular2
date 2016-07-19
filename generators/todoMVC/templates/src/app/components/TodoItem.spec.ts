@@ -6,14 +6,14 @@ import 'zone.js/dist/fake-async-test';
 import {Component, Input} from '@angular/core';
 import {async, inject, TestComponentBuilder, ComponentFixture} from '@angular/core/testing';
 import {By} from '@angular/platform-browser';
-import {TodoTextInput} from './TodoTextInput';
-import {TodoItem} from './TodoItem';
+import {TodoTextInputComponent} from './TodoTextInput';
+import {TodoItemComponent} from './TodoItem';
 
 @Component({
-  selector: 'TodoTextInput',
+  selector: 'fountain-todo-text-input',
   template: ''
 })
-class MockTodoTextInput {
+class MockTodoTextInputComponent {
   @Input() newTodo;
   @Input() editing;
   @Input() placeholder;
@@ -30,8 +30,8 @@ describe('components', () => {
   describe('TodoItem', () => {
     it('should render the correct elements', async(inject([], () => {
       tcb
-        .overrideDirective(TodoItem, TodoTextInput, MockTodoTextInput)
-        .createAsync(TodoItem)
+        .overrideDirective(TodoItemComponent, TodoTextInputComponent, MockTodoTextInputComponent)
+        .createAsync(TodoItemComponent)
         .then((fixture: ComponentFixture<any>) => {
           const TodoItemCmp = fixture.componentInstance;
           TodoItemCmp.todo = {
@@ -61,8 +61,8 @@ describe('components', () => {
 
     it('should call onChange when click on input', async(inject([], () => {
       tcb
-        .overrideDirective(TodoItem, TodoTextInput, MockTodoTextInput)
-        .createAsync(TodoItem)
+        .overrideDirective(TodoItemComponent, TodoTextInputComponent, MockTodoTextInputComponent)
+        .createAsync(TodoItemComponent)
         .then((fixture: ComponentFixture<any>) => {
           fixture.detectChanges();
           const TodoItemCmp = fixture.componentInstance;
@@ -81,8 +81,8 @@ describe('components', () => {
 
     it('should call onDestroy when click on button', async(inject([], () => {
       tcb
-        .overrideDirective(TodoItem, TodoTextInput, MockTodoTextInput)
-        .createAsync(TodoItem)
+        .overrideDirective(TodoItemComponent, TodoTextInputComponent, MockTodoTextInputComponent)
+        .createAsync(TodoItemComponent)
         .then((fixture: ComponentFixture<any>) => {
           fixture.detectChanges();
           const TodoItemCmp = fixture.componentInstance;
@@ -101,8 +101,8 @@ describe('components', () => {
 
     it(`should change class names to 'editing' when double click on label`, async(inject([], () => {
       tcb
-        .overrideDirective(TodoItem, TodoTextInput, MockTodoTextInput)
-        .createAsync(TodoItem)
+        .overrideDirective(TodoItemComponent, TodoTextInputComponent, MockTodoTextInputComponent)
+        .createAsync(TodoItemComponent)
         .then((fixture: ComponentFixture<any>) => {
           fixture.detectChanges();
           const TodoItemCmp = fixture.componentInstance;
@@ -123,7 +123,7 @@ describe('components', () => {
 
     it('should render the correct input when editing is true', async(inject([], () => {
       tcb
-        .createAsync(TodoItem)
+        .createAsync(TodoItemComponent)
         .then((fixture: ComponentFixture<any>) => {
           const TodoItemCmp = fixture.componentInstance;
           TodoItemCmp.editing = true;
@@ -133,7 +133,7 @@ describe('components', () => {
             completed: false
           };
           fixture.detectChanges();
-          const todoTextInput = fixture.debugElement.query(By.css('todotextinput')).componentInstance;
+          const todoTextInput = fixture.debugElement.query(By.css('fountain-todo-text-input')).componentInstance;
           expect(todoTextInput).not.toBeNull();
           expect(todoTextInput.text).toBe('Use ngrx/store');
           expect(todoTextInput.editing).toBe(true);
@@ -142,7 +142,7 @@ describe('components', () => {
 
     it('should call handleSave when onSave event is emitted', async(inject([], () => {
       tcb
-        .createAsync(TodoItem)
+        .createAsync(TodoItemComponent)
         .then((fixture: ComponentFixture<any>) => {
           const TodoItemCmp = fixture.componentInstance;
           TodoItemCmp.todo = {
@@ -153,7 +153,7 @@ describe('components', () => {
           TodoItemCmp.editing = true;
           fixture.detectChanges();
           spyOn(TodoItemCmp.onSave, 'emit');
-          const todoTextInput = fixture.debugElement.query(By.css('todotextinput')).componentInstance;
+          const todoTextInput = fixture.debugElement.query(By.css('fountain-todo-text-input')).componentInstance;
           spyOn(todoTextInput.onSave, 'emit').and.callThrough();
           spyOn(TodoItemCmp, 'handleSave');
           fixture.detectChanges();
@@ -164,13 +164,13 @@ describe('components', () => {
 
     it('should remove class name when onSave event is emitted', async(inject([], () => {
       tcb
-        .createAsync(TodoItem)
+        .createAsync(TodoItemComponent)
         .then((fixture: ComponentFixture<any>) => {
           const TodoItemCmp = fixture.componentInstance;
           TodoItemCmp.editing = true;
           fixture.detectChanges();
           spyOn(TodoItemCmp.onSave, 'emit');
-          const todoTextInput = fixture.debugElement.query(By.css('todotextinput')).componentInstance;
+          const todoTextInput = fixture.debugElement.query(By.css('fountain-todo-text-input')).componentInstance;
           spyOn(todoTextInput.onSave, 'emit').and.callThrough();
           spyOn(TodoItemCmp, 'handleSave').and.callFake(() => { // eslint-disable-line max-nested-callbacks
             TodoItemCmp.editing = false;

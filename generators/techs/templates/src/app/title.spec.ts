@@ -2,12 +2,12 @@
 
 import 'zone.js/dist/zone';
 import 'zone.js/dist/async-test';
-import {Title} from './title';
+import {TitleComponent} from './title';
 import {inject, async, TestComponentBuilder, ComponentFixture} from '@angular/core/testing';
 
 describe('title component', () => {
   it('should render \'Allo, \'Allo!', async(inject([TestComponentBuilder], (tcb: TestComponentBuilder) => {
-    tcb.createAsync(Title)
+    tcb.createAsync(TitleComponent)
       .then((fixture: ComponentFixture<any>) => {
         fixture.detectChanges();
         const title = fixture.nativeElement;

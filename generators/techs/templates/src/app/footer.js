@@ -1,7 +1,7 @@
 var ng = require('@angular/core');
 
 module.exports = ng.Component({
-  selector: 'Footer',
+  selector: 'fountain-footer',
   template: require('./footer.html')
 })
 .Class({

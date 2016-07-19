@@ -2,12 +2,12 @@
 require('zone.js/dist/zone');
 <% } -%>
 require('zone.js/dist/async-test');
-var Hello = require('./hello');
+var HelloComponent = require('./hello');
 var ngTest = require('@angular/core/testing');
 
 describe('hello component', function () {
   it('should render hello world', ngTest.async(ngTest.inject([ngTest.TestComponentBuilder], function (tcb) {
-    tcb.createAsync(Hello)
+    tcb.createAsync(HelloComponent)
       .then(function (fixture) {
         fixture.detectChanges();
         var hello = fixture.nativeElement;

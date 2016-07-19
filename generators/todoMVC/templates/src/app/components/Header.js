@@ -1,12 +1,12 @@
 var ng = require('@angular/core');
 var ngrxStore = require('@ngrx/store');
 var actions = require('../actions/index');
-var TodoTextInput = require('./TodoTextInput');
+var TodoTextInputComponent = require('./TodoTextInput');
 
 module.exports = ng.Component({
-  selector: 'Header',
+  selector: 'fountain-header',
   template: require('./Header.html'),
-  directives: [TodoTextInput]
+  directives: [TodoTextInputComponent]
 })
 .Class({
   constructor: [ngrxStore.Store, function (store) {

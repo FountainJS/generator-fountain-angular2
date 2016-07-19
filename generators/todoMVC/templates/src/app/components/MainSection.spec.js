@@ -6,14 +6,14 @@ var ngTest = require('@angular/core/testing');
 var ngPlatform = require('@angular/platform-browser');
 var ngrxStore = require('@ngrx/store');
 var reducers = require('../reducers/todos');
-var MainSection = require('./MainSection');
-var TodoItem = require('./TodoItem');
-var Footer = require('./Footer');
+var MainSectionComponent = require('./MainSection');
+var TodoItemComponent = require('./TodoItem');
+var FooterComponent = require('./Footer');
 var actions = require('../actions/index');
 var filters = require('../constants/TodoFilters');
 
-var MockTodoItem = ng.Component({
-  selector: 'TodoItem',
+var MockTodoItemComponent = ng.Component({
+  selector: 'fountain-todo-item',
   template: '',
   inputs: ['todo']
 })
@@ -21,8 +21,8 @@ var MockTodoItem = ng.Component({
   constructor: function () {}
 });
 
-var MockFooter = ng.Component({
-  selector: 'Footer',
+var MockFooterComponent = ng.Component({
+  selector: 'fountain-footer',
   template: '',
   inputs: ['completedCount', 'activeCount', 'filter']
 })
@@ -44,9 +44,9 @@ describe('components', function () {
   describe('MainSection', function () {
     it('should render container', ngTest.async(ngTest.inject([], function () {
       tcb
-        .overrideDirective(MainSection, TodoItem, MockTodoItem)
-        .overrideDirective(MainSection, Footer, MockFooter)
-        .createAsync(MainSection)
+        .overrideDirective(MainSectionComponent, TodoItemComponent, MockTodoItemComponent)
+        .overrideDirective(MainSectionComponent, FooterComponent, MockFooterComponent)
+        .createAsync(MainSectionComponent)
         .then(function (fixture) {
           fixture.detectChanges();
           var main = fixture.nativeElement;
@@ -58,9 +58,9 @@ describe('components', function () {
     describe('toggle all input', function () {
       it('should render', ngTest.async(ngTest.inject([], function () {
         tcb
-          .overrideDirective(MainSection, TodoItem, MockTodoItem)
-          .overrideDirective(MainSection, Footer, MockFooter)
-          .createAsync(MainSection)
+          .overrideDirective(MainSectionComponent, TodoItemComponent, MockTodoItemComponent)
+          .overrideDirective(MainSectionComponent, FooterComponent, MockFooterComponent)
+          .createAsync(MainSectionComponent)
           .then(function (fixture) { // eslint-disable-line max-nested-callbacks
             fixture.detectChanges();
             var main = fixture.nativeElement;
@@ -73,9 +73,9 @@ describe('components', function () {
 
       it('should be checked if all todos completed', ngTest.async(ngTest.inject([], function () {
         tcb
-          .overrideDirective(MainSection, TodoItem, MockTodoItem)
-          .overrideDirective(MainSection, Footer, MockFooter)
-          .createAsync(MainSection)
+          .overrideDirective(MainSectionComponent, TodoItemComponent, MockTodoItemComponent)
+          .overrideDirective(MainSectionComponent, FooterComponent, MockFooterComponent)
+          .createAsync(MainSectionComponent)
           .then(function (fixture) { // eslint-disable-line max-nested-callbacks
             var MainCmp = fixture.componentInstance;
             MainCmp.store.dispatch(actions.completeAll());
@@ -88,9 +88,9 @@ describe('components', function () {
 
       it('should call completeAll on change', ngTest.async(ngTest.inject([], function () {
         tcb
-          .overrideDirective(MainSection, TodoItem, MockTodoItem)
-          .overrideDirective(MainSection, Footer, MockFooter)
-          .createAsync(MainSection)
+          .overrideDirective(MainSectionComponent, TodoItemComponent, MockTodoItemComponent)
+          .overrideDirective(MainSectionComponent, FooterComponent, MockFooterComponent)
+          .createAsync(MainSectionComponent)
           .then(function (fixture) { // eslint-disable-line max-nested-callbacks
             fixture.detectChanges();
             var input = fixture.nativeElement.querySelector('input');
@@ -105,42 +105,42 @@ describe('components', function () {
     describe('footer', function () {
       it('should render', ngTest.async(ngTest.inject([], function () {
         tcb
-          .overrideDirective(MainSection, TodoItem, MockTodoItem)
-          .createAsync(MainSection)
+        .overrideDirective(MainSectionComponent, TodoItemComponent, MockTodoItemComponent)
+        .createAsync(MainSectionComponent)
           .then(function (fixture) { // eslint-disable-line max-nested-callbacks
             fixture.detectChanges();
-            var footer = fixture.nativeElement.querySelector('footer');
+            var footer = fixture.nativeElement.querySelector('fountain-footer');
             expect(footer.querySelector('footer')).not.toBeNull();
-            var FooterCmp = fixture.debugElement.query(ngPlatform.By.css('footer')).componentInstance;
+            var FooterCmp = fixture.debugElement.query(ngPlatform.By.css('fountain-footer')).componentInstance;
             expect(FooterCmp.completedCount).toBe(0);
             expect(FooterCmp.activeCount).toBe(1);
-            expect(FooterCmp.selectedFilter.type).toBe(filters.SHOW_ALL);
+            expect(FooterCmp.filter.type).toBe(filters.SHOW_ALL);
           });
       })));
 
       it('onShow should set the filter', ngTest.async(ngTest.inject([], function () {
         tcb
-          .overrideDirective(MainSection, TodoItem, MockTodoItem)
-          .createAsync(MainSection)
+        .overrideDirective(MainSectionComponent, TodoItemComponent, MockTodoItemComponent)
+        .createAsync(MainSectionComponent)
           .then(function (fixture) { // eslint-disable-line max-nested-callbacks
             fixture.detectChanges();
-            var FooterCmp = fixture.debugElement.query(ngPlatform.By.css('footer')).componentInstance;
+            var FooterCmp = fixture.debugElement.query(ngPlatform.By.css('fountain-footer')).componentInstance;
             FooterCmp.onShow.emit(filters.SHOW_COMPLETED);
             fixture.detectChanges();
-            expect(FooterCmp.selectedFilter.type).toBe(filters.SHOW_COMPLETED);
+            expect(FooterCmp.filter.type).toBe(filters.SHOW_COMPLETED);
           });
       })));
 
       it('onClearCompleted should call clearCompleted', ngTest.async(ngTest.inject([], function () {
         tcb
-          .overrideDirective(MainSection, TodoItem, MockTodoItem)
-          .createAsync(MainSection)
+          .overrideDirective(MainSectionComponent, TodoItemComponent, MockTodoItemComponent)
+          .createAsync(MainSectionComponent)
           .then(function (fixture) { // eslint-disable-line max-nested-callbacks
             var MainCmp = fixture.componentInstance;
             MainCmp.store.dispatch(actions.completeAll());
             fixture.detectChanges();
             spyOn(actions, 'clearCompleted').and.callThrough();
-            var FooterCmp = fixture.debugElement.query(ngPlatform.By.css('footer')).componentInstance;
+            var FooterCmp = fixture.debugElement.query(ngPlatform.By.css('fountain-footer')).componentInstance;
             FooterCmp.onClearCompleted.emit();
             fixture.detectChanges();
             expect(actions.clearCompleted).toHaveBeenCalled();
@@ -151,22 +151,22 @@ describe('components', function () {
     describe('todo list', function () {
       it('should render', ngTest.async(ngTest.inject([], function () {
         tcb
-          .overrideDirective(MainSection, Footer, MockFooter)
-          .createAsync(MainSection)
+          .overrideDirective(MainSectionComponent, FooterComponent, MockFooterComponent)
+          .createAsync(MainSectionComponent)
           .then(function (fixture) { // eslint-disable-line max-nested-callbacks
             var MainCmp = fixture.componentInstance;
             MainCmp.store.dispatch(actions.addTodo('Run the test'));
             fixture.detectChanges();
             var ul = fixture.nativeElement.querySelector('ul');
             expect(ul).not.toBeNull();
-            var todoitems = fixture.debugElement.queryAllNodes(ngPlatform.By.css('todoitem'));
+            var todoitems = fixture.debugElement.queryAllNodes(ngPlatform.By.css('fountain-todo-item'));
             expect(todoitems.length).toBe(2);
             var todos;
             MainCmp.todos.subscribe(function (_todos) { // eslint-disable-line max-nested-callbacks
               todos = _todos;
             });
             Array.prototype.forEach.call(todoitems, function (item, i) { // eslint-disable-line max-nested-callbacks
-              expect(item.name).toBe('TodoItem');
+              expect(item.name).toBe('fountain-todo-item');
               expect(item.componentInstance.todo).toBe(todos[i]);
             });
           });
@@ -174,16 +174,16 @@ describe('components', function () {
 
       it('should filter items', ngTest.async(ngTest.inject([], function () {
         tcb
-          .overrideDirective(MainSection, TodoItem, MockTodoItem)
-          .createAsync(MainSection)
+          .overrideDirective(MainSectionComponent, TodoItemComponent, MockTodoItemComponent)
+          .createAsync(MainSectionComponent)
           .then(function (fixture) { // eslint-disable-line max-nested-callbacks
             fixture.detectChanges();
             var MainCmp = fixture.componentInstance;
             MainCmp.store.dispatch(actions.addTodo('Run the test'));
             MainCmp.store.dispatch(actions.completeTodo('1'));
-            var FooterCmp = fixture.debugElement.query(ngPlatform.By.css('footer')).componentInstance;
+            var FooterCmp = fixture.debugElement.query(ngPlatform.By.css('fountain-footer')).componentInstance;
             FooterCmp.onShow.emit(filters.SHOW_COMPLETED);
-            var updatedList = fixture.debugElement.queryAllNodes(ngPlatform.By.css('todoitem'));
+            var updatedList = fixture.debugElement.queryAllNodes(ngPlatform.By.css('fountain-todo-item'));
             var todos;
             MainCmp.todos.subscribe(function (_todos) { // eslint-disable-line max-nested-callbacks
               todos = _todos;
