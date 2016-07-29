@@ -19,9 +19,9 @@ import {MyUIRouterConfig} from './routes';
 <% } else if (router === 'router') { -%>
 import {provideRouter} from '@angular/router';
 import {enableProdMode} from '@angular/core';
-import {routes, Root} from './routes';
+import {routes, RootComponent} from './routes';
 <% } else { -%>
-import {Main} from './app/main';
+import {MainComponent} from './app/main';
 import {enableProdMode} from '@angular/core';
 <% } -%>
 
@@ -44,9 +44,9 @@ bootstrap(UiView, [
   provide(UIRouterConfig, {useClass: MyUIRouterConfig})
 ]);
 <% } else if (router === 'router') { -%>
-bootstrap(Root, [
+bootstrap(RootComponent, [
   provideRouter(routes)
 ]);
 <% } else { -%>
-bootstrap(Main);
+bootstrap(MainComponent);
 <% } -%>

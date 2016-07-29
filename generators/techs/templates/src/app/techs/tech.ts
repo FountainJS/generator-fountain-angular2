@@ -2,7 +2,7 @@ import {Component, Input} from '@angular/core';
 import {Tech} from './techs';
 
 @Component({
-  selector: 'Tech',
+  selector: 'fountain-tech',
   template: require('./tech.html')
 })
 export class TechComponent {

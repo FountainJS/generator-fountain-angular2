@@ -3,9 +3,9 @@
     <strong>{{activeCount || 'No'}}</strong> {{activeCount === 1 ? 'item' : 'items'}} left
   </span>
   <ul class="filters">
-    <template ngFor let-filter [ngForOf]="filters">
-      <li key="filter">
-        <a [ngClass]="{'selected': filter === selectedFilter?.type}" (click)="handleChange(filter)">{{filterTitles[filter]}}</a>
+    <template ngFor let-f [ngForOf]="filters">
+      <li key="f">
+        <a [ngClass]="{'selected': f === filter?.type}" (click)="handleChange(f)">{{filterTitles[f]}}</a>
       </li>
     </template>
   </ul>

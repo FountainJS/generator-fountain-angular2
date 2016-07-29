@@ -1,7 +1,7 @@
 var ng = require('@angular/core');
 
 module.exports = ng.Component({
-  selector: 'Tech',
+  selector: 'fountain-tech',
   template: require('./tech.html'),
   inputs: ['tech']
 })

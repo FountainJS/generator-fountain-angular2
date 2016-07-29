@@ -1,11 +1,11 @@
 import {Component} from '@angular/core';
-import {Header} from '../components/Header';
-import {MainSection} from '../components/MainSection';
+import {HeaderComponent} from '../components/Header';
+import {MainSectionComponent} from '../components/MainSection';
 
 @Component({
-  selector: 'App',
+  selector: 'fountain-app',
   template: require('./App.html'),
-  directives: [Header, MainSection]
+  directives: [HeaderComponent, MainSectionComponent]
 })
-export class App {
+export class AppComponent {
 }

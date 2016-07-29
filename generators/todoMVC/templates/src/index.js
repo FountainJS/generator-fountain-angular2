@@ -19,7 +19,7 @@ var MyUIRouterConfig = require('./routes');
 var ngRouter = require('@angular/router');
 var rts = require('./routes');
 <% } else { -%>
-var App = require('./app/containers/App');
+var AppComponent = require('./app/containers/App');
 <% } -%>
 var ngCore = require('@angular/core');
 
@@ -41,12 +41,12 @@ ng.bootstrap(uiRouter.UiView, uiRouter.UIROUTER_PROVIDERS.concat([
   ngrxStore.provideStore(ngrxStore.combineReducers({todos: reducers.todos, visibility: reducers.visibility}), {todos: [reducers.initialTodo], visibility: reducers.initialVisibility})
 ]));
 <% } else if (router === 'router') { -%>
-ng.bootstrap(rts.Root, [
+ng.bootstrap(rts.RootComponent, [
   ngRouter.provideRouter(rts.routes),
   ngrxStore.provideStore(ngrxStore.combineReducers({todos: reducers.todos, visibility: reducers.visibility}), {todos: [reducers.initialTodo], visibility: reducers.initialVisibility})
 ]);
 <% } else { -%>
-ng.bootstrap(App, [
+ng.bootstrap(AppComponent, [
   ngrxStore.provideStore(ngrxStore.combineReducers({todos: reducers.todos, visibility: reducers.visibility}), {todos: [reducers.initialTodo], visibility: reducers.initialVisibility})
 ]);
 <% } -%>

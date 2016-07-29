@@ -1,10 +1,10 @@
 <li [ngClass]="{'editing': editing, 'completed': todo?.completed}">
-  <TodoTextInput
+  <fountain-todo-text-input
     *ngIf="editing"
     [text]="todo?.text"
     [editing]="editing"
     (onSave)="handleSave($event)"
-    ></TodoTextInput>
+    ></fountain-todo-text-input>
   <div class="view" *ngIf="!editing">
     <input
       class="toggle"

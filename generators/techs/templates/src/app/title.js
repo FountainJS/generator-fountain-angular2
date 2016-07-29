@@ -1,7 +1,7 @@
 var ng = require('@angular/core');
 
 module.exports = ng.Component({
-  selector: 'TitleComponent',
+  selector: 'fountain-title',
   template: require('./title.html')
 })
 .Class({

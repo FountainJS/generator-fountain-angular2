@@ -1,8 +1,8 @@
 var ng = require('@angular/core');
-var TodoTextInput = require('./TodoTextInput');
+var TodoTextInputComponent = require('./TodoTextInput');
 
 module.exports = ng.Component({
-  selector: 'TodoItem',
+  selector: 'fountain-todo-item',
   template: require('./TodoItem.html'),
   inputs: ['todo'],
   outputs: [
@@ -10,7 +10,7 @@ module.exports = ng.Component({
     'onSave',
     'onChange'
   ],
-  directives: [TodoTextInput]
+  directives: [TodoTextInputComponent]
 })
 .Class({
   constructor: function () {

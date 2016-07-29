@@ -2,12 +2,12 @@
 
 import 'zone.js/dist/zone';
 import 'zone.js/dist/async-test';
-import {Header} from './header';
+import {HeaderComponent} from './header';
 import {inject, async, TestComponentBuilder, ComponentFixture} from '@angular/core/testing';
 
 describe('header component', () => {
   it('should render \'Fountain Generator\'', async(inject([TestComponentBuilder], (tcb: TestComponentBuilder) => {
-    tcb.createAsync(Header)
+    tcb.createAsync(HeaderComponent)
       .then((fixture: ComponentFixture<any>) => {
         fixture.detectChanges();
         const header = fixture.nativeElement;

@@ -1,9 +1,9 @@
 import {Component, Input} from '@angular/core';
 
 @Component({
-  selector: 'Tech',
+  selector: 'fountain-tech',
   template: require('./tech.html')
 })
-export class Tech {
+export class TechComponent {
   @Input() tech;
 }

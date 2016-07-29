@@ -4,7 +4,7 @@ import 'zone.js/dist/zone';
 import 'zone.js/dist/async-test';
 import 'zone.js/dist/fake-async-test';
 import {async, inject, beforeEach, TestComponentBuilder, ComponentFixture} from '@angular/core/testing';
-import {TodoTextInput} from './TodoTextInput';
+import {TodoTextInputComponent} from './TodoTextInput';
 
 describe('components', () => {
   let tcb: TestComponentBuilder;
@@ -16,7 +16,7 @@ describe('components', () => {
   describe('TodoTextInput', () => {
     it('should render correctly', async(inject([], () => {
       tcb
-        .createAsync(TodoTextInput)
+        .createAsync(TodoTextInputComponent)
         .then((fixture: ComponentFixture<any>) => {
           const TodoTextInputCmp = fixture.componentInstance;
           TodoTextInputCmp.text = 'Use ngrx/store';
@@ -35,7 +35,7 @@ describe('components', () => {
 
     it('should render correctly when editing=true', async(inject([], () => {
       tcb
-        .createAsync(TodoTextInput)
+        .createAsync(TodoTextInputComponent)
         .then((fixture: ComponentFixture<any>) => {
           const TodoTextInputCmp = fixture.componentInstance;
           TodoTextInputCmp.editing = true;
@@ -48,7 +48,7 @@ describe('components', () => {
 
     it('should render correctly when newTodo=true', async(inject([], () => {
       tcb
-        .createAsync(TodoTextInput)
+        .createAsync(TodoTextInputComponent)
         .then((fixture: ComponentFixture<any>) => {
           const TodoTextInputCmp = fixture.componentInstance;
           TodoTextInputCmp.newTodo = true;
@@ -61,7 +61,7 @@ describe('components', () => {
 
     it('should update value on change', async(inject([], () => {
       tcb
-        .createAsync(TodoTextInput)
+        .createAsync(TodoTextInputComponent)
         .then((fixture: ComponentFixture<any>) => {
           const TodoTextInputCmp = fixture.componentInstance;
           TodoTextInputCmp.editing = true;
@@ -77,7 +77,7 @@ describe('components', () => {
 
     it('should call onSave on handleSubmit', async(inject([], () => {
       tcb
-        .createAsync(TodoTextInput)
+        .createAsync(TodoTextInputComponent)
         .then((fixture: ComponentFixture<any>) => {
           fixture.detectChanges();
           const TodoTextInputCmp = fixture.componentInstance;
@@ -90,7 +90,7 @@ describe('components', () => {
 
     it('should reset state on handleSubmit if newTodo', async(inject([], () => {
       tcb
-        .createAsync(TodoTextInput)
+        .createAsync(TodoTextInputComponent)
         .then((fixture: ComponentFixture<any>) => {
           const TodoTextInputCmp = fixture.componentInstance;
           TodoTextInputCmp.newTodo = true;
@@ -106,7 +106,7 @@ describe('components', () => {
 
     it('should call onSave on handleBlur', async(inject([], () => {
       tcb
-        .createAsync(TodoTextInput)
+        .createAsync(TodoTextInputComponent)
         .then((fixture: ComponentFixture<any>) => {
           fixture.detectChanges();
           const TodoTextInputCmp = fixture.componentInstance;

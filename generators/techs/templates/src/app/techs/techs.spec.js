@@ -5,13 +5,13 @@ require('zone.js/dist/async-test');
 var ng = require('@angular/core');
 var ngHttpTesting = require('@angular/http/testing');
 var ngHttp = require('@angular/http');
-var Techs = require('./techs');
-var Tech = require('./tech');
+var TechsComponent = require('./techs');
+var TechComponent = require('./tech');
 var ngTest = require('@angular/core/testing');
 var rxjs = require('rxjs/Rx');
 
 var MockComponent = ng.Component({
-  selector: 'Tech',
+  selector: 'fountain-tech',
   template: '',
   inputs: ['tech']
 })
@@ -47,7 +47,7 @@ describe('techs component', function () {
   describe('techs component methods', function () {
     beforeEach(function () {
       ngTest.addProviders([
-        Techs,
+        TechsComponent,
         ngHttpTesting.MockBackend,
         ngHttp.BaseRequestOptions,
         ng.provide(ngHttp.Http, {
@@ -59,7 +59,7 @@ describe('techs component', function () {
       ]);
     });
 
-    it('should get techs', ngTest.inject([ngHttpTesting.MockBackend, Techs], function (mockBackend, techs) {
+    it('should get techs', ngTest.inject([ngHttpTesting.MockBackend, TechsComponent], function (mockBackend, techs) {
       var conn;
       var response = new ngHttp.Response(new ngHttp.ResponseOptions({body: techsJson}));
       mockBackend.connections.subscribe(function (connection) {
@@ -76,7 +76,7 @@ describe('techs component', function () {
 
   describe('techs component rendering', function () {
     beforeEach(function () {
-      Techs.prototype.getTechs = function getTechs() {
+      TechsComponent.prototype.getTechs = function getTechs() {
         var response = new ngHttp.Response(new ngHttp.ResponseOptions({body: techsJson}));
         return rxjs.Observable.of(response).map(function (response) {
           return response.json();
@@ -86,12 +86,12 @@ describe('techs component', function () {
 
     it('should mock the techs and render 3 elements <tech>', ngTest.async(ngTest.inject([ngTest.TestComponentBuilder], function (tcb) {
       return tcb
-        .overrideDirective(Techs, Tech, MockComponent)
-        .createAsync(Techs)
+        .overrideDirective(TechsComponent, TechComponent, MockComponent)
+        .createAsync(TechsComponent)
         .then(function (fixture) {
           fixture.detectChanges();
           var techs = fixture.nativeElement;
-          expect(techs.querySelectorAll('tech').length).toBe(3);
+          expect(techs.querySelectorAll('fountain-tech').length).toBe(3);
         });
     })));
   });

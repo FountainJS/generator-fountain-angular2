@@ -1,10 +1,10 @@
 import {Component, Input, Output, EventEmitter, ElementRef, Renderer, ViewChild, AfterViewInit} from '@angular/core';
 
 @Component({
-  selector: 'TodoTextInput',
+  selector: 'fountain-todo-text-input',
   template: require('./TodoTextInput.html'),
 })
-export class TodoTextInput implements AfterViewInit {
+export class TodoTextInputComponent implements AfterViewInit {
   @ViewChild('myInput') input: ElementRef;
   @Input() newTodo: boolean;
   @Input() editing: boolean;

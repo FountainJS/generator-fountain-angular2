@@ -1,16 +1,16 @@
 import {Component} from '@angular/core';
 import {Store} from '@ngrx/store';
-import {TodoItem} from './TodoItem';
+import {TodoItemComponent} from './TodoItem';
 import {Observable} from 'rxjs/Rx';
-import {Footer} from './Footer';
+import {FooterComponent} from './Footer';
 import * as actions from '../actions/index';
 
 @Component({
-  selector: 'MainSection',
+  selector: 'fountain-main-section',
   template: require('./MainSection.html'),
-  directives: [TodoItem, Footer]
+  directives: [TodoItemComponent, FooterComponent]
 })
-export class MainSection {
+export class MainSectionComponent {
   todos: Observable<any>;
   visibilityFilter: Observable<any>;
   filteredTodos: Observable<any>;

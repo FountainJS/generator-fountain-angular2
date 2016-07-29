@@ -1,13 +1,13 @@
 var ng = require('@angular/core');
-var Header = require('./header');
-var Title = require('./title');
-var Techs = require('./techs/techs');
-var Footer = require('./footer');
+var HeaderComponent = require('./header');
+var TitleComponent = require('./title');
+var TechsComponent = require('./techs/techs');
+var FooterComponent = require('./footer');
 
 module.exports = ng.Component({
-  selector: 'App',
+  selector: 'fountain-app',
   template: require('./main.html'),
-  directives: [Header, Title, Techs, Footer]
+  directives: [HeaderComponent, TitleComponent, TechsComponent, FooterComponent]
 })
 .Class({
   constructor: function () {}

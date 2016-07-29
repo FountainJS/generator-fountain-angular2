@@ -2,12 +2,12 @@ var ng = require('@angular/core');
 var todoFilters = require('../constants/TodoFilters');
 
 module.exports = ng.Component({
-  selector: 'Footer',
+  selector: 'fountain-footer',
   template: require('./Footer.html'),
   inputs: [
     'completedCount',
     'activeCount',
-    'selectedFilter: filter'
+    'filter'
   ],
   outputs: [
     'onClearCompleted',

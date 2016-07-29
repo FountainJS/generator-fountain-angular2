@@ -5,14 +5,14 @@ import 'zone.js/dist/async-test';
 import {MockBackend, MockConnection} from '@angular/http/testing';
 import {Http, BaseRequestOptions, Response, ResponseOptions} from '@angular/http';
 import {Component, Input, provide} from '@angular/core';
-import {Techs, Tech} from './techs';
+import {TechsComponent, Tech} from './techs';
 import {TechComponent} from './tech';
 import {inject, async, TestComponentBuilder, ComponentFixture, addProviders} from '@angular/core/testing';
 
 import {Observable} from 'rxjs/Rx';
 
 @Component({
-  selector: 'Tech',
+  selector: 'fountain-tech',
   template: ''
 })
 class MockComponent {
@@ -47,7 +47,7 @@ describe('techs component', () => {
   describe('techs component methods', () => {
     beforeEach(() => {
       addProviders([
-        Techs,
+        TechsComponent,
         MockBackend,
         BaseRequestOptions,
         provide(Http, {
@@ -57,7 +57,7 @@ describe('techs component', () => {
       ]);
     });
 
-    it('should get techs', async(inject([MockBackend, Techs], (mockBackend: MockBackend, techs: Techs) => {
+    it('should get techs', async(inject([MockBackend, TechsComponent], (mockBackend: MockBackend, techs: TechsComponent) => {
       let conn: MockConnection;
       const response = new Response(new ResponseOptions({body: techsJson}));
       mockBackend.connections.subscribe((connection: MockConnection) => {
@@ -74,7 +74,7 @@ describe('techs component', () => {
 
   describe('techs component rendering', () => {
     beforeEach(() => {
-      Techs.prototype.getTechs = function getTechs () {
+      TechsComponent.prototype.getTechs = function getTechs () {
         const response = new Response(new ResponseOptions({body: techsJson}));
         return Observable.of(response).map(response => response.json());
       };
@@ -82,12 +82,12 @@ describe('techs component', () => {
 
     it('should mock the techs and render 3 elements <tech>', async(inject([TestComponentBuilder], (tcb: TestComponentBuilder) => {
       return tcb
-        .overrideDirective(Techs, TechComponent, MockComponent)
-        .createAsync(Techs)
+        .overrideDirective(TechsComponent, TechComponent, MockComponent)
+        .createAsync(TechsComponent)
         .then((fixture: ComponentFixture<any>) => {
           fixture.detectChanges();
           const techs = fixture.nativeElement;
-          expect(techs.querySelectorAll('tech').length).toBe(3);
+          expect(techs.querySelectorAll('fountain-tech').length).toBe(3);
         });
     })));
   });
