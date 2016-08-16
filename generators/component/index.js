@@ -12,7 +12,7 @@ module.exports = fountain.Base.extend({
       className: titleCase(name),
       modules: this.config.get('props').modules,
       js: this.config.get('props').js,
-      framework: this.config.get('props').framework,
+      framework: 'angular2',
       name,
       typings
     };
