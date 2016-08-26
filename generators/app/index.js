@@ -76,14 +76,23 @@ module.exports = fountain.Base.extend({
           }
         });
 
-        this.mergeJson('.babelrc', {
-          plugins: [
-            'angular2-annotations',
-            'transform-decorators-legacy',
-            'transform-class-properties',
-            'transform-flow-strip-types'
-          ]
-        });
+        const plugins = [
+          'angular2-annotations',
+          'transform-decorators-legacy',
+          'transform-class-properties',
+          'transform-flow-strip-types'
+        ];
+
+        if (this.props.modules === 'webpack') {
+          this.mergeJson('.babelrc', {
+            env: {
+              development: {plugins},
+              production: {plugins}
+            }
+          });
+        } else {
+          this.mergeJson('.babelrc', {plugins});
+        }
       }
     },
 

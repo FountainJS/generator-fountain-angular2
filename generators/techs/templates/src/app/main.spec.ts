@@ -16,7 +16,7 @@ import {inject, async, TestComponentBuilder, ComponentFixture} from '@angular/co
 })
 class MockTechsComponent {}
 @Component({
-  selector: 'fountain-ooter',
+  selector: 'fountain-footer',
   template: ''
 })
 class MockFooterComponent {}
