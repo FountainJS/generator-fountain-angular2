@@ -27,4 +27,4 @@ var routes = [
   }
 ];
 
-module.exports = {RootComponent: RootComponent, routes: routes};
+module.exports = {RootComponent: RootComponent, routes: routes, components: [<% if (sample === 'hello') { -%>HelloComponent<% } else if (sample === 'techs') { -%>MainComponent<% } else { -%>AppComponent<% } -%>]};

@@ -33,7 +33,7 @@ test('Call this.config.set twice', () => {
 test(`Add '@angular/core' to package.json dependencies`, t => {
   context.props = {js: 'babel'};
   TestUtils.call(context, 'configuring.pkg');
-  t.is(context.mergeJson['package.json'].dependencies['@angular/core'], '2.0.0-rc.4');
+  t.is(context.mergeJson['package.json'].dependencies['@angular/core'], '2.0.0-rc.5');
 });
 
 test(`Add 'es6-shim' to package.json dependencies when js is 'typescript'`, t => {
@@ -69,7 +69,7 @@ test(`Add 'babel-plugin-angular2-annotations' to package.json devDependencies wi
 test(`Add '@angular/router' to package.json dependencies`, t => {
   context.props = {router: 'router'};
   TestUtils.call(context, 'configuring.router');
-  t.is(context.mergeJson['package.json'].dependencies['@angular/router'], '3.0.0-beta.2');
+  t.is(context.mergeJson['package.json'].dependencies['@angular/router'], '3.0.0-rc.1');
 });
 
 test(`Add 'ui-router-ng2' to package.json dependencies`, t => {

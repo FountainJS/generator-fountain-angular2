@@ -25,3 +25,5 @@ export const routes: RouterConfig = [
 
   }
 ];
+
+export const components = [<% if (sample === 'hello') { -%>HelloComponent<% } else if (sample === 'techs') { -%>MainComponent<% } else { -%>AppComponent<% } -%>];
