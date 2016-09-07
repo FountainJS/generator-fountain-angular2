@@ -11,20 +11,17 @@ var AppComponent = require('./app/containers/App');
 var RootComponent =
   ng.Component({
     selector: 'fountain-root',
-    template: '<router-outlet></router-outlet>',
-    directives: [ngRouter.ROUTER_DIRECTIVES]
+    template: '<router-outlet></router-outlet>'
   })
   .Class({
-    constructor: function () {
-    }
+    constructor: function () {}
   });
 
 var routes = [
   {
     path: '',
     component: <% if (sample === 'hello') { -%>HelloComponent<% } else if (sample === 'techs') { -%>MainComponent<% } else { -%>AppComponent<% } -%>
-
   }
 ];
 
-module.exports = {RootComponent: RootComponent, routes: routes, components: [<% if (sample === 'hello') { -%>HelloComponent<% } else if (sample === 'techs') { -%>MainComponent<% } else { -%>AppComponent<% } -%>]};
+module.exports = {RootComponent: RootComponent, routes: routes, routing: ngRouter.RouterModule.forRoot(routes)};

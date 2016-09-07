@@ -48,19 +48,22 @@ module.exports = fountain.Base.extend({
     pkg() {
       this.mergeJson('package.json', {
         dependencies: {
-          '@angular/core': '2.0.0-rc.5',
-          '@angular/compiler': '2.0.0-rc.5',
-          '@angular/common': '2.0.0-rc.5',
-          '@angular/platform-browser': '2.0.0-rc.5',
-          '@angular/platform-browser-dynamic': '2.0.0-rc.5',
-          '@angular/http': '2.0.0-rc.5',
-          'rxjs': '5.0.0-beta.8',
-          'zone.js': '^0.6.12',
-          'reflect-metadata': '0.1.3'
+          '@angular/core': '2.0.0-rc.6',
+          '@angular/compiler': '2.0.0-rc.6',
+          '@angular/common': '2.0.0-rc.6',
+          '@angular/platform-browser': '2.0.0-rc.6',
+          '@angular/platform-browser-dynamic': '2.0.0-rc.6',
+          '@angular/http': '2.0.0-rc.6',
+          'rxjs': '5.0.0-beta.11',
+          'zone.js': '^0.6.17'
         }
       });
       if (this.props.js === 'typescript') {
-        this.mergeJson('package.json', {dependencies: {'es6-shim': '^0.35.0'}});
+        this.mergeJson('package.json', {
+          dependencies: {
+            'core-js': '^2.4.1'
+          }
+        });
       }
     },
 
@@ -99,7 +102,7 @@ module.exports = fountain.Base.extend({
       if (this.props.router === 'router') {
         this.mergeJson('package.json', {
           dependencies: {
-            '@angular/router': '3.0.0-rc.1'
+            '@angular/router': '3.0.0-rc.2'
           }
         });
       } else if (this.props.router === 'uirouter') {
@@ -135,7 +138,7 @@ module.exports = fountain.Base.extend({
 
   writing() {
     if (this.props.router !== 'none') {
-      this.copyTemplate(`src/${this.props.router}/routes.js`, 'src/routes.js', this.props);
+      this.copyTemplate(`src/${this.props.router}/routes.js`, 'src/app/routes.js', this.props);
     }
     this.copyTemplate('src/index.html', 'src/index.html', {router: this.props.router});
   }
