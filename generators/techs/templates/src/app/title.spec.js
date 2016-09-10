@@ -1,17 +1,19 @@
-<% if (modules === 'webpack') { -%>
-require('zone.js/dist/zone');
-<% } -%>
-require('zone.js/dist/async-test');
 var TitleComponent = require('./title');
-var ngTest = require('@angular/core/testing');
+var TestBed = require('@angular/core/testing').TestBed;
 
-describe('title component', function () {
-  it('should render \'Allo, \'Allo!', ngTest.async(ngTest.inject([ngTest.TestComponentBuilder], function (tcb) {
-    tcb.createAsync(TitleComponent)
-      .then(function (fixture) {
-        fixture.detectChanges();
-        var title = fixture.nativeElement;
-        expect(title.querySelector('h1').textContent.trim()).toBe('\'Allo, \'Allo!');
-      });
-  })));
+describe('title component', () => {
+  beforeEach(() => {
+    TestBed.configureTestingModule({
+      declarations: [
+        TitleComponent
+      ]
+    });
+  });
+
+  it('should render \'Allo, \'Allo!', function () {
+    var fixture = TestBed.createComponent(TitleComponent);
+    fixture.detectChanges();
+    var title = fixture.nativeElement;
+    expect(title.querySelector('h1').textContent.trim()).toBe('\'Allo, \'Allo!');
+  });
 });

@@ -5,8 +5,6 @@ import {Http, BaseRequestOptions, Response, ResponseOptions} from '@angular/http
 import {Component, Input} from '@angular/core';
 import {TechsComponent, Tech} from './techs';
 import {TestBed, inject} from '@angular/core/testing';
-
-import 'rxjs/Rx';
 import {Observable} from 'rxjs/Rx';
 
 @Component({
@@ -68,9 +66,9 @@ describe('techs component', () => {
       mockBackend.connections.subscribe((connection: MockConnection) => {
         conn = connection;
       });
-      techs.getTechs().subscribe((jsonObject => {
+      techs.getTechs().subscribe(jsonObject => {
         techs.techs = jsonObject;
-      }));
+      });
       conn.mockRespond(response);
       expect(techs.techs.length).toBe(3);
       mockBackend.verifyNoPendingRequests();

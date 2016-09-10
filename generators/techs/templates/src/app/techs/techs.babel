@@ -1,13 +1,9 @@
 import {Component} from '@angular/core';
-import {Http, HTTP_PROVIDERS} from '@angular/http';
-import 'rxjs/Rx';
-import {TechComponent} from './tech';
+import {Http} from '@angular/http';
 
 @Component({
   selector: 'fountain-techs',
-  template: require('./techs.html'),
-  directives: [TechComponent],
-  providers: [HTTP_PROVIDERS]
+  template: require('./techs.html')
 })
 export class TechsComponent {
   constructor(http) {

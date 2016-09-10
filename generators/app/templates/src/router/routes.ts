@@ -19,7 +19,7 @@ export class RootComponent {}
 export const routes: Routes = [
   {
     path: '',
-    component: <% if (sample === 'hello') { -%>HelloComponent<% } else if (sample === 'techs') { -%>MainComponent<% } else { -%>AppComponent<% } -%>
+    component: <% if (sample === 'hello') { %>HelloComponent<% } else if (sample === 'techs') { %>MainComponent<% } else { %>AppComponent<% } %>
   }
 ];
 

@@ -1,6 +1,8 @@
 /// <reference path="../../typings/index.d.ts"/>
 
 import {Component} from '@angular/core';
+import {TestBed} from '@angular/core/testing';
+import {MainComponent} from './main';
 
 @Component({selector: 'fountain-techs', template: ''})
 class MockTechsComponent {}
@@ -10,10 +12,6 @@ class MockFooterComponent {}
 class MockHeaderComponent {}
 @Component({selector: 'fountain-title', template: ''})
 class MockTitleComponent {}
-
-import {TestBed} from '@angular/core/testing';
-
-import {MainComponent} from './main';
 
 describe('Main Component', () => {
   beforeEach(() => {
