@@ -1,24 +1,27 @@
-/// <reference path="../typings/index.d.ts"/>
+/// <reference path="../../typings/index.d.ts"/>
 
 import {Injectable} from '@angular/core';
-import {UIRouter} from 'ui-router-ng2/router';
+import {UIRouter, Ng2StateDeclaration} from 'ui-router-ng2';
+
 <% if (sample === 'hello') { -%>
-import {HelloComponent} from './app/hello';
+import {HelloComponent} from './hello';
 <% } else if (sample === 'techs') { -%>
-import {MainComponent} from './app/main';
+import {MainComponent} from './main';
 <% } else { -%>
-import {AppComponent} from './app/containers/App';
+import {AppComponent} from './containers/App';
 <% } -%>
 
-const INITIAL_STATES: any[] = [
-  {name: 'App', url: '/', component: <% if (sample === 'hello') { -%>HelloComponent<% } else if (sample === 'techs') { -%>MainComponent<% } else { -%>AppComponent<% } -%>}
+export const STATES: Ng2StateDeclaration[] = [
+    {
+      name: 'App',
+      url: '/',
+      component: <% if (sample === 'hello') { %>HelloComponent<% } else if (sample === 'techs') { %>MainComponent<% } else { %>AppComponent<% } %>
+    }
 ];
 
 @Injectable()
 export class MyUIRouterConfig {
   configure(uiRouter: UIRouter) {
-    uiRouter.urlRouterProvider.otherwise(() => uiRouter.stateService.go('App', null, null));
-    uiRouter.stateRegistry.root();
-    INITIAL_STATES.forEach(state => uiRouter.stateRegistry.register(state));
+    uiRouter.urlRouterProvider.otherwise(() => uiRouter.stateService.go('App') && null );
   }
 }

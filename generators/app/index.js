@@ -108,7 +108,7 @@ module.exports = fountain.Base.extend({
       } else if (this.props.router === 'uirouter') {
         this.mergeJson('package.json', {
           dependencies: {
-            'ui-router-ng2': '1.0.0-alpha.5'
+            'ui-router-ng2': '1.0.0-beta.2'
           }
         });
       }
