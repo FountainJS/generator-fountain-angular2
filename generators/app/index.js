@@ -55,16 +55,10 @@ module.exports = fountain.Base.extend({
           '@angular/platform-browser-dynamic': '2.0.0-rc.6',
           '@angular/http': '2.0.0-rc.6',
           'rxjs': '5.0.0-beta.11',
-          'zone.js': '^0.6.17'
+          'zone.js': '^0.6.17',
+          'core-js': '^2.4.1'
         }
       });
-      if (this.props.js === 'typescript') {
-        this.mergeJson('package.json', {
-          dependencies: {
-            'core-js': '^2.4.1'
-          }
-        });
-      }
     },
 
     babel() {

@@ -1,6 +1,7 @@
 require('core-js/client/shim');
 require('zone.js/dist/zone');
 
+require('@angular/common');
 require('rxjs');
 
 require('./index.<%- css %>');

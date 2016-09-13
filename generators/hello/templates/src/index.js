@@ -1,24 +1,14 @@
-<% if (modules !== 'systemjs') { -%>
-require('reflect-metadata');
-<% } -%>
-require('zone.js');
+require('core-js/client/shim');
+require('zone.js/dist/zone');
 
-var ng = require('@angular/platform-browser-dynamic');
+require('@angular/common');
+require('rxjs');
 
 require('./index.<%- css %>');
 
-<% if (router === 'uirouter') { -%>
-var uiRouter = require('ui-router-ng2');
-var ngCommon = require('@angular/common');
-var ngPlatformBrowser = require('@angular/platform-browser');
-var MyUIRouterConfig = require('./routes');
-<% } else if (router === 'router') { -%>
-var ngRouter = require('@angular/router');
-var rts = require('./routes');
-<% } else { -%>
-var HelloComponent = require('./app/hello');
-<% } -%>
 var ngCore = require('@angular/core');
+var ngPbd = require('@angular/platform-browser-dynamic');
+var AppModule = require('./app');
 
 <% if (modules === 'systemjs') { -%>
 var systemEnv = require('@system-env');
@@ -28,18 +18,9 @@ if (systemEnv.production) {
 if (process.env.NODE_ENV === 'production') {
 <% } -%>
   ngCore.enableProdMode();
+} else {
+  Error['stackTraceLimit'] = Infinity; // eslint-disable-line dot-notation
+  require('zone.js/dist/long-stack-trace-zone');
 }
 
-<% if (router === 'uirouter') { -%>
-ng.bootstrap(uiRouter.UiView, uiRouter.UIROUTER_PROVIDERS.concat([
-  ngCore.provide(ngCommon.LocationStrategy, {useClass: ngCommon.PathLocationStrategy}),
-  ngCore.provide(ngCommon.PlatformLocation, {useClass: ngPlatformBrowser.BrowserPlatformLocation}),
-  ngCore.provide(uiRouter.UIRouterConfig, {useClass: MyUIRouterConfig})
-]));
-<% } else if (router === 'router') { -%>
-ng.bootstrap(rts.RootComponent, [
-  ngRouter.provideRouter(rts.routes)
-]);
-<% } else { -%>
-ng.bootstrap(HelloComponent);
-<% } -%>
+ngPbd.platformBrowserDynamic().bootstrapModule(AppModule);

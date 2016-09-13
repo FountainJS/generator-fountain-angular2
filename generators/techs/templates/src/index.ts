@@ -3,6 +3,7 @@
 import 'core-js/client/shim';
 import 'zone.js/dist/zone';
 
+import '@angular/common';
 import 'rxjs';
 
 import './index.<%- css %>';
