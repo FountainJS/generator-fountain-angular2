@@ -1,26 +1,27 @@
 var ng = require('@angular/core');
+
 <% if (sample === 'hello') { -%>
-var HelloComponent = require('./app/hello');
+var HelloComponent = require('./hello');
 <% } else if (sample === 'techs') { -%>
-var MainComponent = require('./app/main');
+var MainComponent = require('./main');
 <% } else { -%>
-var AppComponent = require('./app/containers/App');
+var AppComponent = require('./containers/App');
 <% } -%>
 
-var INITIAL_STATES = [
-  {name: 'App', url: '/', component: <% if (sample === 'hello') { -%>HelloComponent<% } else if (sample === 'techs') { -%>MainComponent<% } else { -%>AppComponent<% } -%>}
+exports.STATES = [
+  {
+    name: 'App',
+    url: '/',
+    component: <% if (sample === 'hello') { %>HelloComponent<% } else if (sample === 'techs') { %>MainComponent<% } else { %>AppComponent<% } %>
+  }
 ];
 
-module.exports = ng.Class({
+exports.MyUIRouterConfig = ng.Class({
   constructor: function () {},
 
   configure: function (uiRouter) {
-    INITIAL_STATES.forEach(function (state) {
-      uiRouter.stateRegistry.register(state);
-      uiRouter.stateRegistry.root();
-      uiRouter.urlRouterProvider.otherwise(function () {
-        uiRouter.stateService.go('App', null, null);
-      });
+    uiRouter.urlRouterProvider.otherwise(function () {
+      return uiRouter.stateService.go('App');
     });
   }
 });

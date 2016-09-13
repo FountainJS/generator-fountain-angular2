@@ -39,7 +39,7 @@ import {FooterComponent} from './footer';
   ],
 <% if (router === 'uirouter') { -%>
   providers: [
-    provideUIRouter({ configClass: MyUIRouterConfig })
+    provideUIRouter({configClass: MyUIRouterConfig})
   ],
   states: STATES,
   bootstrap: [UIView]

@@ -12,16 +12,16 @@ import {AppComponent} from './containers/App';
 <% } -%>
 
 export const STATES: Ng2StateDeclaration[] = [
-    {
-      name: 'App',
-      url: '/',
-      component: <% if (sample === 'hello') { %>HelloComponent<% } else if (sample === 'techs') { %>MainComponent<% } else { %>AppComponent<% } %>
-    }
+  {
+    name: 'App',
+    url: '/',
+    component: <% if (sample === 'hello') { %>HelloComponent<% } else if (sample === 'techs') { %>MainComponent<% } else { %>AppComponent<% } %>
+  }
 ];
 
 @Injectable()
 export class MyUIRouterConfig {
   configure(uiRouter: UIRouter) {
-    uiRouter.urlRouterProvider.otherwise(() => uiRouter.stateService.go('App') && null );
+    uiRouter.urlRouterProvider.otherwise(() => uiRouter.stateService.go('App'));
   }
 }

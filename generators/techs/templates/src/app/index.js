@@ -1,12 +1,12 @@
-var ngCore = require('@angular/core');
+var ng = require('@angular/core');
+var ngPlatformBrowser = require('@angular/platform-browser');
 <% if (router === 'uirouter') { -%>
-var ngCommon = require('@angular/common');
 var uiRouter = require('ui-router-ng2');
-var myRouterConfig = require('./routes');
+var myRoutes = require('./routes');
 <% } else if (router === 'router') { -%>
 var myRoutes = require('./routes');
 <% } -%>
-var ngPlatformBrowser = require('@angular/platform-browser');
+
 var TechsModule = require('./techs');
 
 var MainComponent = require('./main');
@@ -14,7 +14,11 @@ var HeaderComponent = require('./header');
 var TitleComponent = require('./title');
 var FooterComponent = require('./footer');
 
-module.exports = ngCore.NgModule({
+<% if (router === 'uirouter') { -%>
+module.exports = uiRouter.UIRouterModule({
+<% } else { -%>
+module.exports = ng.NgModule({
+<% } -%>
   imports: [
     ngPlatformBrowser.BrowserModule,
 <% if (router === 'router') { -%>
@@ -23,9 +27,7 @@ module.exports = ngCore.NgModule({
     TechsModule
   ],
   declarations: [
-<% if (router === 'uirouter') { -%>
-    uiRouter.UiView,
-<% } else if (router === 'router') { -%>
+<% if (router === 'router') { -%>
     myRoutes.RootComponent,
 <% } -%>
     MainComponent,
@@ -35,18 +37,24 @@ module.exports = ngCore.NgModule({
   ],
 <% if (router === 'uirouter') { -%>
   providers: [
-    ...uiRouter.UIROUTER_PROVIDERS,
-    ngCore.provide(LocationStrategy, {useClass: PathLocationStrategy}),
-    ngCore.provide(PlatformLocation, {useClass: BrowserPlatformLocation}),
-    ngCore.provide(UIRouterConfig, {useClass: MyUIRouterConfig})
+    uiRouter.provideUIRouter({configClass: myRoutes.MyUIRouterConfig})
   ],
-  bootstrap: [uiRouter.UiView]
+  states: myRoutes.STATES,
+  bootstrap: [uiRouter.UIView]
 <% } else if (router === 'router') { -%>
   bootstrap: [myRoutes.RootComponent]
 <% } else { -%>
   bootstrap: [MainComponent]
 <% } -%>
+<% if (router !== 'uirouter') { -%>
 })
 .Class({
   constructor: function () {}
 });
+<% } else { -%>
+})(
+  ng.Class({
+    constructor: function () {}
+  })
+);
+<% } -%>
