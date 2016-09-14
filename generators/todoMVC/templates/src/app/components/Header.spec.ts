@@ -1,55 +1,59 @@
 /// <reference path="../../../typings/index.d.ts"/>
 
-import 'zone.js/dist/zone';
-import 'zone.js/dist/async-test';
-import 'zone.js/dist/fake-async-test';
-import {provideStore} from '@ngrx/store';
+import {Component, Input, Output, EventEmitter} from '@angular/core';
+import {StoreModule} from '@ngrx/store';
 import {HeaderComponent} from './Header';
 import {By} from '@angular/platform-browser';
-import {async, inject, TestComponentBuilder, ComponentFixture, addProviders} from '@angular/core/testing';
+import {TestBed} from '@angular/core/testing';
 
-describe('components', () => {
-  let tcb: TestComponentBuilder;
+@Component({
+  selector: 'fountain-todo-text-input',
+  template: ''
+})
+class MockTodoTextInputComponent {
+  @Input() newTodo;
+  @Input() editing;
+  @Input() placeholder;
+  @Input() text;
+  @Output() onSave: EventEmitter<any> = new EventEmitter(false);
+}
 
+describe('Header component', () => {
   beforeEach(() => {
-    addProviders([
-      provideStore({}, {})
-    ]);
+    TestBed.configureTestingModule({
+      imports: [
+        StoreModule.provideStore({}, {})
+      ],
+      declarations: [
+        HeaderComponent,
+        MockTodoTextInputComponent
+      ]
+    });
   });
 
-  beforeEach(inject([TestComponentBuilder], (_tcb: TestComponentBuilder) => {
-    tcb = _tcb;
-  }));
+  it('should render correctly', () => {
+    const fixture = TestBed.createComponent(HeaderComponent);
+    fixture.detectChanges();
+    const header = fixture.nativeElement;
+    expect(header.querySelector('header')).not.toBeNull();
+    expect(header.querySelector('header').className).toBe('header');
+    const h1 = header.querySelector('h1');
+    expect(h1).not.toBeNull();
+    expect(h1.textContent.trim()).toBe('todos');
+    const todoTextInput = fixture.debugElement.query(By.css('fountain-todo-text-input')).componentInstance;
+    expect(todoTextInput.newTodo).toBe(true);
+    expect(todoTextInput.placeholder).toBe('What needs to be done?');
+  });
 
-  describe('Header', () => {
-    it('should render correctly', async(inject([], () => {
-      tcb.createAsync(HeaderComponent)
-        .then((fixture: ComponentFixture<any>) => {
-          fixture.detectChanges();
-          const header = fixture.nativeElement;
-          expect(header.querySelector('header')).not.toBeNull();
-          expect(header.querySelector('header').className).toBe('header');
-          const h1 = header.querySelector('h1');
-          expect(h1).not.toBeNull();
-          expect(h1.textContent.trim()).toBe('todos');
-          const todoTextInput = fixture.debugElement.query(By.css('fountain-todo-text-input')).componentInstance;
-          expect(todoTextInput.newTodo).toBe(true);
-          expect(todoTextInput.placeholder).toBe('What needs to be done?');
-        });
-    })));
-
-    it('should call addTodo if length of text is greater than 0', async(inject([], () => {
-      tcb.createAsync(HeaderComponent)
-        .then((fixture: ComponentFixture<any>) => {
-          fixture.detectChanges();
-          const HeaderCmp = fixture.componentInstance;
-          const todoTextInput = fixture.debugElement.query(By.css('fountain-todo-text-input')).componentInstance;
-          spyOn(HeaderCmp.store, 'dispatch');
-          todoTextInput.onSave.emit('');
-          expect(HeaderCmp.store.dispatch.calls.count()).toBe(0);
-          todoTextInput.onSave.emit('Use ngrx/store');
-          expect(HeaderCmp.store.dispatch.calls.count()).toBe(1);
-        });
-    })));
+  it('should call addTodo if length of text is greater than 0', () => {
+    const fixture = TestBed.createComponent(HeaderComponent);
+    fixture.detectChanges();
+    const HeaderCmp = fixture.componentInstance;
+    const todoTextInput = fixture.debugElement.query(By.css('fountain-todo-text-input')).componentInstance;
+    const dispatchSpy: jasmine.Spy = spyOn(HeaderCmp.store, 'dispatch');
+    todoTextInput.onSave.emit('');
+    expect(dispatchSpy.calls.count()).toBe(0);
+    todoTextInput.onSave.emit('Use ngrx/store');
+    expect(dispatchSpy.calls.count()).toBe(1);
   });
 });

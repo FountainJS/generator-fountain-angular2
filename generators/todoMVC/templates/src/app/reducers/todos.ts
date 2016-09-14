@@ -1,13 +1,13 @@
 import {ADD_TODO, DELETE_TODO, EDIT_TODO, COMPLETE_TODO, COMPLETE_ALL, CLEAR_COMPLETED} from '../constants/ActionTypes';
 import {SHOW_ALL, SHOW_COMPLETED, SHOW_ACTIVE} from '../constants/TodoFilters';
 
-export const initialTodo = {
+const initialTodo = {
   text: 'Use ngrx/store',
   completed: false,
   id: 0
 };
 
-export const initialVisibility = {type: SHOW_ALL, filter: todo => true};
+const initialVisibility = {type: SHOW_ALL, filter: todo => true};
 
 export const todos = (state: any[] = [initialTodo], action: any) => {
   switch (action.type) {

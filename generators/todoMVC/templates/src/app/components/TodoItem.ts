@@ -1,10 +1,8 @@
 import {Component, Input, Output, EventEmitter} from '@angular/core';
-import {TodoTextInputComponent} from './TodoTextInput';
 
 @Component({
   selector: 'fountain-todo-item',
-  template: require('./TodoItem.html'),
-  directives: [TodoTextInputComponent]
+  template: require('./TodoItem.html')
 })
 export class TodoItemComponent {
   @Input() todo: any;
