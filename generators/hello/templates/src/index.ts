@@ -10,7 +10,11 @@ import './index.<%- css %>';
 
 import {enableProdMode} from '@angular/core';
 import {platformBrowserDynamic} from '@angular/platform-browser-dynamic';
+<% if (modules === 'systemjs') { -%>
+import {AppModule} from './app/index';
+<% } else { -%>
 import {AppModule} from './app';
+<% } -%>
 
 <% if (modules === 'systemjs') { -%>
 import {production} from '@system-env';
