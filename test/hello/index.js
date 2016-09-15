@@ -10,6 +10,7 @@ let context;
 const files = [
   'src/index.js',
   'src/index.css',
+  'src/app/index.js',
   'src/app/hello.html',
   'src/app/hello.js',
   'src/app/hello.spec.js'
@@ -21,7 +22,7 @@ test.before(() => {
   process.chdir('../../');
 });
 
-test(`Call this.copyTemplate 4 times`, t => {
+test(`Call this.copyTemplate 6 times`, t => {
   const spy = chai.spy.on(context, 'copyTemplate');
   TestUtils.call(context, 'writing');
   expect(spy).to.have.been.called.exactly(files.length);

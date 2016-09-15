@@ -10,6 +10,7 @@ let context;
 const files = [
   'src/index.js',
   'src/index.css',
+  'src/app/index.js',
   'src/app/footer.html',
   'src/app/footer.js',
   'src/app/footer.spec.js',
@@ -22,6 +23,7 @@ const files = [
   'src/app/title.html',
   'src/app/title.js',
   'src/app/title.spec.js',
+  'src/app/techs/index.js',
   'src/app/techs/tech.html',
   'src/app/techs/tech.js',
   'src/app/techs/tech.spec.js',
@@ -36,7 +38,7 @@ test.before(() => {
   process.chdir('../../');
 });
 
-test(`Call this.copyTemplate 14 times`, t => {
+test(`Call this.copyTemplate 22 times`, t => {
   const spy = chai.spy.on(context, 'copyTemplate');
   TestUtils.call(context, 'writing.src', {
     version: require('../../package.json').version,

@@ -20,7 +20,7 @@ test.beforeEach(() => {
 test(`Write 'routes.js' and 'index.html'`, t => {
   context.props = {router: 'uirouter'};
   TestUtils.call(context, 'writing', {sample: 'techs'});
-  t.true(context.copyTemplate['src/routes.js'].length > 0);
+  t.true(context.copyTemplate['src/app/routes.js'].length > 0);
   t.true(context.copyTemplate['src/index.html'].length > 0);
 });
 
