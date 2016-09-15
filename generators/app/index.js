@@ -82,16 +82,7 @@ module.exports = fountain.Base.extend({
           'transform-flow-strip-types'
         ];
 
-        if (this.props.modules === 'webpack') {
-          this.mergeJson('.babelrc', {
-            env: {
-              development: {plugins},
-              production: {plugins}
-            }
-          });
-        } else {
-          this.mergeJson('.babelrc', {plugins});
-        }
+        this.mergeJson('.babelrc', {plugins});
       }
     },
 
