@@ -1,11 +1,11 @@
 /// <reference path="../../../typings/index.d.ts"/>
 
 import {TodoTextInputComponent} from './TodoTextInput';
-import {TestBed, fakeAsync, tick} from '@angular/core/testing';
+import {TestBed, fakeAsync, tick, async} from '@angular/core/testing';
 import {FormsModule} from '@angular/forms';
 
 describe('TodoTextInput component', () => {
-  beforeEach(() => {
+  beforeEach(async(() => {
     TestBed.configureTestingModule({
       imports: [
         FormsModule
@@ -14,7 +14,8 @@ describe('TodoTextInput component', () => {
         TodoTextInputComponent
       ]
     });
-  });
+    TestBed.compileComponents();
+  }));
 
   it('should render correctly', fakeAsync(() => {
     const fixture = TestBed.createComponent(TodoTextInputComponent);

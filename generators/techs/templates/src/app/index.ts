@@ -9,7 +9,7 @@ import {STATES, MyUIRouterConfig} from './routes';
 import {routing, RootComponent} from './routes';
 <% } -%>
 
-import {TechsModule} from './techs';
+import {TechsModule} from './techs<%- modules === 'systemjs' ? '/index' : '' %>';
 
 import {MainComponent} from './main';
 import {HeaderComponent} from './header';

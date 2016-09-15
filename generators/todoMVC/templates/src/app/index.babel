@@ -9,7 +9,7 @@ import {STATES, MyUIRouterConfig} from './routes';
 <% } else if (router === 'router') { -%>
 import {routing, RootComponent} from './routes';
 <% } -%>
-import {store} from './reducers';
+import {store} from './reducers<%- modules === 'systemjs' ? '/index' : '' %>';
 
 import {AppComponent} from './containers/App';
 import {FooterComponent} from './components/Footer';

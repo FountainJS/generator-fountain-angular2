@@ -5,7 +5,7 @@ var uiRouter = require('ui-router-ng2');
 <% } -%>
 var myRoutes = require('./routes');
 
-var TechsModule = require('./techs');
+var TechsModule = require('./techs<%- modules === 'systemjs' ? '/index' : '' %>');
 
 var MainComponent = require('./main');
 var HeaderComponent = require('./header');

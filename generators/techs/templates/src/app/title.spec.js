@@ -1,17 +1,18 @@
 var TitleComponent = require('./title');
-var TestBed = require('@angular/core/testing').TestBed;
+var ngTest = require('@angular/core/testing').TestBed;
 
-describe('title component', () => {
-  beforeEach(() => {
-    TestBed.configureTestingModule({
+describe('title component', function () {
+  beforeEach(ngTest.async(function () {
+    ngTest.TestBed.configureTestingModule({
       declarations: [
         TitleComponent
       ]
     });
-  });
+    ngTest.TestBed.compileComponents();
+  }));
 
   it('should render \'Allo, \'Allo!', function () {
-    var fixture = TestBed.createComponent(TitleComponent);
+    var fixture = ngTest.TestBed.createComponent(TitleComponent);
     fixture.detectChanges();
     var title = fixture.nativeElement;
     expect(title.querySelector('h1').textContent.trim()).toBe('\'Allo, \'Allo!');

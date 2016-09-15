@@ -5,7 +5,7 @@ var ngForms = require('@angular/forms');
 var uiRouter = require('ui-router-ng2');
 <% } -%>
 var myRoutes = require('./routes');
-var store = require('./reducers');
+var store = require('./reducers<%- modules === 'systemjs' ? '/index' : '' %>');
 
 var AppComponent = require('./containers/App');
 var FooterComponent = require('./components/Footer');
@@ -29,7 +29,7 @@ module.exports = ng.NgModule({
   ],
   declarations: [
 <% if (router === 'router') { -%>
-    RootComponent,
+    myRoutes.RootComponent,
 <% } -%>
     AppComponent,
     FooterComponent,

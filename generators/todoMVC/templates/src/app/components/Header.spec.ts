@@ -4,7 +4,7 @@ import {Component, Input, Output, EventEmitter} from '@angular/core';
 import {StoreModule} from '@ngrx/store';
 import {HeaderComponent} from './Header';
 import {By} from '@angular/platform-browser';
-import {TestBed} from '@angular/core/testing';
+import {TestBed, async} from '@angular/core/testing';
 
 @Component({
   selector: 'fountain-todo-text-input',
@@ -19,7 +19,7 @@ class MockTodoTextInputComponent {
 }
 
 describe('Header component', () => {
-  beforeEach(() => {
+  beforeEach(async(() => {
     TestBed.configureTestingModule({
       imports: [
         StoreModule.provideStore({}, {})
@@ -29,7 +29,8 @@ describe('Header component', () => {
         MockTodoTextInputComponent
       ]
     });
-  });
+    TestBed.compileComponents();
+  }));
 
   it('should render correctly', () => {
     const fixture = TestBed.createComponent(HeaderComponent);

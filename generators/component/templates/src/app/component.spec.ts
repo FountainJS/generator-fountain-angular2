@@ -1,12 +1,13 @@
 /// <reference path="<%- typings %>"/>
 
 import {<%- className %>} from './<%- name %>';
-import {TestBed} from '@angular/core/testing';
+import {TestBed, async} from '@angular/core/testing';
 
 describe('<%- componentName %> component', () => {
-  beforeEach(() => {
+  beforeEach(async(() => {
     TestBed.configureTestingModule({declarations: [<%- componentName %>]});
-  });
+    TestBed.compileComponents();
+  }));
 
   it('should render...', () => {
     const fixture = TestBed.createComponent(<%- componentName %>);

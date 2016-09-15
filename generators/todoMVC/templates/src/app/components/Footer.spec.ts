@@ -1,17 +1,18 @@
 /// <reference path="../../../typings/index.d.ts"/>
 
 import {FooterComponent} from './Footer';
-import {TestBed} from '@angular/core/testing';
+import {TestBed, async} from '@angular/core/testing';
 import {SHOW_ACTIVE} from '../constants/TodoFilters';
 
 describe('Footer component', () => {
-  beforeEach(() => {
+  beforeEach(async(() => {
     TestBed.configureTestingModule({
       declarations: [
         FooterComponent
       ]
     });
-  });
+    TestBed.compileComponents();
+  }));
 
   it('should render correctly', () => {
     const fixture = TestBed.createComponent(FooterComponent);

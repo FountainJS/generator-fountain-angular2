@@ -1,14 +1,15 @@
 import {TechComponent} from './tech';
-import {TestBed} from '@angular/core/testing';
+import {TestBed, async} from '@angular/core/testing';
 
 describe('tech component', () => {
-  beforeEach(() => {
+  beforeEach(async(() => {
     TestBed.configureTestingModule({
       declarations: [
         TechComponent
       ]
     });
-  });
+    TestBed.compileComponents();
+  }));
 
   it('should render Gulp', () => {
     const fixture = TestBed.createComponent(TechComponent);

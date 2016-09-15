@@ -15,15 +15,16 @@ var MockTodoTextInputComponent = ng.Component({
   }
 });
 
-describe('TodoItem component', () => {
-  beforeEach(() => {
+describe('TodoItem component', function () {
+  beforeEach(ngTest.async(function () {
     ngTest.TestBed.configureTestingModule({
       declarations: [
         TodoItemComponent,
         MockTodoTextInputComponent
       ]
     });
-  });
+    ngTest.TestBed.compileComponents();
+  }));
 
   it('should render the correct elements', function () {
     var fixture = ngTest.TestBed.createComponent(TodoItemComponent);

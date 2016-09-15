@@ -2,14 +2,15 @@ var FooterComponent = require('./Footer');
 var ngTest = require('@angular/core/testing');
 var filters = require('../constants/TodoFilters');
 
-describe('Footer component', () => {
-  beforeEach(() => {
+describe('Footer component', function () {
+  beforeEach(ngTest.async(function () {
     ngTest.TestBed.configureTestingModule({
       declarations: [
         FooterComponent
       ]
     });
-  });
+    ngTest.TestBed.compileComponents();
+  }));
 
   it('should render \'Test\'', function () {
     var fixture = ngTest.TestBed.createComponent(FooterComponent);

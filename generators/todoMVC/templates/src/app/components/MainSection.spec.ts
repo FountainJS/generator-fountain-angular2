@@ -2,7 +2,7 @@
 
 import {Component, Input, Output, EventEmitter} from '@angular/core';
 import {FormsModule} from '@angular/forms';
-import {TestBed} from '@angular/core/testing';
+import {TestBed, async} from '@angular/core/testing';
 import {By} from '@angular/platform-browser';
 import {StoreModule, combineReducers} from '@ngrx/store';
 import {todos, visibility} from '../reducers/todos';
@@ -37,7 +37,7 @@ const store = StoreModule.provideStore(combineReducers({todos, visibility}), {})
 
 describe('MainSection component', () => {
   describe('mocked', () => {
-    beforeEach(() => {
+    beforeEach(async(() => {
       TestBed.configureTestingModule({
         imports: [
           store
@@ -48,7 +48,8 @@ describe('MainSection component', () => {
           MockFooterComponent
         ]
       });
-    });
+      TestBed.compileComponents();
+    }));
 
     it('should render container', () => {
       const fixture = TestBed.createComponent(MainSectionComponent);
@@ -92,7 +93,7 @@ describe('MainSection component', () => {
   });
 
   describe('footer', () => {
-    beforeEach(() => {
+    beforeEach(async(() => {
       TestBed.configureTestingModule({
         imports: [
           store
@@ -103,7 +104,8 @@ describe('MainSection component', () => {
           FooterComponent
         ]
       });
-    });
+      TestBed.compileComponents();
+    }));
 
     it('should render', () => {
       const fixture = TestBed.createComponent(MainSectionComponent);
@@ -139,7 +141,7 @@ describe('MainSection component', () => {
   });
 
   describe('todo list', () => {
-    beforeEach(() => {
+    beforeEach(async(() => {
       TestBed.configureTestingModule({
         imports: [
           FormsModule,
@@ -152,7 +154,8 @@ describe('MainSection component', () => {
           MockFooterComponent
         ]
       });
-    });
+      TestBed.compileComponents();
+    }));
 
     it('should render', () => {
       const fixture = TestBed.createComponent(MainSectionComponent);

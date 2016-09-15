@@ -1,7 +1,7 @@
 /// <reference path="../../typings/index.d.ts"/>
 
 import {Component} from '@angular/core';
-import {TestBed} from '@angular/core/testing';
+import {TestBed, async} from '@angular/core/testing';
 import {MainComponent} from './main';
 
 @Component({selector: 'fountain-techs', template: ''})
@@ -14,7 +14,7 @@ class MockHeaderComponent {}
 class MockTitleComponent {}
 
 describe('Main Component', () => {
-  beforeEach(() => {
+  beforeEach(async(() => {
     TestBed.configureTestingModule({
       declarations: [
         MainComponent,
@@ -24,7 +24,8 @@ describe('Main Component', () => {
         MockTitleComponent
       ]
     });
-  });
+    TestBed.compileComponents();
+  }));
 
   it('should render the header, title, techs and footer', () => {
     const fixture = TestBed.createComponent(MainComponent);

@@ -39,7 +39,7 @@ var techsJson = [
 ];
 
 describe('techs component', function () {
-  beforeEach(() => {
+  beforeEach(ngTest.async(function () {
     ngTest.TestBed.configureTestingModule({
       declarations: [
         TechsComponent,
@@ -56,9 +56,10 @@ describe('techs component', function () {
         }
       ]
     });
-  });
+    ngTest.TestBed.compileComponents();
+  }));
 
-  describe('techs component methods', () => {
+  describe('techs component methods', function () {
     it('should get techs', ngTest.inject([ngHttpTesting.MockBackend], function (mockBackend) {
       var fixture = ngTest.TestBed.createComponent(TechsComponent);
       var techs = fixture.componentInstance;
@@ -76,8 +77,8 @@ describe('techs component', function () {
     }));
   });
 
-  describe('techs component rendering', () => {
-    beforeEach(() => {
+  describe('techs component rendering', function () {
+    beforeEach(function () {
       TechsComponent.prototype.getTechs = function getTechs() {
         const response = new ngHttp.Response(new ngHttp.ResponseOptions({body: techsJson}));
         return Rx.Observable.of(response).map(function (response) {

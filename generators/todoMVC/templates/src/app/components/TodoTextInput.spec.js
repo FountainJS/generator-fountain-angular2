@@ -3,7 +3,7 @@ var ngForms = require('@angular/forms');
 var TodoTextInputComponent = require('./TodoTextInput');
 
 describe('TodoTextInput component', function () {
-  beforeEach(function () {
+  beforeEach(ngTest.async(function () {
     ngTest.TestBed.configureTestingModule({
       imports: [
         ngForms.FormsModule
@@ -12,7 +12,8 @@ describe('TodoTextInput component', function () {
         TodoTextInputComponent
       ]
     });
-  });
+    ngTest.TestBed.compileComponents();
+  }));
 
   it('should render correctly', ngTest.fakeAsync(function () {
     var fixture = ngTest.TestBed.createComponent(TodoTextInputComponent);

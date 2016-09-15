@@ -1,8 +1,5 @@
 var HelloComponent = require('./hello');
 var ngTest = require('@angular/core/testing');
-require('@angular/common');
-require('zone.js/dist/zone');
-require('zone.js/dist/async-test');
 
 describe('hello component', function () {
   beforeEach(ngTest.async(function () {

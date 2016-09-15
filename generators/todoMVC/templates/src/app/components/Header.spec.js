@@ -17,7 +17,7 @@ var MockTodoTextInputComponent = ng.Component({
 });
 
 describe('Header component', function () {
-  beforeEach(() => {
+  beforeEach(ngTest.async(function () {
     ngTest.TestBed.configureTestingModule({
       imports: [
         ngrxStore.StoreModule.provideStore({}, {})
@@ -27,7 +27,8 @@ describe('Header component', function () {
         MockTodoTextInputComponent
       ]
     });
-  });
+    ngTest.TestBed.compileComponents();
+  }));
 
   it('should render correctly', function () {
     const fixture = ngTest.TestBed.createComponent(HeaderComponent);

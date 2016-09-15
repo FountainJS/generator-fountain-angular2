@@ -31,8 +31,8 @@ var MockTitleComponent = ng.Component({
   constructor: function () {}
 });
 
-describe('Main Component', () => {
-  beforeEach(function () {
+describe('Main Component', function () {
+  beforeEach(ngTest.async(function () {
     ngTest.TestBed.configureTestingModule({
       declarations: [
         MainComponent,
@@ -42,7 +42,8 @@ describe('Main Component', () => {
         MockTitleComponent
       ]
     });
-  });
+    ngTest.TestBed.compileComponents();
+  }));
 
   it('should render the header, title, techs and footer', function () {
     const fixture = ngTest.TestBed.createComponent(MainComponent);

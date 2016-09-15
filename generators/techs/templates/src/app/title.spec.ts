@@ -1,16 +1,17 @@
 /// <reference path="../../typings/index.d.ts"/>
 
 import {TitleComponent} from './title';
-import {TestBed} from '@angular/core/testing';
+import {TestBed, async} from '@angular/core/testing';
 
 describe('title component', () => {
-  beforeEach(() => {
+  beforeEach(async(() => {
     TestBed.configureTestingModule({
       declarations: [
         TitleComponent
       ]
     });
-  });
+    TestBed.compileComponents();
+  }));
 
   it('should render \'Allo, \'Allo!', () => {
     const fixture = TestBed.createComponent(TitleComponent);

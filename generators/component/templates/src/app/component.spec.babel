@@ -1,10 +1,11 @@
 import {<%- className %>} from './<%- name %>';
-import {TestBed} from '@angular/core/testing';
+import {TestBed, async} from '@angular/core/testing';
 
 describe('<%- componentName %> component', () => {
-  beforeEach(function () {
+  beforeEach(async(function () {
     TestBed.configureTestingModule({declarations: [<%- componentName %>]});
-  });
+    TestBed.compileComponents();
+  }));
 
   it('should render...', function () {
     const fixture = TestBed.createComponent(<%- componentName %>);

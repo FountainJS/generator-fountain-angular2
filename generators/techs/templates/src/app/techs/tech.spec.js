@@ -2,13 +2,14 @@ var TechComponent = require('./tech');
 var ngTest = require('@angular/core/testing');
 
 describe('tech component', function () {
-  beforeEach(function () {
+  beforeEach(ngTest.async(function () {
     ngTest.TestBed.configureTestingModule({
       declarations: [
         TechComponent
       ]
     });
-  });
+    ngTest.TestBed.compileComponents();
+  }));
 
   it('should render Gulp', function () {
     var fixture = ngTest.TestBed.createComponent(TechComponent);

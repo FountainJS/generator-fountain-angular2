@@ -40,7 +40,7 @@ var store = ngrxStore.StoreModule.provideStore(ngrxStore.combineReducers({
 
 describe('MainSection component', function () {
   describe('mocked', function () {
-    beforeEach(function () {
+    beforeEach(ngTest.async(function () {
       ngTest.TestBed.configureTestingModule({
         imports: [
           store
@@ -51,7 +51,8 @@ describe('MainSection component', function () {
           MockFooterComponent
         ]
       });
-    });
+      ngTest.TestBed.compileComponents();
+    }));
 
     it('should render container', function () {
       var fixture = ngTest.TestBed.createComponent(MainSectionComponent);
@@ -95,7 +96,7 @@ describe('MainSection component', function () {
   });
 
   describe('footer', function () {
-    beforeEach(() => {
+    beforeEach(ngTest.async(function () {
       ngTest.TestBed.configureTestingModule({
         imports: [
           store
@@ -106,7 +107,8 @@ describe('MainSection component', function () {
           FooterComponent
         ]
       });
-    });
+      ngTest.TestBed.compileComponents();
+    }));
 
     it('should render', function () {
       var fixture = ngTest.TestBed.createComponent(MainSectionComponent);
@@ -142,7 +144,7 @@ describe('MainSection component', function () {
   });
 
   describe('todo list', function () {
-    beforeEach(() => {
+    beforeEach(ngTest.async(function () {
       ngTest.TestBed.configureTestingModule({
         imports: [
           ngForms.FormsModule,
@@ -155,7 +157,8 @@ describe('MainSection component', function () {
           MockFooterComponent
         ]
       });
-    });
+      ngTest.TestBed.compileComponents();
+    }));
 
     it('should render', function () {
       var fixture = ngTest.TestBed.createComponent(MainSectionComponent);

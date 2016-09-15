@@ -4,7 +4,7 @@ import {MockBackend, MockConnection} from '@angular/http/testing';
 import {Http, BaseRequestOptions, Response, ResponseOptions} from '@angular/http';
 import {Component, Input} from '@angular/core';
 import {TechsComponent, Tech} from './techs';
-import {TestBed, inject} from '@angular/core/testing';
+import {TestBed, inject, async} from '@angular/core/testing';
 import {Observable} from 'rxjs/Rx';
 
 @Component({
@@ -40,7 +40,7 @@ const techsJson = [
 ];
 
 describe('techs component', () => {
-  beforeEach(() => {
+  beforeEach(async(() => {
     TestBed.configureTestingModule({
       declarations: [
         TechsComponent,
@@ -55,7 +55,8 @@ describe('techs component', () => {
         }
       ]
     });
-  });
+    TestBed.compileComponents();
+  }));
 
   describe('techs component methods', () => {
     it('should get techs', inject([MockBackend], (mockBackend: MockBackend) => {

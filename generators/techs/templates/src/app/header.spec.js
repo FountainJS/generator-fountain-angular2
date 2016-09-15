@@ -1,14 +1,15 @@
 var HeaderComponent = require('./header');
 var ngTest = require('@angular/core/testing');
 
-describe('header component', () => {
-  beforeEach(function () {
+describe('header component', function () {
+  beforeEach(ngTest.async(function () {
     ngTest.TestBed.configureTestingModule({
       declarations: [
         HeaderComponent
       ]
     });
-  });
+    ngTest.TestBed.compileComponents();
+  }));
 
   it('should render \'Fountain Generator\'', function () {
     var fixture = ngTest.TestBed.createComponent(HeaderComponent);

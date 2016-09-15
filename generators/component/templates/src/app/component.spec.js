@@ -1,13 +1,14 @@
 var <%- className %> = require('./<%- name %>');
-var TestBed = require('@angular/core/testing').TestBed;
+var ngTest = require('@angular/core/testing').TestBed;
 
 describe('<%- componentName %> component', function () {
-  beforeEach(function () {
-    TestBed.configureTestingModule({declarations: [<%- componentName %>]});
-  });
+  beforeEach(ngTest.async(function () {
+    ngTest.TestBed.configureTestingModule({declarations: [<%- componentName %>]});
+    ngTest.TestBed.compileComponents();
+  }));
 
   it('should render...', function () {
-    const fixture = TestBed.createComponent(<%- componentName %>);
+    const fixture = ngTest.TestBed.createComponent(<%- componentName %>);
     fixture.detectChanges();
   });
 });

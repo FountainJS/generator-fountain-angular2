@@ -1,16 +1,17 @@
 /// <reference path="../../typings/index.d.ts"/>
 
 import {HeaderComponent} from './header';
-import {TestBed} from '@angular/core/testing';
+import {TestBed, async} from '@angular/core/testing';
 
 describe('header component', () => {
-  beforeEach(() => {
+  beforeEach(async(() => {
     TestBed.configureTestingModule({
       declarations: [
         HeaderComponent
       ]
     });
-  });
+    TestBed.compileComponents();
+  }));
 
   it('should render \'Fountain Generator\'', () => {
     const fixture = TestBed.createComponent(HeaderComponent);

@@ -1,7 +1,7 @@
 /// <reference path="../../../typings/index.d.ts"/>
 
 import {Component, Input, Output, EventEmitter} from '@angular/core';
-import {TestBed} from '@angular/core/testing';
+import {TestBed, async} from '@angular/core/testing';
 import {By} from '@angular/platform-browser';
 import {TodoItemComponent} from './TodoItem';
 
@@ -18,14 +18,15 @@ class MockTodoTextInputComponent {
 }
 
 describe('TodoItem component', () => {
-  beforeEach(() => {
+  beforeEach(async(() => {
     TestBed.configureTestingModule({
       declarations: [
         TodoItemComponent,
         MockTodoTextInputComponent
       ]
     });
-  });
+    TestBed.compileComponents();
+  }));
 
   it('should render the correct elements', () => {
     const fixture = TestBed.createComponent(TodoItemComponent);

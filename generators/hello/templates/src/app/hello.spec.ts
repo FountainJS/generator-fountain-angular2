@@ -2,8 +2,6 @@
 
 import {HelloComponent} from './hello';
 import {TestBed, async} from '@angular/core/testing';
-import '@angular/common';
-import 'zone.js/dist/async-test';
 
 describe('hello component', () => {
   beforeEach(async(() => {
