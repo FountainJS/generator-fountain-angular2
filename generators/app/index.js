@@ -48,12 +48,12 @@ module.exports = fountain.Base.extend({
     pkg() {
       this.mergeJson('package.json', {
         dependencies: {
-          '@angular/core': '2.0.0',
-          '@angular/compiler': '2.0.0',
-          '@angular/common': '2.0.0',
-          '@angular/platform-browser': '2.0.0',
-          '@angular/platform-browser-dynamic': '2.0.0',
-          '@angular/http': '2.0.0',
+          '@angular/core': '^2.0.0',
+          '@angular/compiler': '^2.0.0',
+          '@angular/common': '^2.0.0',
+          '@angular/platform-browser': '^2.0.0',
+          '@angular/platform-browser-dynamic': '^2.0.0',
+          '@angular/http': '^2.0.0',
           'rxjs': '5.0.0-beta.11',
           'zone.js': '^0.6.17',
           'core-js': '^2.4.1'
@@ -96,7 +96,7 @@ module.exports = fountain.Base.extend({
       if (this.props.router === 'router') {
         this.mergeJson('package.json', {
           dependencies: {
-            '@angular/router': '3.0.0'
+            '@angular/router': '^3.0.0'
           }
         });
       } else if (this.props.router === 'uirouter') {

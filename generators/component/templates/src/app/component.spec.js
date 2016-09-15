@@ -1,5 +1,5 @@
 var <%- className %> = require('./<%- name %>');
-var ngTest = require('@angular/core/testing').TestBed;
+var ngTest = require('@angular/core/testing');
 
 describe('<%- componentName %> component', function () {
   beforeEach(ngTest.async(function () {

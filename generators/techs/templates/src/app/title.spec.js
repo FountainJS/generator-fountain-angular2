@@ -1,5 +1,5 @@
 var TitleComponent = require('./title');
-var ngTest = require('@angular/core/testing').TestBed;
+var ngTest = require('@angular/core/testing');
 
 describe('title component', function () {
   beforeEach(ngTest.async(function () {
