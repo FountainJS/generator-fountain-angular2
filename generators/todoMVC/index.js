@@ -50,6 +50,7 @@ module.exports = fountain.Base.extend({
         'src/app/containers/App.html',
         'src/app/containers/App.js',
 
+        'src/app/reducers/index.js',
         'src/app/reducers/todos.js',
         'src/app/reducers/todos.spec.js'
 

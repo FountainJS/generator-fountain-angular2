@@ -61,8 +61,7 @@ describe('TodoTextInput component', () => {
     const input = fixture.nativeElement.querySelector('input');
     expect(input).not.toBeNull();
     input.value = 'Use ngrx/store';
-    let evt = new CustomEvent('input');
-    input.dispatchEvent(evt);
+    input.dispatchEvent(new CustomEvent('input'));
     expect(TodoTextInputCmp.text).toBe('Use ngrx/store');
   });
 

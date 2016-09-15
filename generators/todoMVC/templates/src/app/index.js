@@ -1,16 +1,18 @@
 var ng = require('@angular/core');
 var ngPlatformBrowser = require('@angular/platform-browser');
+var ngForms = require('@angular/forms');
 <% if (router === 'uirouter') { -%>
 var uiRouter = require('ui-router-ng2');
 <% } -%>
 var myRoutes = require('./routes');
+var store = require('./reducers');
 
-var TechsModule = require('./techs');
-
-var MainComponent = require('./main');
-var HeaderComponent = require('./header');
-var TitleComponent = require('./title');
-var FooterComponent = require('./footer');
+var AppComponent = require('./containers/App');
+var FooterComponent = require('./components/Footer');
+var HeaderComponent = require('./components/Header');
+var MainSectionComponent = require('./components/MainSection');
+var TodoItemComponent = require('./components/TodoItem');
+var TodoTextInputComponent = require('./components/TodoTextInput');
 
 <% if (router === 'uirouter') { -%>
 module.exports = uiRouter.UIRouterModule({
@@ -19,19 +21,22 @@ module.exports = ng.NgModule({
 <% } -%>
   imports: [
     ngPlatformBrowser.BrowserModule,
+    ngForms.FormsModule,
 <% if (router === 'router') { -%>
     myRoutes.routing,
 <% } -%>
-    TechsModule
+    store
   ],
   declarations: [
 <% if (router === 'router') { -%>
-    myRoutes.RootComponent,
+    RootComponent,
 <% } -%>
-    MainComponent,
+    AppComponent,
+    FooterComponent,
     HeaderComponent,
-    TitleComponent,
-    FooterComponent
+    MainSectionComponent,
+    TodoItemComponent,
+    TodoTextInputComponent
   ],
 <% if (router === 'uirouter') { -%>
   providers: [
@@ -42,7 +47,7 @@ module.exports = ng.NgModule({
 <% } else if (router === 'router') { -%>
   bootstrap: [myRoutes.RootComponent]
 <% } else { -%>
-  bootstrap: [MainComponent]
+  bootstrap: [AppComponent]
 <% } -%>
 <% if (router !== 'uirouter') { -%>
 })

@@ -1,14 +1,11 @@
 import {Component} from '@angular/core';
 import {Store} from '@ngrx/store';
-import {TodoItemComponent} from './TodoItem';
 import {Observable} from 'rxjs/Rx';
-import {FooterComponent} from './Footer';
 import * as actions from '../actions/index';
 
 @Component({
   selector: 'fountain-main-section',
-  template: require('./MainSection.html'),
-  directives: [TodoItemComponent, FooterComponent]
+  template: require('./MainSection.html')
 })
 export class MainSectionComponent {
   constructor(store) {

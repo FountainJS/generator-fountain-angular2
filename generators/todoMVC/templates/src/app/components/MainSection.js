@@ -1,14 +1,11 @@
 var ng = require('@angular/core');
 var ngrxStore = require('@ngrx/store');
-var TodoItemComponent = require('./TodoItem');
 var rx = require('rxjs/Rx');
-var FooterComponent = require('./Footer');
 var actions = require('../actions/index');
 
 module.exports = ng.Component({
   selector: 'fountain-main-section',
-  template: require('./MainSection.html'),
-  directives: [TodoItemComponent, FooterComponent]
+  template: require('./MainSection.html')
 })
 .Class({
   constructor: [ngrxStore.Store, function (store) {

@@ -7,8 +7,7 @@ import * as actions from '../actions/index';
   template: require('./Header.html')
 })
 export class HeaderComponent {
-  constructor(public store: Store<any[]>) {
-  }
+  constructor(public store: Store<any[]>) {}
 
   handleSave(text: string) {
     if (text.length !== 0) {
