@@ -9,7 +9,7 @@ require('./index.<%- css %>');
 
 var ngCore = require('@angular/core');
 var ngPbd = require('@angular/platform-browser-dynamic');
-var AppModule = require('./app');
+var AppModule = require('./app<%- modules === 'systemjs' ? '/index' : '' %>');
 
 <% if (modules === 'systemjs') { -%>
 var systemEnv = require('@system-env');
