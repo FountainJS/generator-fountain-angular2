@@ -14,18 +14,20 @@ test.before(() => {
   process.chdir('../../');
 });
 
-test(`Call this.copyTemplate 2 times without 'dir' option`, t => {
+test(`Call this.copyTemplate 3 times without 'dir' option`, t => {
   const spy = chai.spy.on(context, 'copyTemplate');
   TestUtils.call(context, 'writing');
-  expect(spy).to.have.been.called.exactly(2);
+  expect(spy).to.have.been.called.exactly(3);
   t.true(context.copyTemplate['src/app/myComponent.js'].length > 0);
+  t.true(context.copyTemplate['src/app/myComponent.html'].length > 0);
   t.true(context.copyTemplate['src/app/myComponent.spec.js'].length > 0);
 });
 
-test(`Call this.copyTemplate 2 times with 'dir' option`, t => {
+test(`Call this.copyTemplate 3 times with 'dir' option`, t => {
   const spy = chai.spy.on(context, 'copyTemplate');
   TestUtils.call(context, 'writing', {dir: 'game'});
-  expect(spy).to.have.been.called.exactly(2);
+  expect(spy).to.have.been.called.exactly(3);
   t.true(context.copyTemplate['src/app/game/myComponent.js'].length > 0);
+  t.true(context.copyTemplate['src/app/game/myComponent.html'].length > 0);
   t.true(context.copyTemplate['src/app/game/myComponent.spec.js'].length > 0);
 });
