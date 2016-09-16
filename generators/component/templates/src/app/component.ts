@@ -2,11 +2,7 @@ import {Component} from '@angular/core';
 
 @Component({
   selector: '<%- componentName %>',
-  template: `
-    <div>
-      <h2>{{text}}</h2>
-    </div>
-  `
+  template: require('./<%- name %>.html')
 })
 export class <%- className %> {
   public text: string;
