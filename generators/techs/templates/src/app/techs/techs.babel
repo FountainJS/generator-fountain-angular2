@@ -1,20 +1,17 @@
-import {Component} from '@angular/core';
+import {Component, Inject} from '@angular/core';
 import {Http} from '@angular/http';
 
 @Component({
   selector: 'fountain-techs',
   template: require('./techs.html')
 })
+@Inject('Http')
 export class TechsComponent {
-  constructor(http) {
+  constructor(http: Http) {
     this.http = http;
     this.getTechs().subscribe(result => {
       this.techs = result;
     });
-  }
-
-  static get parameters() { // http://stackoverflow.com/questions/34800150/angular-2-es6-inject-http
-    return [[Http]];
   }
 
   getTechs() {

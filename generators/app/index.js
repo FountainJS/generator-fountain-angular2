@@ -65,10 +65,10 @@ module.exports = fountain.Base.extend({
       if (this.props.js === 'babel') {
         this.mergeJson('package.json', {
           devDependencies: {
-            'babel-plugin-angular2-annotations': '^5.0.0',
-            'babel-plugin-transform-class-properties': '^6.5.2',
+            'babel-plugin-angular2-annotations': '^5.1.0',
+            'babel-plugin-transform-class-properties': '^6.8.0',
             'babel-plugin-transform-decorators-legacy': '^1.3.4',
-            'babel-plugin-transform-flow-strip-types': '^6.5.0'
+            'babel-plugin-transform-flow-strip-types': '^6.8.0'
           }
         });
 
@@ -79,16 +79,18 @@ module.exports = fountain.Base.extend({
           'transform-flow-strip-types'
         ];
 
-        if (this.props.modules === 'webpack') {
-          this.mergeJson('.babelrc', {
-            env: {
-              development: {plugins},
-              production: {plugins}
-            }
-          });
-        } else {
-          this.mergeJson('.babelrc', {plugins});
-        }
+        // if (this.props.modules === 'webpack') {
+        //   this.mergeJson('.babelrc', {
+        //     env: {
+        //       development: {plugins},
+        //       production: {plugins}
+        //     }
+        //   });
+        // } else {
+        //   this.mergeJson('.babelrc', {plugins});
+        // }
+
+        this.mergeJson('.babelrc', {plugins});
       }
     },
 
