@@ -1,6 +1,3 @@
-<% if (modules === 'webpack') { -%>
-require('zone.js/dist/zone');
-<% } -%>
 var <%- className %> = require('./<%- name %>');
 var ngTest = require('@angular/core/testing');
 

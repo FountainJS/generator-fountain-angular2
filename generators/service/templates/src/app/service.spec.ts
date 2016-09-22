@@ -1,6 +1,5 @@
 /// <reference path="../../../typings/index.d.ts"/>
 
-import 'zone.js/dist/zone';
 import {<%- className %>} from './<%- name %>';
 import {inject, addProviders} from '@angular/core/testing';
 

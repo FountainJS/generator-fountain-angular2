@@ -54,7 +54,7 @@ module.exports = fountain.Base.extend({
           '@angular/platform-browser': '^2.0.0',
           '@angular/platform-browser-dynamic': '^2.0.0',
           '@angular/http': '^2.0.0',
-          'rxjs': '5.0.0-beta.11',
+          'rxjs': '5.0.0-beta.12',
           'zone.js': '^0.6.23',
           'core-js': '^2.4.1'
         }

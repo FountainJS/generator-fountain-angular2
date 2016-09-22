@@ -1,7 +1,5 @@
 /// <reference path="<%- typings %>"/>
 
-import 'reflect-metadata';
-import 'zone.js/dist/zone';
 import {<%- className %>} from './<%- name %>';
 import {inject, addProviders} from '@angular/core/testing';
 
