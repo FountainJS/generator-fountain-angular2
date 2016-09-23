@@ -39,13 +39,14 @@ test(`Add '@angular/core' to package.json dependencies`, t => {
 test(`Add 'babel-plugin-angular2-annotations' to package.json devDependencies with js of 'babel'`, t => {
   context.props = {js: 'babel'};
   TestUtils.call(context, 'configuring.babel');
-  t.is(context.mergeJson['package.json'].devDependencies['babel-plugin-angular2-annotations'], '^5.0.0');
+  t.is(context.mergeJson['package.json'].devDependencies['babel-plugin-angular2-annotations'], '^5.1.0');
 });
 
 test(`Add 'angular2-annotations' to .babelrc plugins when js is 'babel' and modules is 'webpack'`, t => {
   context.props = {js: 'babel', modules: 'webpack'};
   TestUtils.call(context, 'configuring.babel');
-  t.true(context.mergeJson['.babelrc'].env.production.plugins.indexOf('angular2-annotations') > -1);
+  // t.true(context.mergeJson['.babelrc'].env.production.plugins.indexOf('angular2-annotations') > -1);
+  t.true(context.mergeJson['.babelrc'].plugins.indexOf('angular2-annotations') > -1);
 });
 
 test(`Add 'angular2-annotations' to .babelrc plugins when js is 'babel' and modules is 'systemjs'`, t => {
