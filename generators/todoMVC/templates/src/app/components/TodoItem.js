@@ -1,5 +1,4 @@
 var ng = require('@angular/core');
-var TodoTextInputComponent = require('./TodoTextInput');
 
 module.exports = ng.Component({
   selector: 'fountain-todo-item',
@@ -9,8 +8,7 @@ module.exports = ng.Component({
     'onDestroy',
     'onSave',
     'onChange'
-  ],
-  directives: [TodoTextInputComponent]
+  ]
 })
 .Class({
   constructor: function () {

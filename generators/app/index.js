@@ -48,30 +48,27 @@ module.exports = fountain.Base.extend({
     pkg() {
       this.mergeJson('package.json', {
         dependencies: {
-          '@angular/core': '2.0.0-rc.4',
-          '@angular/compiler': '2.0.0-rc.4',
-          '@angular/common': '2.0.0-rc.4',
-          '@angular/platform-browser': '2.0.0-rc.4',
-          '@angular/platform-browser-dynamic': '2.0.0-rc.4',
-          '@angular/http': '2.0.0-rc.4',
-          'rxjs': '5.0.0-beta.8',
-          'zone.js': '^0.6.12',
-          'reflect-metadata': '0.1.3'
+          '@angular/core': '^2.0.0',
+          '@angular/compiler': '^2.0.0',
+          '@angular/common': '^2.0.0',
+          '@angular/platform-browser': '^2.0.0',
+          '@angular/platform-browser-dynamic': '^2.0.0',
+          '@angular/http': '^2.0.0',
+          'rxjs': '5.0.0-beta.12',
+          'zone.js': '^0.6.23',
+          'core-js': '^2.4.1'
         }
       });
-      if (this.props.js === 'typescript') {
-        this.mergeJson('package.json', {dependencies: {'es6-shim': '^0.35.0'}});
-      }
     },
 
     babel() {
       if (this.props.js === 'babel') {
         this.mergeJson('package.json', {
           devDependencies: {
-            'babel-plugin-angular2-annotations': '^5.0.0',
-            'babel-plugin-transform-class-properties': '^6.5.2',
+            'babel-plugin-angular2-annotations': '^5.1.0',
+            'babel-plugin-transform-class-properties': '^6.8.0',
             'babel-plugin-transform-decorators-legacy': '^1.3.4',
-            'babel-plugin-transform-flow-strip-types': '^6.5.0'
+            'babel-plugin-transform-flow-strip-types': '^6.8.0'
           }
         });
 
@@ -82,16 +79,18 @@ module.exports = fountain.Base.extend({
           'transform-flow-strip-types'
         ];
 
-        if (this.props.modules === 'webpack') {
-          this.mergeJson('.babelrc', {
-            env: {
-              development: {plugins},
-              production: {plugins}
-            }
-          });
-        } else {
-          this.mergeJson('.babelrc', {plugins});
-        }
+        // if (this.props.modules === 'webpack') {
+        //   this.mergeJson('.babelrc', {
+        //     env: {
+        //       development: {plugins},
+        //       production: {plugins}
+        //     }
+        //   });
+        // } else {
+        //   this.mergeJson('.babelrc', {plugins});
+        // }
+
+        this.mergeJson('.babelrc', {plugins});
       }
     },
 
@@ -99,13 +98,13 @@ module.exports = fountain.Base.extend({
       if (this.props.router === 'router') {
         this.mergeJson('package.json', {
           dependencies: {
-            '@angular/router': '3.0.0-beta.2'
+            '@angular/router': '^3.0.0'
           }
         });
       } else if (this.props.router === 'uirouter') {
         this.mergeJson('package.json', {
           dependencies: {
-            'ui-router-ng2': '1.0.0-alpha.5'
+            'ui-router-ng2': '1.0.0-beta.2'
           }
         });
       }
@@ -135,7 +134,7 @@ module.exports = fountain.Base.extend({
 
   writing() {
     if (this.props.router !== 'none') {
-      this.copyTemplate(`src/${this.props.router}/routes.js`, 'src/routes.js', this.props);
+      this.copyTemplate(`src/${this.props.router}/routes.js`, 'src/app/routes.js', this.props);
     }
     this.copyTemplate('src/index.html', 'src/index.html', {router: this.props.router});
   }

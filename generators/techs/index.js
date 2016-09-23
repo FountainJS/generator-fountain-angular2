@@ -6,6 +6,7 @@ module.exports = fountain.Base.extend({
       [
         'src/index.js',
         'src/index.css',
+        'src/app/index.js',
         'src/app/footer.html',
         'src/app/footer.js',
         'src/app/footer.spec.js',
@@ -18,6 +19,7 @@ module.exports = fountain.Base.extend({
         'src/app/title.html',
         'src/app/title.js',
         'src/app/title.spec.js',
+        'src/app/techs/index.js',
         'src/app/techs/tech.html',
         'src/app/techs/tech.js',
         'src/app/techs/tech.spec.js',

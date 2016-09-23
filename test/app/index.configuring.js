@@ -33,25 +33,20 @@ test('Call this.config.set twice', () => {
 test(`Add '@angular/core' to package.json dependencies`, t => {
   context.props = {js: 'babel'};
   TestUtils.call(context, 'configuring.pkg');
-  t.is(context.mergeJson['package.json'].dependencies['@angular/core'], '2.0.0-rc.4');
-});
-
-test(`Add 'es6-shim' to package.json dependencies when js is 'typescript'`, t => {
-  context.props = {js: 'typescript'};
-  TestUtils.call(context, 'configuring.pkg');
-  t.is(context.mergeJson['package.json'].dependencies['es6-shim'], '^0.35.0');
+  t.is(context.mergeJson['package.json'].dependencies['@angular/core'], '^2.0.0');
 });
 
 test(`Add 'babel-plugin-angular2-annotations' to package.json devDependencies with js of 'babel'`, t => {
   context.props = {js: 'babel'};
   TestUtils.call(context, 'configuring.babel');
-  t.is(context.mergeJson['package.json'].devDependencies['babel-plugin-angular2-annotations'], '^5.0.0');
+  t.is(context.mergeJson['package.json'].devDependencies['babel-plugin-angular2-annotations'], '^5.1.0');
 });
 
 test(`Add 'angular2-annotations' to .babelrc plugins when js is 'babel' and modules is 'webpack'`, t => {
   context.props = {js: 'babel', modules: 'webpack'};
   TestUtils.call(context, 'configuring.babel');
-  t.true(context.mergeJson['.babelrc'].env.production.plugins.indexOf('angular2-annotations') > -1);
+  // t.true(context.mergeJson['.babelrc'].env.production.plugins.indexOf('angular2-annotations') > -1);
+  t.true(context.mergeJson['.babelrc'].plugins.indexOf('angular2-annotations') > -1);
 });
 
 test(`Add 'angular2-annotations' to .babelrc plugins when js is 'babel' and modules is 'systemjs'`, t => {
@@ -69,13 +64,13 @@ test(`Add 'babel-plugin-angular2-annotations' to package.json devDependencies wi
 test(`Add '@angular/router' to package.json dependencies`, t => {
   context.props = {router: 'router'};
   TestUtils.call(context, 'configuring.router');
-  t.is(context.mergeJson['package.json'].dependencies['@angular/router'], '3.0.0-beta.2');
+  t.is(context.mergeJson['package.json'].dependencies['@angular/router'], '^3.0.0');
 });
 
 test(`Add 'ui-router-ng2' to package.json dependencies`, t => {
   context.props = {router: 'uirouter'};
   TestUtils.call(context, 'configuring.router');
-  t.is(context.mergeJson['package.json'].dependencies['ui-router-ng2'], '1.0.0-alpha.5');
+  t.is(context.mergeJson['package.json'].dependencies['ui-router-ng2'], '1.0.0-beta.2');
 });
 
 test(`Not add any router to package.json dependencies`, t => {

@@ -95,8 +95,6 @@ function visibility(state, action) {
 }
 
 module.exports = {
-  initialTodo: initialTodo,
-  initialVisibility: initialVisibility,
   todos: todos,
   visibility: visibility
 };

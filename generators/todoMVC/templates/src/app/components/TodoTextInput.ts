@@ -12,8 +12,7 @@ export class TodoTextInputComponent implements AfterViewInit {
   @Output() onSave: EventEmitter<any> = new EventEmitter(false);
   @Input() text: string = '';
 
-  constructor(private renderer: Renderer) {
-  }
+  constructor(private renderer: Renderer) {}
 
   ngAfterViewInit() {
     this.renderer.invokeElementMethod(this.input.nativeElement, 'focus', []);

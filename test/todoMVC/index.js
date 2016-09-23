@@ -21,7 +21,7 @@ test.beforeEach(() => {
 
 test(`Add '@ngrx/store' to package.json dependencies when using babel`, () => {
   TestUtils.call(context, 'configuring', {js: 'babel'});
-  expect(context.mergeJson['package.json'].dependencies['@ngrx/store']).to.equal('^1.5.0');
+  expect(context.mergeJson['package.json'].dependencies['@ngrx/store']).to.equal('^2.1.2');
 });
 
 test(`Add 'object-assign' to package.json dependencies when using es5`, () => {
@@ -29,11 +29,12 @@ test(`Add 'object-assign' to package.json dependencies when using es5`, () => {
   expect(context.mergeJson['package.json'].dependencies['object-assign']).to.equal('^4.1.0');
 });
 
-test(`Call this.copyTemplate 19 times`, () => {
+test(`Call this.copyTemplate 27 times`, () => {
   const files = [
     'src/index.html',
     'src/index.js',
     'src/index.css',
+    'src/app/index.js',
     'src/app/actions/index.js',
     'src/app/components/Footer.html',
     'src/app/components/Footer.js',
@@ -54,6 +55,7 @@ test(`Call this.copyTemplate 19 times`, () => {
     'src/app/constants/TodoFilters.js',
     'src/app/containers/App.html',
     'src/app/containers/App.js',
+    'src/app/reducers/index.js',
     'src/app/reducers/todos.js',
     'src/app/reducers/todos.spec.js'
   ];
@@ -65,4 +67,3 @@ test(`Call this.copyTemplate 19 times`, () => {
   expect(spy).to.have.been.called.exactly(files.length);
   files.filter(file => file !== 'src/index.css').forEach(file => expect(context.copyTemplate[file].length).to.be.above(0));
 });
-

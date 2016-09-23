@@ -16,6 +16,7 @@ module.exports = fountain.Base.extend({
       name,
       typings
     };
+    this.copyTemplate(`src/app/component.html`, `src/${path}/${name}.html`, props);
     this.copyTemplate(`src/app/component.js`, `src/${path}/${name}.js`, props);
     this.copyTemplate(`src/app/component.spec.js`, `src/${path}/${name}.spec.js`, props);
   }

@@ -1,16 +1,11 @@
-<% if (modules === 'webpack') { -%>
-require('zone.js/dist/zone');
-<% } -%>
-require('zone.js/dist/async-test');
 var ng = require('@angular/core');
 var ngHttpTesting = require('@angular/http/testing');
 var ngHttp = require('@angular/http');
 var TechsComponent = require('./techs');
-var TechComponent = require('./tech');
 var ngTest = require('@angular/core/testing');
-var rxjs = require('rxjs/Rx');
+var Rx = require('rxjs/Rx');
 
-var MockComponent = ng.Component({
+var MockTechComponent = ng.Component({
   selector: 'fountain-tech',
   template: '',
   inputs: ['tech']
@@ -44,22 +39,30 @@ var techsJson = [
 ];
 
 describe('techs component', function () {
-  describe('techs component methods', function () {
-    beforeEach(function () {
-      ngTest.addProviders([
+  beforeEach(ngTest.async(function () {
+    ngTest.TestBed.configureTestingModule({
+      declarations: [
         TechsComponent,
+        MockTechComponent
+      ],
+      providers: [
         ngHttpTesting.MockBackend,
         ngHttp.BaseRequestOptions,
-        ng.provide(ngHttp.Http, {
-          useFactory: function (backend, defaultOptions) {
+        {
+          provide: ngHttp.Http, useFactory: function (backend, defaultOptions) {
             return new ngHttp.Http(backend, defaultOptions);
           },
           deps: [ngHttpTesting.MockBackend, ngHttp.BaseRequestOptions]
-        })
-      ]);
+        }
+      ]
     });
+    ngTest.TestBed.compileComponents();
+  }));
 
-    it('should get techs', ngTest.inject([ngHttpTesting.MockBackend, TechsComponent], function (mockBackend, techs) {
+  describe('techs component methods', function () {
+    it('should get techs', ngTest.inject([ngHttpTesting.MockBackend], function (mockBackend) {
+      var fixture = ngTest.TestBed.createComponent(TechsComponent);
+      var techs = fixture.componentInstance;
       var conn;
       var response = new ngHttp.Response(new ngHttp.ResponseOptions({body: techsJson}));
       mockBackend.connections.subscribe(function (connection) {
@@ -77,22 +80,18 @@ describe('techs component', function () {
   describe('techs component rendering', function () {
     beforeEach(function () {
       TechsComponent.prototype.getTechs = function getTechs() {
-        var response = new ngHttp.Response(new ngHttp.ResponseOptions({body: techsJson}));
-        return rxjs.Observable.of(response).map(function (response) {
+        const response = new ngHttp.Response(new ngHttp.ResponseOptions({body: techsJson}));
+        return Rx.Observable.of(response).map(function (response) {
           return response.json();
         });
       };
     });
 
-    it('should mock the techs and render 3 elements <tech>', ngTest.async(ngTest.inject([ngTest.TestComponentBuilder], function (tcb) {
-      return tcb
-        .overrideDirective(TechsComponent, TechComponent, MockComponent)
-        .createAsync(TechsComponent)
-        .then(function (fixture) {
-          fixture.detectChanges();
-          var techs = fixture.nativeElement;
-          expect(techs.querySelectorAll('fountain-tech').length).toBe(3);
-        });
-    })));
+    it('should mock the techs and render 3 elements <tech>', function () {
+      const fixture = ngTest.TestBed.createComponent(TechsComponent);
+      fixture.detectChanges();
+      const techs = fixture.nativeElement;
+      expect(techs.querySelectorAll('fountain-tech').length).toBe(3);
+    });
   });
 });

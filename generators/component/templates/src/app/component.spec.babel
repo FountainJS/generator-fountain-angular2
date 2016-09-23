@@ -1,15 +1,14 @@
-<% if (modules === 'webpack') { -%>
-import 'zone.js/dist/zone';
-<% } -%>
-import 'zone.js/dist/async-test';
 import {<%- className %>} from './<%- name %>';
-import {inject, async, TestComponentBuilder} from '@angular/core/testing';
+import {TestBed, async} from '@angular/core/testing';
 
 describe('<%- componentName %> component', () => {
-  it('should...', async(inject([TestComponentBuilder], tcb => {
-    tcb.createAsync(<%- className %>)
-      .then(fixture => {
-        fixture.detectChanges();
-      });
-  })));
+  beforeEach(async(function () {
+    TestBed.configureTestingModule({declarations: [<%- componentName %>]});
+    TestBed.compileComponents();
+  }));
+
+  it('should render...', function () {
+    const fixture = TestBed.createComponent(<%- componentName %>);
+    fixture.detectChanges();
+  });
 });

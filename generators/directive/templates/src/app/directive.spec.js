@@ -1,7 +1,3 @@
-<% if (modules === 'webpack') { -%>
-require('zone.js/dist/zone');
-<% } -%>
-require('zone.js/dist/async-test');
 var <%- className %> = require('./<%- name %>');
 var ng = require('@angular/core');
 var ngTest = require('@angular/core/testing');
@@ -15,10 +11,13 @@ var MockComponent = ng.Component({
 });
 
 describe('<%- directiveName %> directive', function () {
-  it('should render...', ngTest.async(ngTest.inject([ngTest.TestComponentBuilder], function (tcb) {
-    tcb.createAsync(MockComponent)
-      .then(function (fixture) {
-        fixture.detectChanges();
-      });
-  })));
+  beforeEach(async(function () {
+    ngTest.TestBed.configureTestingModule({declarations: [MockComponent]});
+    ngTest.TestBed.compileComponents();
+  }));
+
+  it('should render...', function () {
+    const fixture = ngTest.TestBed.createComponent(MockComponent);
+    fixture.detectChanges();
+  });
 });

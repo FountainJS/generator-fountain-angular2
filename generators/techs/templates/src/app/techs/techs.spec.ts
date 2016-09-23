@@ -1,21 +1,17 @@
 /// <reference path="../../../typings/index.d.ts"/>
 
-import 'zone.js/dist/zone';
-import 'zone.js/dist/async-test';
 import {MockBackend, MockConnection} from '@angular/http/testing';
 import {Http, BaseRequestOptions, Response, ResponseOptions} from '@angular/http';
-import {Component, Input, provide} from '@angular/core';
+import {Component, Input} from '@angular/core';
 import {TechsComponent, Tech} from './techs';
-import {TechComponent} from './tech';
-import {inject, async, TestComponentBuilder, ComponentFixture, addProviders} from '@angular/core/testing';
-
+import {TestBed, inject, async} from '@angular/core/testing';
 import {Observable} from 'rxjs/Rx';
 
 @Component({
   selector: 'fountain-tech',
   template: ''
 })
-class MockComponent {
+class MockTechComponent {
   @Input() public tech: Tech;
 }
 
@@ -44,32 +40,40 @@ const techsJson = [
 ];
 
 describe('techs component', () => {
-  describe('techs component methods', () => {
-    beforeEach(() => {
-      addProviders([
+  beforeEach(async(() => {
+    TestBed.configureTestingModule({
+      declarations: [
         TechsComponent,
+        MockTechComponent
+      ],
+      providers: [
         MockBackend,
         BaseRequestOptions,
-        provide(Http, {
-          useFactory: (backend, defaultOptions) => new Http(backend, defaultOptions),
+        {
+          provide: Http, useFactory: (backend, defaultOptions) => new Http(backend, defaultOptions),
           deps: [MockBackend, BaseRequestOptions]
-        })
-      ]);
+        }
+      ]
     });
+    TestBed.compileComponents();
+  }));
 
-    it('should get techs', async(inject([MockBackend, TechsComponent], (mockBackend: MockBackend, techs: TechsComponent) => {
+  describe('techs component methods', () => {
+    it('should get techs', inject([MockBackend], (mockBackend: MockBackend) => {
+      const fixture = TestBed.createComponent(TechsComponent);
+      const techs: TechsComponent = fixture.componentInstance;
       let conn: MockConnection;
       const response = new Response(new ResponseOptions({body: techsJson}));
       mockBackend.connections.subscribe((connection: MockConnection) => {
         conn = connection;
       });
-      techs.getTechs().subscribe((jsonObject => {
+      techs.getTechs().subscribe(jsonObject => {
         techs.techs = jsonObject;
-      }));
+      });
       conn.mockRespond(response);
       expect(techs.techs.length).toBe(3);
       mockBackend.verifyNoPendingRequests();
-    })));
+    }));
   });
 
   describe('techs component rendering', () => {
@@ -80,15 +84,11 @@ describe('techs component', () => {
       };
     });
 
-    it('should mock the techs and render 3 elements <tech>', async(inject([TestComponentBuilder], (tcb: TestComponentBuilder) => {
-      return tcb
-        .overrideDirective(TechsComponent, TechComponent, MockComponent)
-        .createAsync(TechsComponent)
-        .then((fixture: ComponentFixture<any>) => {
-          fixture.detectChanges();
-          const techs = fixture.nativeElement;
-          expect(techs.querySelectorAll('fountain-tech').length).toBe(3);
-        });
-    })));
+    it('should mock the techs and render 3 elements <tech>', () => {
+      const fixture = TestBed.createComponent(TechsComponent);
+      fixture.detectChanges();
+      const techs = fixture.nativeElement;
+      expect(techs.querySelectorAll('fountain-tech').length).toBe(3);
+    });
   });
 });

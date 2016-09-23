@@ -1,29 +1,16 @@
 /// <reference path="../typings/index.d.ts"/>
 
-import 'es6-shim';
-<% if (modules !== 'systemjs') { -%>
-import 'reflect-metadata';
-<% } -%>
+import 'core-js/client/shim';
 import 'zone.js/dist/zone';
 
-import {bootstrap} from '@angular/platform-browser-dynamic';
+import '@angular/common';
+import 'rxjs';
 
 import './index.<%- css %>';
 
-<% if (router === 'uirouter') { -%>
-import {enableProdMode, provide} from '@angular/core';
-import {UIRouterConfig, UIROUTER_PROVIDERS, UiView} from 'ui-router-ng2';
-import {LocationStrategy, PathLocationStrategy, PlatformLocation} from '@angular/common';
-import {BrowserPlatformLocation} from '@angular/platform-browser';
-import {MyUIRouterConfig} from './routes';
-<% } else if (router === 'router') { -%>
-import {provideRouter} from '@angular/router';
 import {enableProdMode} from '@angular/core';
-import {routes, RootComponent} from './routes';
-<% } else { -%>
-import {MainComponent} from './app/main';
-import {enableProdMode} from '@angular/core';
-<% } -%>
+import {platformBrowserDynamic} from '@angular/platform-browser-dynamic';
+import {AppModule} from './app<%- modules === 'systemjs' ? '/index' : '' %>';
 
 <% if (modules === 'systemjs') { -%>
 import {production} from '@system-env';
@@ -34,19 +21,9 @@ declare var process: any;
 if (process.env.NODE_ENV === 'production') {
 <% } -%>
   enableProdMode();
+} else {
+  Error['stackTraceLimit'] = Infinity; // tslint:disable-line:no-string-literal
+  require('zone.js/dist/long-stack-trace-zone'); // tslint:disable-line:no-var-requires
 }
 
-<% if (router === 'uirouter') { -%>
-bootstrap(UiView, [
-  ...UIROUTER_PROVIDERS,
-  provide(LocationStrategy, {useClass: PathLocationStrategy}),
-  provide(PlatformLocation, {useClass: BrowserPlatformLocation}),
-  provide(UIRouterConfig, {useClass: MyUIRouterConfig})
-]);
-<% } else if (router === 'router') { -%>
-bootstrap(RootComponent, [
-  provideRouter(routes)
-]);
-<% } else { -%>
-bootstrap(MainComponent);
-<% } -%>
+platformBrowserDynamic().bootstrapModule(AppModule);

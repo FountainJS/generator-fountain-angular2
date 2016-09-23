@@ -1,27 +1,26 @@
-/// <reference path="../typings/index.d.ts"/>
+/// <reference path="../../typings/index.d.ts"/>
 
 import {Component} from '@angular/core';
-import {ROUTER_DIRECTIVES, RouterConfig} from '@angular/router';
+import {RouterModule, Routes} from '@angular/router';
 <% if (sample === 'hello') { -%>
-import {HelloComponent} from './app/hello';
+import {HelloComponent} from './hello';
 <% } else if (sample === 'techs') { -%>
-import {MainComponent} from './app/main';
+import {MainComponent} from './main';
 <% } else { -%>
-import {AppComponent} from './app/containers/App';
+import {AppComponent} from './containers/App';
 <% } -%>
 
 @Component({
   selector: 'fountain-root',
-  template: '<router-outlet></router-outlet>',
-  directives: [ROUTER_DIRECTIVES]
+  template: '<router-outlet></router-outlet>'
 })
-export class RootComponent {
-}
+export class RootComponent {}
 
-export const routes: RouterConfig = [
+export const routes: Routes = [
   {
     path: '',
-    component: <% if (sample === 'hello') { -%>HelloComponent<% } else if (sample === 'techs') { -%>MainComponent<% } else { -%>AppComponent<% } -%>
-
+    component: <% if (sample === 'hello') { %>HelloComponent<% } else if (sample === 'techs') { %>MainComponent<% } else { %>AppComponent<% } %>
   }
 ];
+
+export const routing = RouterModule.forRoot(routes);

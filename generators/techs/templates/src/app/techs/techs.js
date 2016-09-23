@@ -1,13 +1,9 @@
 var ng = require('@angular/core');
 var ngHttp = require('@angular/http');
-var TechComponent = require('./tech');
-require('rxjs/Rx');
 
 module.exports = ng.Component({
   selector: 'fountain-techs',
-  template: require('./techs.html'),
-  directives: [TechComponent],
-  providers: [ngHttp.HTTP_PROVIDERS]
+  template: require('./techs.html')
 })
 .Class({
   constructor: [ngHttp.Http, function (http) {
