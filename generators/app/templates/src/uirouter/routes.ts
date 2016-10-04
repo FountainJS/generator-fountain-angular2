@@ -22,6 +22,6 @@ export const STATES: Ng2StateDeclaration[] = [
 @Injectable()
 export class MyUIRouterConfig {
   configure(uiRouter: UIRouter) {
-    uiRouter.urlRouterProvider.otherwise(() => uiRouter.stateService.go('App'));
+    uiRouter.urlRouterProvider.otherwise('App');
   }
 }

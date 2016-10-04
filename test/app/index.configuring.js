@@ -70,7 +70,7 @@ test(`Add '@angular/router' to package.json dependencies`, t => {
 test(`Add 'ui-router-ng2' to package.json dependencies`, t => {
   context.props = {router: 'uirouter'};
   TestUtils.call(context, 'configuring.router');
-  t.is(context.mergeJson['package.json'].dependencies['ui-router-ng2'], '1.0.0-beta.2');
+  t.is(context.mergeJson['package.json'].dependencies['ui-router-ng2'], '1.0.0-beta.3');
 });
 
 test(`Not add any router to package.json dependencies`, t => {
