@@ -1,9 +1,7 @@
-<% if (router !== 'uirouter') { -%>
 import {NgModule} from '@angular/core';
-<% } -%>
 import {BrowserModule} from '@angular/platform-browser';
 <% if (router === 'uirouter') { -%>
-import {UIView, UIRouterModule, provideUIRouter} from 'ui-router-ng2';
+import {UIView, UIRouterModule} from 'ui-router-ng2';
 import {STATES, MyUIRouterConfig} from './routes';
 <% } else if (router === 'router') { -%>
 import {routing, RootComponent} from './routes';
@@ -11,17 +9,13 @@ import {routing, RootComponent} from './routes';
 
 import {HelloComponent} from './hello';
 
-<% if (router === 'uirouter') { -%>
-@UIRouterModule({
-<% } else { -%>
 @NgModule({
-<% } -%>
   imports: [
-<% if (router === 'router') { -%>
     BrowserModule,
+<% if (router === 'router') { -%>
     routing
-<% } else { -%>
-    BrowserModule
+<% } else if (router === 'uirouter') { -%>
+    UIRouterModule.forRoot({states: STATES, configClass: MyUIRouterConfig})
 <% } -%>
   ],
   declarations: [
@@ -31,10 +25,6 @@ import {HelloComponent} from './hello';
     HelloComponent
   ],
 <% if (router === 'uirouter') { -%>
-  providers: [
-    provideUIRouter({configClass: MyUIRouterConfig})
-  ],
-  states: STATES,
   bootstrap: [UIView]
 <% } else if (router === 'router') { -%>
   bootstrap: [RootComponent]

@@ -8,7 +8,7 @@ var MainComponent = require('./main');
 var AppComponent = require('./containers/App');
 <% } -%>
 
-exports.STATES = [
+var STATES = [
   {
     name: 'App',
     url: '/',
@@ -16,12 +16,15 @@ exports.STATES = [
   }
 ];
 
-exports.MyUIRouterConfig = ng.Class({
+var MyUIRouterConfig = ng.Class({
   constructor: function () {},
 
   configure: function (uiRouter) {
-    uiRouter.urlRouterProvider.otherwise(function () {
-      return uiRouter.stateService.go('App');
-    });
+    uiRouter.urlRouterProvider.otherwise('App');
   }
 });
+
+module.exports = {
+  STATES: STATES,
+  MyUIRouterConfig: MyUIRouterConfig
+};

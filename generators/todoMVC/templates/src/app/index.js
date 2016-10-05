@@ -14,16 +14,14 @@ var MainSectionComponent = require('./components/MainSection');
 var TodoItemComponent = require('./components/TodoItem');
 var TodoTextInputComponent = require('./components/TodoTextInput');
 
-<% if (router === 'uirouter') { -%>
-module.exports = uiRouter.UIRouterModule({
-<% } else { -%>
 module.exports = ng.NgModule({
-<% } -%>
   imports: [
     ngPlatformBrowser.BrowserModule,
     ngForms.FormsModule,
 <% if (router === 'router') { -%>
     myRoutes.routing,
+<% } else if (router === 'uirouter') { -%>
+    uiRouter.UIRouterModule.forRoot({states: myRoutes.STATES, configClass: myRoutes.MyUIRouterConfig}),
 <% } -%>
     store
   ],
@@ -39,10 +37,6 @@ module.exports = ng.NgModule({
     TodoTextInputComponent
   ],
 <% if (router === 'uirouter') { -%>
-  providers: [
-    uiRouter.provideUIRouter({configClass: myRoutes.MyUIRouterConfig})
-  ],
-  states: myRoutes.STATES,
   bootstrap: [uiRouter.UIView]
 <% } else if (router === 'router') { -%>
   bootstrap: [myRoutes.RootComponent]

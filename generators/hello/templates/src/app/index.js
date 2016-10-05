@@ -9,17 +9,13 @@ var myRoutes = require('./routes');
 
 var HelloComponent = require('./hello');
 
-<% if (router === 'uirouter') { -%>
-module.exports = uiRouter.UIRouterModule({
-<% } else { -%>
 module.exports = ng.NgModule({
-<% } -%>
   imports: [
-<% if (router === 'router') { -%>
     ngPlatformBrowser.BrowserModule,
+<% if (router === 'router') { -%>
     myRoutes.routing
-<% } else { -%>
-    ngPlatformBrowser.BrowserModule
+<% } else if (router === 'uirouter') { -%>
+    uiRouter.UIRouterModule.forRoot({states: myRoutes.STATES, configClass: myRoutes.MyUIRouterConfig})
 <% } -%>
   ],
   declarations: [
@@ -29,10 +25,6 @@ module.exports = ng.NgModule({
     HelloComponent
   ],
 <% if (router === 'uirouter') { -%>
-  providers: [
-    uiRouter.provideUIRouter({configClass: myRoutes.MyUIRouterConfig})
-  ],
-  states: myRoutes.STATES,
   bootstrap: [uiRouter.UIView]
 <% } else if (router === 'router') { -%>
   bootstrap: [myRoutes.RootComponent]

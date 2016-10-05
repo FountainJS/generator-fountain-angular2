@@ -20,6 +20,6 @@ export const STATES = [
 @Injectable()
 export class MyUIRouterConfig {
   configure(uiRouter: UIRouter) {
-    uiRouter.urlRouterProvider.otherwise(() => uiRouter.stateService.go('App'));
+    uiRouter.urlRouterProvider.otherwise('App');
   }
 }
