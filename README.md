@@ -12,7 +12,7 @@
 
 [![Angular 2](http://fountainjs.io/assets/imgs/angular2.png)](https://angular.io/)
 
-> This Yeoman generator allows you to start an Angular2 web app with the best Developer Experience out of the box!
+> Fountain Angular 2 Generator allows you to start an Angular2 web app with the best developer experience possible!
 
 > No matter what framework or module management you want to use, we got you covered with a cutting edge working configuration.
 
@@ -25,11 +25,11 @@ This generator is a sub-generator of the the Yeoman Fountain generator for webap
 
 ## Generator Fountain Angular 2 structure
 
-To take profit of the best of the Yeoman infrastructure, we heavily relies on the composability natures of the generators.
+To utilize the best of the Yeoman infrastructure, we heavily rely on the composability features that the generators offer.
 
-Thereby, each needs of your future application will be addressed by a dedicated Yeoman generator (each will be used depending of the options you selected or not).
+Thereby, each requirement for your application will be addressed by a dedicated Yeoman generator (generators utilized will vary depending on the options selected).
 
-More informations in [DESIGN.md](http://fountainjs.io/doc/design).
+Additional information: [DESIGN.md](http://fountainjs.io/doc/design).
 
 
 ### Web tooling layer
@@ -95,7 +95,7 @@ If you have [`gulp-cli`](https://www.npmjs.com/package/gulp-cli) installed in gl
 - `gulp test`
 - `gulp test:auto`
 
-**If you don't have [`gulp-cli`](https://www.npmjs.com/package/gulp-cli) installed in global, you should have this error:**
+**If you don't have [`gulp-cli`](https://www.npmjs.com/package/gulp-cli) installed globally, the following error will occur:**
 > /usr/local/lib/node_modules/gulp/bin/gulp.js:121
     gulpInst.start.apply(gulpInst, toRun);
 TypeError: Cannot read property 'apply' of undefined
