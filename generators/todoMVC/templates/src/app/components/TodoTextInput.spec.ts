@@ -1,5 +1,3 @@
-/// <reference path="../../../typings/index.d.ts"/>
-
 import {TodoTextInputComponent} from './TodoTextInput';
 import {TestBed, fakeAsync, tick, async} from '@angular/core/testing';
 import {FormsModule} from '@angular/forms';

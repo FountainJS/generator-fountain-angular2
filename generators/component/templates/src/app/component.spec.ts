@@ -1,5 +1,3 @@
-/// <reference path="<%- typings %>"/>
-
 import {<%- className %>} from './<%- name %>';
 import {TestBed, async} from '@angular/core/testing';
 

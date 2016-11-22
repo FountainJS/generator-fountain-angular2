@@ -1,5 +1,3 @@
-/// <reference path="../../typings/index.d.ts"/>
-
 import {FooterComponent} from './footer';
 import {TestBed, async} from '@angular/core/testing';
 
