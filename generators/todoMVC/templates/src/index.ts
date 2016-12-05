@@ -1,5 +1,3 @@
-/// <reference path="../typings/index.d.ts"/>
-
 import 'core-js/client/shim';
 import 'zone.js/dist/zone';
 

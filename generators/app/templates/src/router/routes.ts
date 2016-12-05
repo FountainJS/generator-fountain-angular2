@@ -1,5 +1,3 @@
-/// <reference path="../../typings/index.d.ts"/>
-
 import {Component} from '@angular/core';
 import {RouterModule, Routes} from '@angular/router';
 <% if (sample === 'hello') { -%>

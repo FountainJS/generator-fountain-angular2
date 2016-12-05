@@ -1,5 +1,3 @@
-/// <reference path="<%- typings %>"/>
-
 import {<%- className %>} from './<%- name %>';
 import {inject, addProviders} from '@angular/core/testing';
 

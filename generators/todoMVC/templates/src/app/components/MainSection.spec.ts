@@ -1,5 +1,3 @@
-/// <reference path="../../../typings/index.d.ts"/>
-
 import {Component, Input, Output, EventEmitter} from '@angular/core';
 import {FormsModule} from '@angular/forms';
 import {TestBed, async} from '@angular/core/testing';

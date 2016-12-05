@@ -1,5 +1,3 @@
-/// <reference path="../../typings/index.d.ts"/>
-
 import {Injectable} from '@angular/core';
 import {UIRouter, Ng2StateDeclaration} from 'ui-router-ng2';
 

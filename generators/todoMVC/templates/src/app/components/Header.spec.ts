@@ -1,5 +1,3 @@
-/// <reference path="../../../typings/index.d.ts"/>
-
 import {Component, Input, Output, EventEmitter} from '@angular/core';
 import {StoreModule} from '@ngrx/store';
 import {HeaderComponent} from './Header';

@@ -1,5 +1,3 @@
-/// <reference path="../../typings/index.d.ts"/>
-
 import {TitleComponent} from './title';
 import {TestBed, async} from '@angular/core/testing';
 

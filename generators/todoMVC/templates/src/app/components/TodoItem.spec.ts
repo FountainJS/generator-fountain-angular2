@@ -1,5 +1,3 @@
-/// <reference path="../../../typings/index.d.ts"/>
-
 import {Component, Input, Output, EventEmitter} from '@angular/core';
 import {TestBed, async} from '@angular/core/testing';
 import {By} from '@angular/platform-browser';
