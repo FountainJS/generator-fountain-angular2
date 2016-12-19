@@ -28,6 +28,6 @@ test('Call this.composeWith twice', () => {
     skipCache: context.props.skipCache
   };
   expect(spy).to.have.been.called.twice();
-  expect(spy).to.have.been.called.with(`fountain-angular2:techs`, {options}, {local: require.resolve('../../generators/techs')});
-  expect(spy).to.have.been.called.with(`fountain-gulp`, {options}, {local: require.resolve('generator-fountain-gulp/generators/app')});
+  expect(spy).to.have.been.called.with(require.resolve('../../generators/techs'), options);
+  expect(spy).to.have.been.called.with(require.resolve('generator-fountain-gulp/generators/app'), options);
 });
