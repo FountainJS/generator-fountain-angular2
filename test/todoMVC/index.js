@@ -20,12 +20,12 @@ test.beforeEach(() => {
 
 test(`Add '@ngrx/store' to package.json dependencies when using babel`, () => {
   TestUtils.call(context, 'configuring', {js: 'babel'});
-  expect(context.mergeJson['package.json'].dependencies['@ngrx/store']).to.equal('^2.1.2');
+  expect(context.mergeJson['package.json'].dependencies['@ngrx/store']).to.equal('^2.2.1');
 });
 
 test(`Add 'object-assign' to package.json dependencies when using es5`, () => {
   TestUtils.call(context, 'configuring', {js: 'js'});
-  expect(context.mergeJson['package.json'].dependencies['object-assign']).to.equal('^4.1.0');
+  expect(context.mergeJson['package.json'].dependencies['object-assign']).to.equal('^4.1.1');
 });
 
 test(`Call this.copyTemplate 27 times`, () => {
