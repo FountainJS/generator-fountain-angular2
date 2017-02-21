@@ -76,7 +76,7 @@ describe('techs component', () => {
 
   describe('techs component rendering', () => {
     beforeEach(() => {
-      TechsComponent.prototype.getTechs = function getTechs() {
+      TechsComponent.prototype.getTechs = function () {
         const response = new Response(new ResponseOptions({body: techsJson}));
         return Observable.of(response).map(response => response.json());
       };

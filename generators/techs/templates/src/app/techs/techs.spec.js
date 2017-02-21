@@ -79,7 +79,7 @@ describe('techs component', function () {
 
   describe('techs component rendering', function () {
     beforeEach(function () {
-      TechsComponent.prototype.getTechs = function getTechs() {
+      TechsComponent.prototype.getTechs = function () {
         const response = new ngHttp.Response(new ngHttp.ResponseOptions({body: techsJson}));
         return Rx.Observable.of(response).map(function (response) {
           return response.json();

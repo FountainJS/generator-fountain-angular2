@@ -4,16 +4,16 @@ module.exports = fountain.Base.extend({
   configuring() {
     this.mergeJson('package.json', {
       dependencies: {
-        '@angular/forms': '^2.0.0',
-        '@ngrx/store': '^2.1.2',
-        '@ngrx/core': '^1.0.0',
-        'todomvc-app-css': '^2.0.4'
+        '@angular/forms': '^2.4.8',
+        '@ngrx/store': '^2.2.1',
+        '@ngrx/core': '^1.2.0',
+        'todomvc-app-css': '^2.0.6'
       }
     });
     if (this.options.js === 'js') {
       this.mergeJson('package.json', {
         dependencies: {
-          'object-assign': '^4.1.0'
+          'object-assign': '^4.1.1'
         }
       });
     }

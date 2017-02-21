@@ -48,14 +48,14 @@ module.exports = fountain.Base.extend({
     pkg() {
       this.mergeJson('package.json', {
         dependencies: {
-          '@angular/core': '^2.0.0',
-          '@angular/compiler': '^2.0.0',
-          '@angular/common': '^2.0.0',
-          '@angular/platform-browser': '^2.0.0',
-          '@angular/platform-browser-dynamic': '^2.0.0',
-          '@angular/http': '^2.0.0',
-          'rxjs': '5.0.0-beta.12',
-          'zone.js': '^0.6.23',
+          '@angular/core': '^2.4.8',
+          '@angular/compiler': '^2.4.8',
+          '@angular/common': '^2.4.8',
+          '@angular/platform-browser': '^2.4.8',
+          '@angular/platform-browser-dynamic': '^2.4.8',
+          '@angular/http': '^2.4.8',
+          'rxjs': '5.1.1',
+          'zone.js': '^0.7.7',
           'core-js': '^2.4.1'
         }
       });
@@ -66,9 +66,9 @@ module.exports = fountain.Base.extend({
         this.mergeJson('package.json', {
           devDependencies: {
             'babel-plugin-angular2-annotations': '^5.1.0',
-            'babel-plugin-transform-class-properties': '^6.8.0',
+            'babel-plugin-transform-class-properties': '^6.23.0',
             'babel-plugin-transform-decorators-legacy': '^1.3.4',
-            'babel-plugin-transform-flow-strip-types': '^6.8.0'
+            'babel-plugin-transform-flow-strip-types': '^6.22.0'
           }
         });
 
@@ -98,13 +98,13 @@ module.exports = fountain.Base.extend({
       if (this.props.router === 'router') {
         this.mergeJson('package.json', {
           dependencies: {
-            '@angular/router': '^3.0.0'
+            '@angular/router': '^3.4.8'
           }
         });
       } else if (this.props.router === 'uirouter') {
         this.mergeJson('package.json', {
           dependencies: {
-            'ui-router-ng2': '1.0.0-beta.3'
+            'ui-router-ng2': '1.0.0-beta.4'
           }
         });
       }
