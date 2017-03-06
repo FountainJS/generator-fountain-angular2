@@ -16,15 +16,11 @@ var STATES = [
   }
 ];
 
-var MyUIRouterConfig = ng.Class({
-  constructor: function () {},
-
-  configure: function (uiRouter) {
-    uiRouter.urlRouterProvider.otherwise('App');
-  }
-});
+var myUIRouterConfig = function (uiRouter) {
+  uiRouter.urlService.rules.otherwise('App');
+};
 
 module.exports = {
   STATES: STATES,
-  MyUIRouterConfig: MyUIRouterConfig
+  myUIRouterConfig: myUIRouterConfig
 };
