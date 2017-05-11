@@ -18,7 +18,7 @@ module.exports = ng.NgModule({
 <% if (router === 'router') { -%>
     myRoutes.routing,
 <% } else if (router === 'uirouter') { -%>
-    uiRouter.UIRouterModule.forRoot({states: myRoutes.STATES, configClass: myRoutes.MyUIRouterConfig}),
+    uiRouter.UIRouterModule.forRoot({states: myRoutes.STATES, config: myRoutes.myUIRouterConfig}),
 <% } -%>
     TechsModule
   ],

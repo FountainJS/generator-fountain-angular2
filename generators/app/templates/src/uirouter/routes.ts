@@ -1,4 +1,3 @@
-import {Injectable} from '@angular/core';
 import {UIRouter, Ng2StateDeclaration} from 'ui-router-ng2';
 
 <% if (sample === 'hello') { -%>
@@ -17,9 +16,6 @@ export const STATES: Ng2StateDeclaration[] = [
   }
 ];
 
-@Injectable()
-export class MyUIRouterConfig {
-  configure(uiRouter: UIRouter) {
-    uiRouter.urlRouterProvider.otherwise('App');
-  }
+export function myUIRouterConfig(uiRouter: UIRouter) {
+  uiRouter.urlService.rules.otherwise({ state: 'App' });
 }
